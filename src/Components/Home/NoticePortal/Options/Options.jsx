@@ -1,11 +1,11 @@
 import React from "react";
 
-const Footer = () => {
+const Options = () => {
   return (
     <section>
-      <h1>Footer</h1>
+      <h1>Options</h1>
     </section>
   );
 };
 
-export default Footer;
+export default Options;

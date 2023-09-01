@@ -6,7 +6,7 @@ import Footer from "../Shared/Footer/Footer";
 const RootLayout = ({ children }) => {
   return (
     <main>
-      <header className="navbar">
+      <header className="bg-black navbar">
         <TopNav />
         <MainNav />
       </header>

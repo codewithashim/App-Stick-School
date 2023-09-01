@@ -1,5 +1,4 @@
 import React from "react";
-import "./TopNav.scss";
 
 const TopNav = () => {
   return (
