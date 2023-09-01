@@ -7,8 +7,11 @@ const HomePage = () => {
   return (
     <section>
       <div className="bg-[#087477]">
-          <MainNav />
-          <TopNav />
+          <div className="nav-width">
+              <MainNav />
+              <TopNav />
+          </div>
+
       </div>
       <h1>Home Page</h1>
     </section>
