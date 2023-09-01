@@ -1,7 +1,7 @@
 import React from "react";
 import TopNav from "../Shared/Navbar/TopNav/TopNav";
+ import Footer from "../Shared/Footer/Footer";
 import MainNav from "../Shared/Navbar/MainNav/MainNav";
-import Footer from "../Shared/Footer/Footer";
 
 const RootLayout = ({ children }) => {
   return (
