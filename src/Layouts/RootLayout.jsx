@@ -6,9 +6,11 @@ import Footer from "../Shared/Footer/Footer";
 const RootLayout = ({ children }) => {
   return (
     <main>
-      <header className="bg-black navbar">
-        <TopNav />
-        <MainNav />
+      <header className="header-container">
+        <div className="container">
+          <TopNav />
+          <MainNav />
+        </div>
       </header>
       <section>{children}</section>
       <Footer />

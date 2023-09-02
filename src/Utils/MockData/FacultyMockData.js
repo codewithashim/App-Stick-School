@@ -1,0 +1,123 @@
+export const FacultyData = [
+    {
+      id: 1,
+      name: "Md. Abdul Mannan",
+      image: "https://res.cloudinary.com/codewithashim/image/upload/v1693613128/ApstickSchool/di1duyuhaq9v2xhnvnhq.webp",
+      designation: "Vice Principal",
+    },
+    {
+      id: 2,
+      name: "John Doe",
+      image: "https://res.cloudinary.com/codewithashim/image/upload/v1693613128/ApstickSchool/di1duyuhaq9v2xhnvnhq.webp",
+      designation: "Professor",
+    },
+    {
+      id: 3,
+      name: "Jane Smith",
+      image: "https://res.cloudinary.com/codewithashim/image/upload/v1693613128/ApstickSchool/di1duyuhaq9v2xhnvnhq.webp",
+      designation: "Assistant Professor",
+    },
+    {
+      id: 4,
+      name: "Michael Johnson",
+      image: "https://res.cloudinary.com/codewithashim/image/upload/v1693613128/ApstickSchool/di1duyuhaq9v2xhnvnhq.webp",
+      designation: "Associate Professor",
+    },
+    {
+      id: 5,
+      name: "Emily Davis",
+      image: "https://res.cloudinary.com/codewithashim/image/upload/v1693613128/ApstickSchool/di1duyuhaq9v2xhnvnhq.webp",
+      designation: "Lecturer",
+    },
+    {
+      id: 6,
+      name: "Robert Wilson",
+      image: "https://res.cloudinary.com/codewithashim/image/upload/v1693613128/ApstickSchool/di1duyuhaq9v2xhnvnhq.webp",
+      designation: "Assistant Professor",
+    },
+    {
+      id: 7,
+      name: "Sarah Brown",
+      image: "https://res.cloudinary.com/codewithashim/image/upload/v1693613128/ApstickSchool/di1duyuhaq9v2xhnvnhq.webp",
+      designation: "Associate Professor",
+    },
+    {
+      id: 8,
+      name: "William Lee",
+      image: "https://res.cloudinary.com/codewithashim/image/upload/v1693613128/ApstickSchool/di1duyuhaq9v2xhnvnhq.webp",
+      designation: "Professor",
+    },
+    {
+      id: 9,
+      name: "Olivia Turner",
+      image: "https://res.cloudinary.com/codewithashim/image/upload/v1693613128/ApstickSchool/di1duyuhaq9v2xhnvnhq.webp",
+      designation: "Lecturer",
+    },
+    {
+      id: 10,
+      name: "Daniel Parker",
+      image: "https://res.cloudinary.com/codewithashim/image/upload/v1693613128/ApstickSchool/di1duyuhaq9v2xhnvnhq.webp",
+      designation: "Assistant Professor",
+    },
+    {
+      id: 11,
+      name: "Ava Garcia",
+      image: "https://res.cloudinary.com/codewithashim/image/upload/v1693613128/ApstickSchool/di1duyuhaq9v2xhnvnhq.webp",
+      designation: "Associate Professor",
+    },
+    {
+      id: 12,
+      name: "James Adams",
+      image: "https://res.cloudinary.com/codewithashim/image/upload/v1693613128/ApstickSchool/di1duyuhaq9v2xhnvnhq.webp",
+      designation: "Professor",
+    },
+    {
+      id: 13,
+      name: "Sophia Carter",
+      image: "https://res.cloudinary.com/codewithashim/image/upload/v1693613128/ApstickSchool/di1duyuhaq9v2xhnvnhq.webp",
+      designation: "Lecturer",
+    },
+    {
+      id: 14,
+      name: "Benjamin White",
+      image: "https://res.cloudinary.com/codewithashim/image/upload/v1693613128/ApstickSchool/di1duyuhaq9v2xhnvnhq.webp",
+      designation: "Assistant Professor",
+    },
+    {
+      id: 15,
+      name: "Lily Anderson",
+      image: "https://res.cloudinary.com/codewithashim/image/upload/v1693613128/ApstickSchool/di1duyuhaq9v2xhnvnhq.webp",
+      designation: "Associate Professor",
+    },
+    {
+      id: 16,
+      name: "Matthew Hall",
+      image: "https://res.cloudinary.com/codewithashim/image/upload/v1693613128/ApstickSchool/di1duyuhaq9v2xhnvnhq.webp",
+      designation: "Professor",
+    },
+    {
+      id: 17,
+      name: "Chloe Martinez",
+      image: "https://res.cloudinary.com/codewithashim/image/upload/v1693613128/ApstickSchool/di1duyuhaq9v2xhnvnhq.webp",
+      designation: "Lecturer",
+    },
+    {
+      id: 18,
+      name: "David Lewis",
+      image: "https://res.cloudinary.com/codewithashim/image/upload/v1693613128/ApstickSchool/di1duyuhaq9v2xhnvnhq.webp",
+      designation: "Assistant Professor",
+    },
+    {
+      id: 19,
+      name: "Ella Scott",
+      image: "https://res.cloudinary.com/codewithashim/image/upload/v1693613128/ApstickSchool/di1duyuhaq9v2xhnvnhq.webp",
+      designation: "Associate Professor",
+    },
+    {
+      id: 20,
+      name: "Noah King",
+      image: "https://res.cloudinary.com/codewithashim/image/upload/v1693613128/ApstickSchool/di1duyuhaq9v2xhnvnhq.webp",
+      designation: "Professor",
+    },
+  ];
+  

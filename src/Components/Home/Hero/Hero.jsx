@@ -1,11 +1,12 @@
-import React from 'react';
+import React from "react";
+import HomeSlider from "../HomeSlider/HomeSlider";
 
 const Hero = () => {
-    return (
-        <section>
-            <h1>Hero</h1>
-        </section>
-    );
+  return (
+    <section>
+      <HomeSlider />
+    </section>
+  );
 };
 
 export default Hero;
