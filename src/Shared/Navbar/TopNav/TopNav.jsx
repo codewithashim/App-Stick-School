@@ -52,11 +52,11 @@ const TopNav = () => {
              </div>
              
              {/* action button */}
-             <div className="flex items-center justify-center gap-2 mt-2 md:justify-end">
+             {/* <div className="flex items-center justify-center gap-2 mt-2 md:justify-end">
                   <button className="btn bg-[#124358] px-5 py-1 rounded-md">বাংলা</button>
              
                   <button className="btn bg-[#124358] px-4 py-1 rounded-md">Apply Online</button>
-             </div>
+             </div> */}
 
         </div>
       </div>

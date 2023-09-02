@@ -13,7 +13,7 @@ const HomeNotice = () => {
               <FaQuoteLeft /> Notice Section
             </h2>
           </div>
-          <div className="h-48 overflow-y-scroll">
+          <div className="overflow-y-scroll h-[22vw]">
             {notices.map((notice, index) => (
               <div key={index} className="mb-2">
                 <div className="p-2 bg-blue-100 rounded-md">
