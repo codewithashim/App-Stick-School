@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 const AddTeacher = () => {
   const { register, handleSubmit } = useForm();
   const [imageFile, setImageFile] = useState(null);
+  const baseUrl = "http://localhost:3000";
 
   const upload_preset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
   const cloud_name = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;

@@ -1,80 +1,80 @@
-import { Card, CardActions, CardMedia, IconButton } from "@mui/material";
-import React, { useContext } from "react";
-import { FaRegTrashAlt } from "react-icons/fa";
-import Swal from "sweetalert2";
+// import { Card, CardActions, CardMedia, IconButton } from "@mui/material";
+// import React, { useContext } from "react";
+// import { FaRegTrashAlt } from "react-icons/fa";
+// import Swal from "sweetalert2";
 
 const ManegePhotoGelary = () => {
-  const { photoGelaryData, photoGelaryLoaded, refetchPhotoGelary } =
-    useCommonApiData();
-  const baseUrl  = ''
+  // const { photoGelaryData, photoGelaryLoaded, refetchPhotoGelary } =
+  //   useCommonApiData();
+  // const baseUrl  = ''
 
-  const handelDelete = async (id) => {
-    const confirmed = await Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    });
+  // const handelDelete = async (id) => {
+  //   const confirmed = await Swal.fire({
+  //     title: "Are you sure?",
+  //     text: "You won't be able to revert this!",
+  //     icon: "warning",
+  //     showCancelButton: true,
+  //     confirmButtonColor: "#3085d6",
+  //     cancelButtonColor: "#d33",
+  //     confirmButtonText: "Yes, delete it!",
+  //   });
 
-    if (confirmed.isConfirmed) {
-      const res = await fetch(`${baseUrl}/api/photo-gelary/${id}`, {
-        method: "DELETE",
-      });
-      const data = await res.json();
-      if (!data) {
-        Swal.fire({
-          position: "center",
-          timerProgressBar: true,
-          title: data.message,
-          iconColor: "#ED1C24",
-          toast: true,
-          icon: "error",
-          showClass: {
-            popup: "animate__animated animate__fadeInRight",
-          },
-          hideClass: {
-            popup: "animate__animated animate__fadeOutRight",
-          },
-          showConfirmButton: false,
-          timer: 3500,
-        });
-      } else {
-        Swal.fire({
-          position: "center",
-          timerProgressBar: true,
-          title: "Successfully Delete Product !",
-          iconColor: "#ED1C24",
-          toast: true,
-          icon: "success",
-          showClass: {
-            popup: "animate__animated animate__fadeInRight",
-          },
-          hideClass: {
-            popup: "animate__animated animate__fadeOutRight",
-          },
-          showConfirmButton: false,
-          timer: 3500,
-        });
-        refetchPhotoGelary();
-      }
-    }
-  };
+  //   if (confirmed.isConfirmed) {
+  //     const res = await fetch(`${baseUrl}/api/photo-gelary/${id}`, {
+  //       method: "DELETE",
+  //     });
+  //     const data = await res.json();
+  //     if (!data) {
+  //       Swal.fire({
+  //         position: "center",
+  //         timerProgressBar: true,
+  //         title: data.message,
+  //         iconColor: "#ED1C24",
+  //         toast: true,
+  //         icon: "error",
+  //         showClass: {
+  //           popup: "animate__animated animate__fadeInRight",
+  //         },
+  //         hideClass: {
+  //           popup: "animate__animated animate__fadeOutRight",
+  //         },
+  //         showConfirmButton: false,
+  //         timer: 3500,
+  //       });
+  //     } else {
+  //       Swal.fire({
+  //         position: "center",
+  //         timerProgressBar: true,
+  //         title: "Successfully Delete Product !",
+  //         iconColor: "#ED1C24",
+  //         toast: true,
+  //         icon: "success",
+  //         showClass: {
+  //           popup: "animate__animated animate__fadeInRight",
+  //         },
+  //         hideClass: {
+  //           popup: "animate__animated animate__fadeOutRight",
+  //         },
+  //         showConfirmButton: false,
+  //         timer: 3500,
+  //       });
+  //       refetchPhotoGelary();
+  //     }
+  //   }
+  // };
 
-  if (photoGelaryLoaded) {
-    return (
-      <h2 className="flex items-center content-center self-center justify-center">
-        Loading...
-      </h2>
-    );
-  }
+  // if (photoGelaryLoaded) {
+  //   return (
+  //     <h2 className="flex items-center content-center self-center justify-center">
+  //       Loading...
+  //     </h2>
+  //   );
+  // }
   return (
     <section>
       <h2 className="py-4 text-2xl font-bold ">Manage Photo Gelary</h2>
 
-      <div className="grid items-center justify-center gap-4 md:grid-cols-3">
+      {/* <div className="grid items-center justify-center gap-4 md:grid-cols-3">
         {photoGelaryData &&
           photoGelaryData.length &&
           photoGelaryData.map((slider) => {
@@ -99,7 +99,7 @@ const ManegePhotoGelary = () => {
               </Card>
             );
           })}
-      </div>
+      </div> */}
     </section>
   );
 };

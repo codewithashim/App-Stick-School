@@ -1,84 +1,84 @@
-import { DataContextApi } from "@/src/Context/DataContext";
+// import { DataContextApi } from "@/src/Context/DataContext";
 import { Button } from "@mui/material";
-import React, { useContext, useState } from "react";
-import { useForm } from "react-hook-form";
-import Swal from "sweetalert2";
+// import React, { useContext, useState } from "react";
+// import { useForm } from "react-hook-form";
+// import Swal from "sweetalert2";
 import SendIcon from "@mui/icons-material/Send";
 
 const AddHomeSlider = () => {
-  const { register, handleSubmit } = useForm();
-  const [imageFile, setImageFile] = useState(null);
-  const { baseUrl } = useContext(DataContextApi);
+  // const { register, handleSubmit } = useForm();
+  // const [imageFile, setImageFile] = useState(null);
+  // const { baseUrl } = useContext(DataContextApi);
 
-  const upload_preset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
-  const cloud_name = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
-  const cloud_api = process.env.NEXT_PUBLIC_CLOUDINARY_API;
-  const cloud_folder = process.env.NEXT_PUBLIC_CLOUDINARY_IMAGE_FOLDER;
+  // const upload_preset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
+  // const cloud_name = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+  // const cloud_api = process.env.NEXT_PUBLIC_CLOUDINARY_API;
+  // const cloud_folder = process.env.NEXT_PUBLIC_CLOUDINARY_IMAGE_FOLDER;
 
 
-  const onSubmit = async () => {
-    ///////////////////////////////////////////////
-    //               Photo Upload               //
-    /////////////////////////////////////////////*/
+  // const onSubmit = async () => {
+  //   ///////////////////////////////////////////////
+  //   //               Photo Upload               //
+  //   /////////////////////////////////////////////*/
 
-    const imageUploadData = new FormData();
-    imageUploadData.append("file", imageFile);
-    imageUploadData.append(
-      "public_id",
-      `${cloud_folder}/HomeSlider/${imageFile?.name}`
-    );
-    imageUploadData.append("upload_preset", `${upload_preset}`);
-    imageUploadData.append("cloud_name", `${cloud_name}`);
-    const imgRes = await fetch(
-      `${cloud_api}`,
-      {
-        method: "POST",
-        body: imageUploadData,
-      }
-    );
-    const imgData = await imgRes.json();
-    const imgPath = imgData.secure_url;
+  //   const imageUploadData = new FormData();
+  //   imageUploadData.append("file", imageFile);
+  //   imageUploadData.append(
+  //     "public_id",
+  //     `${cloud_folder}/HomeSlider/${imageFile?.name}`
+  //   );
+  //   imageUploadData.append("upload_preset", `${upload_preset}`);
+  //   imageUploadData.append("cloud_name", `${cloud_name}`);
+  //   const imgRes = await fetch(
+  //     `${cloud_api}`,
+  //     {
+  //       method: "POST",
+  //       body: imageUploadData,
+  //     }
+  //   );
+  //   const imgData = await imgRes.json();
+  //   const imgPath = imgData.secure_url;
 
-    ///////////////////////////////////////////////
-    //               Add Home Slider            //
-    /////////////////////////////////////////////*/
+  //   ///////////////////////////////////////////////
+  //   //               Add Home Slider            //
+  //   /////////////////////////////////////////////*/
 
-    const res = await fetch(`${baseUrl}/api/brandSlider`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ brandSliderImage: imgPath }),
-    });
-    const dataRes = await res.json();
-    console.log(dataRes);
-    if (dataRes.sucess === true) {
-      Swal.fire({
-        position: "center",
-        timerProgressBar: true,
-        title: "Successfully Home Slider Added!",
-        iconColor: "#ED1C24",
-        toast: true,
-        icon: "success",
-        showClass: {
-          popup: "animate__animated animate__fadeInRight",
-        },
-        hideClass: {
-          popup: "animate__animated animate__fadeOutRight",
-        },
-        showConfirmButton: false,
-        timer: 3500,
-      });
-      imageFile && setImageFile(null);
+  //   const res = await fetch(`${baseUrl}/api/brandSlider`, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({ brandSliderImage: imgPath }),
+  //   });
+  //   const dataRes = await res.json();
+  //   console.log(dataRes);
+  //   if (dataRes.sucess === true) {
+  //     Swal.fire({
+  //       position: "center",
+  //       timerProgressBar: true,
+  //       title: "Successfully Home Slider Added!",
+  //       iconColor: "#ED1C24",
+  //       toast: true,
+  //       icon: "success",
+  //       showClass: {
+  //         popup: "animate__animated animate__fadeInRight",
+  //       },
+  //       hideClass: {
+  //         popup: "animate__animated animate__fadeOutRight",
+  //       },
+  //       showConfirmButton: false,
+  //       timer: 3500,
+  //     });
+  //     imageFile && setImageFile(null);
 
-    } else {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Something went wrong!",
-      });
-    }
-  };
+  //   } else {
+  //     Swal.fire({
+  //       icon: "error",
+  //       title: "Oops...",
+  //       text: "Something went wrong!",
+  //     });
+  //   }
+  // };
 
   return (
     <section>
@@ -120,7 +120,7 @@ const AddHomeSlider = () => {
                     name="imeage"
                     // {...register("imeage", { required: true })}
                     accept="image/*"
-                    onChange={(e) => setImageFile(e.target.files[0])}
+                    // onChange={(e) => setImageFile(e.target.files[0])}
                   />
                 </label>
               </div>
@@ -135,7 +135,7 @@ const AddHomeSlider = () => {
           className="commonBtn"
           endIcon={<SendIcon />}
           type="submit"
-          onClick={handleSubmit(onSubmit)}
+          // onClick={handleSubmit(onSubmit)}
         >
           Submit
         </Button>

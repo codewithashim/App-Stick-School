@@ -1,80 +1,80 @@
-import { DataContextApi } from "@/src/Context/DataContext";
-import { Button } from "@mui/material";
-import React, { useContext, useState } from "react";
-import { useForm } from "react-hook-form";
-import Swal from "sweetalert2";
+// import { DataContextApi } from "@/src/Context/DataContext";
+// import { Button } from "@mui/material";
+// import React, { useContext, useState } from "react";
+// import { useForm } from "react-hook-form";
+// import Swal from "sweetalert2";
 import SendIcon from "@mui/icons-material/Send";
 
 const AddPhotoGelary = () => {
-  const { register, handleSubmit } = useForm();
-  const [imageFile, setImageFile] = useState(null);
-  // const { baseUrl } = useContext(DataContextApi);
-  const baseUrl = ''
+  // const { register, handleSubmit } = useForm();
+  // const [imageFile, setImageFile] = useState(null);
+  // // const { baseUrl } = useContext(DataContextApi);
+  // const baseUrl = ''
 
-  const upload_preset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
-  const cloud_name = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
-  const cloud_api = process.env.NEXT_PUBLIC_CLOUDINARY_API;
-  const cloud_folder = process.env.NEXT_PUBLIC_CLOUDINARY_IMAGE_FOLDER;
+  // const upload_preset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
+  // const cloud_name = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+  // const cloud_api = process.env.NEXT_PUBLIC_CLOUDINARY_API;
+  // const cloud_folder = process.env.NEXT_PUBLIC_CLOUDINARY_IMAGE_FOLDER;
 
 
-  const onSubmit = async () => {
-    ///////////////////////////////////////////////
-    //               Photo Upload               //
-    /////////////////////////////////////////////*/
+  // const onSubmit = async () => {
+  //   ///////////////////////////////////////////////
+  //   //               Photo Upload               //
+  //   /////////////////////////////////////////////*/
 
-    const imageUploadData = new FormData();
-    imageUploadData.append("file", imageFile);
-    imageUploadData.append("public_id", `${cloud_folder}/About/${imageFile.name}`);
-    imageUploadData.append("upload_preset", `${upload_preset}`);
-    imageUploadData.append("cloud_name", `${cloud_name}`);
-    const imgRes = await fetch(
-      `${cloud_api}`,
-      {
-        method: "POST",
-        body: imageUploadData,
-      }
-    );
-    const imgData = await imgRes.json();
-    const imgPath = imgData.secure_url;
+  //   const imageUploadData = new FormData();
+  //   imageUploadData.append("file", imageFile);
+  //   imageUploadData.append("public_id", `${cloud_folder}/About/${imageFile.name}`);
+  //   imageUploadData.append("upload_preset", `${upload_preset}`);
+  //   imageUploadData.append("cloud_name", `${cloud_name}`);
+  //   const imgRes = await fetch(
+  //     `${cloud_api}`,
+  //     {
+  //       method: "POST",
+  //       body: imageUploadData,
+  //     }
+  //   );
+  //   const imgData = await imgRes.json();
+  //   const imgPath = imgData.secure_url;
 
-    ///////////////////////////////////////////////
-    //               Add Home Slider            //
-    /////////////////////////////////////////////*/
+  //   ///////////////////////////////////////////////
+  //   //               Add Home Slider            //
+  //   /////////////////////////////////////////////*/
 
-    const res = await fetch(`${baseUrl}/api/photo-gelary`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ photoGelaryImage: imgPath }),
-    });
-    const dataRes = await res.json();
-    if (dataRes.sucess === true) {
-      Swal.fire({
-        position: "center",
-        timerProgressBar: true,
-        title: "Successfully Photo Gelary Added!",
-        iconColor: "#ED1C24",
-        toast: true,
-        icon: "success",
-        showClass: {
-          popup: "animate__animated animate__fadeInRight",
-        },
-        hideClass: {
-          popup: "animate__animated animate__fadeOutRight",
-        },
-        showConfirmButton: false,
-        timer: 3500,
-      });
-      imageFile && setImageFile(null);
-    } else {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Something went wrong!",
-      });
-    }
-  };
+  //   const res = await fetch(`${baseUrl}/api/photo-gelary`, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({ photoGelaryImage: imgPath }),
+  //   });
+  //   const dataRes = await res.json();
+  //   if (dataRes.sucess === true) {
+  //     Swal.fire({
+  //       position: "center",
+  //       timerProgressBar: true,
+  //       title: "Successfully Photo Gelary Added!",
+  //       iconColor: "#ED1C24",
+  //       toast: true,
+  //       icon: "success",
+  //       showClass: {
+  //         popup: "animate__animated animate__fadeInRight",
+  //       },
+  //       hideClass: {
+  //         popup: "animate__animated animate__fadeOutRight",
+  //       },
+  //       showConfirmButton: false,
+  //       timer: 3500,
+  //     });
+  //     imageFile && setImageFile(null);
+  //   } else {
+  //     Swal.fire({
+  //       icon: "error",
+  //       title: "Oops...",
+  //       text: "Something went wrong!",
+  //     });
+  //   }
+  // };
 
   return (
     <section>
@@ -116,7 +116,7 @@ const AddPhotoGelary = () => {
                     name="imeage"
                     // {...register("imeage", { required: true })}
                     accept="image/*"
-                    onChange={(e) => setImageFile(e.target.files[0])}
+                    // onChange={(e) => setImageFile(e.target.files[0])}
                   />
                 </label>
               </div>
@@ -131,7 +131,7 @@ const AddPhotoGelary = () => {
           className="commonBtn"
           endIcon={<SendIcon />}
           type="submit"
-          onClick={handleSubmit(onSubmit)}
+          // onClick={handleSubmit(onSubmit)}
         >
           Submit
         </Button>
