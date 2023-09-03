@@ -12,7 +12,7 @@ const RootLayout = ({ children }) => {
           <MainNav />
         </div>
       </header>
-      <section>{children}</section>
+      <section className="min-h-screen">{children}</section>
       <Footer />
     </main>
   );

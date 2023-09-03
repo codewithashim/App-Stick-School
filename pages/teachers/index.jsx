@@ -4,8 +4,9 @@ import Typography from "@mui/material/Typography";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import HomeIcon from "@mui/icons-material/Home";
 import GrainIcon from "@mui/icons-material/Grain";
+import TeachersPortal from "@/src/Components/TeachersPortal/TeachersPortal";
 
-const NoticePage = () => {
+const TeachersPortalPage = () => {
   return (
     <RootLayout>
       <section className="container">
@@ -25,19 +26,22 @@ const NoticePage = () => {
               color="text.primary"
             >
               <GrainIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-              Notice
+              Teachers
             </Typography>
           </Breadcrumbs>
         </div>
         <div className="flex flex-col items-center justify-center my-6 title">
-          <h2 className="text-center md:text-left text-[1rem] md:text-[1.5rem] lg:text-3xl uppercase xxs:text-2xl  text-black font-bold">
-            Notice
-          </h2>
-          <div className="w-full h-1 bg-gray-500"></div>
+            <h2 className="text-center md:text-left text-[1rem] md:text-[1.5rem] lg:text-3xl uppercase xxs:text-2xl  text-black font-bold">
+              Our Teachers
+            </h2>
+            <div className="w-full h-1 bg-gray-500"></div>
+          </div>
+        <div className="my-4">
+          <TeachersPortal />
         </div>
       </section>
     </RootLayout>
   );
 };
 
-export default NoticePage;
+export default TeachersPortalPage;

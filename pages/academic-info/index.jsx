@@ -5,7 +5,7 @@ import Breadcrumbs from "@mui/material/Breadcrumbs";
 import HomeIcon from "@mui/icons-material/Home";
 import GrainIcon from "@mui/icons-material/Grain";
 
-const ResultPage = () => {
+const AcademicInfoPage = () => {
   return (
     <RootLayout>
       <section className="container">
@@ -25,7 +25,7 @@ const ResultPage = () => {
             color="text.primary"
           >
             <GrainIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-           Result
+           Academic Info
           </Typography>
         </Breadcrumbs>
       </div>
@@ -34,4 +34,4 @@ const ResultPage = () => {
   );
 };
 
-export default ResultPage;
+export default AcademicInfoPage;

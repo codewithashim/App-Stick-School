@@ -33,6 +33,27 @@ $text-third-color: #000;
   margin-bottom: 1rem;
 }
 
+.commonBtn {
+  background:$primary-color;
+  color: $text-primary-color;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.6s ease-in-out;
+  &:hover {
+    background: $secondary-color;
+    color: $text-primary-color;
+  }
+}
+
+::-webkit-scrollbar{
+  width: 5px !important;
+  border-radius: 0.5rem;
+  background: #b5b5b5;
+}
+
+
 ///////         End of Common Styles   ////////
 
 ///////////////////////////////////////////////

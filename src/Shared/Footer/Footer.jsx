@@ -1,6 +1,8 @@
 import React from "react";
 
 const Footer = () => {
+  const mapUrl = 'https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=Kempapura Main Rd, Hebbal Kempapura, Bengaluru, Karnataka 560024&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed'
+
   return (
     <section className="bg-[#443266]">
       <footer className="px-4 divide-y dark:bg-gray-800 dark:text-gray-100">

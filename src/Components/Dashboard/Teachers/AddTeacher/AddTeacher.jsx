@@ -1,10 +1,9 @@
 import { TextField } from "@mui/material";
 import { useForm } from "react-hook-form";
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
 import Swal from "sweetalert2";
-
 
 const AddTeacher = () => {
   const { register, handleSubmit } = useForm();
@@ -89,7 +88,7 @@ const AddTeacher = () => {
 
   return (
     <section>
-      <div className="lg:w-[100%] md:w-[100%] w-[90%] col-span-5 px-[60px] py-[50px] xxs:px-[25px] xs:px-[30px] sm:px-[60px]  mx-auto bg-[#F7F7F7] shadow-md rounded-lg grid md:grid-cols-2 gap-6">
+      <div className="lg:w-[100%] md:w-[100%] w-[100%] col-span-5 px-[60px] py-[50px] xxs:px-[25px] xs:px-[30px] sm:px-[60px]  mx-auto bg-[#F7F7F7] shadow-md rounded-lg flex justify-center items-center flex-col gap-4">
         <TextField
           id="outlined-teachername-input"
           label="Teacher Name"
@@ -110,6 +109,15 @@ const AddTeacher = () => {
         />
 
         <TextField
+          id="outlined-teacherdescription-static"
+          label="Teacher Description"
+          multiline
+          rows={7}
+          className="w-full"
+          {...register("teacherDescription", { required: true })}
+        />
+
+        <TextField
           id="outlined-teacherjoiningdate-input"
           label="Joining Date"
           type="text"
@@ -124,10 +132,10 @@ const AddTeacher = () => {
             <div class="rounded-lg shadow-xl bg-gray-50">
               <div class="p-4">
                 <label class="inline-block mb-2 text-gray-500">
-                  Upload Product Image
+                  Upload Teacher Image
                 </label>
                 <div class="flex items-center justify-center w-full">
-                  <label class="flex flex-col w-full h-32 border-4 border-blue-200 border-dashed hover:bg-gray-100 hover:border-gray-300">
+                  <label class="flex flex-col w-full h-40 border-4 border-blue-200 border-dashed hover:bg-gray-100 hover:border-gray-300">
                     <div class="flex flex-col items-center justify-center pt-7">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -155,7 +163,6 @@ const AddTeacher = () => {
                       type="file"
                       className="px-4 pb-4"
                       name="imeage"
-                      // {...register("imeage", { required: true })}
                       accept="image/*"
                       onChange={(e) => setImageFile(e.target.files[0])}
                     />

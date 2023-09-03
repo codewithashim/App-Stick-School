@@ -1,11 +1,12 @@
 import RootLayout from "@/src/Layouts/RootLayout";
+import Contact from "@/src/Shared/Contact/Contact";
 import Link from "next/link";
 import Typography from "@mui/material/Typography";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import HomeIcon from "@mui/icons-material/Home";
 import GrainIcon from "@mui/icons-material/Grain";
 
-const ResultPage = () => {
+const ContactPage = () => {
   return (
     <RootLayout>
       <section className="container">
@@ -25,13 +26,21 @@ const ResultPage = () => {
             color="text.primary"
           >
             <GrainIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-           Result
+            Contact Us
           </Typography>
         </Breadcrumbs>
       </div>
+      <div className="my-6 title">
+          <h2 className="text-center md:text-left text-[1rem] md:text-[1.5rem] lg:text-3xl uppercase xxs:text-2xl  text-black font-bold">
+            CONTACT WITH US
+          </h2>
+        </div>
+        <div  > 
+        <Contact/>
+        </div>
       </section>
     </RootLayout>
   );
 };
 
-export default ResultPage;
+export default ContactPage;

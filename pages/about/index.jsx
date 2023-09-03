@@ -4,8 +4,9 @@ import Typography from "@mui/material/Typography";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import HomeIcon from "@mui/icons-material/Home";
 import GrainIcon from "@mui/icons-material/Grain";
+import About from "@/src/Shared/About/About";
 
-const ResultPage = () => {
+const AboutPage = () => {
   return (
     <RootLayout>
       <section className="container">
@@ -25,13 +26,23 @@ const ResultPage = () => {
             color="text.primary"
           >
             <GrainIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-           Result
+            About Us
           </Typography>
         </Breadcrumbs>
       </div>
+      <div className="flex flex-col items-center justify-center my-6 title">
+            <h2 className="text-center md:text-left text-[1rem] md:text-[1.5rem] lg:text-3xl uppercase xxs:text-2xl  text-black font-bold">
+             About Us
+            </h2>
+            <div className="w-full h-1 bg-gray-500"></div>
+          </div>
+
+      <div className="my-4">
+          <About/>
+      </div>    
       </section>
     </RootLayout>
   );
 };
 
-export default ResultPage;
+export default AboutPage;
