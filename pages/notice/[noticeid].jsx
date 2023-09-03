@@ -1,12 +1,24 @@
 import RootLayout from "@/src/Layouts/RootLayout";
-import Contact from "@/src/Shared/Contact/Contact";
 import Link from "next/link";
 import Typography from "@mui/material/Typography";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import HomeIcon from "@mui/icons-material/Home";
 import GrainIcon from "@mui/icons-material/Grain";
+import { useRouter } from "next/router";
+import { NoticeData } from "@/src/Utils/MockData/NoticeMockData";
 
-const ContactPage = () => {
+const NoticeDetails = () => {
+    const router = useRouter();
+    const { noticeid } = router.query;
+    const noticeId = noticeid;  
+    
+    const singelData = NoticeData?.filter(notice=>notice.id === noticeId)
+
+    console.log(NoticeData)
+    
+    console.log(singelData, "noticeDetails ")
+
+
   return (
     <RootLayout>
       <section className="container">
@@ -20,28 +32,32 @@ const ContactPage = () => {
             >
               <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
               Home
+            </Link>    
+
+            <Link
+              underline="hover"
+              sx={{ display: "flex", alignItems: "center" }}
+              color="inherit"
+              href="/notice"
+            >
+              <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
+              Notice
             </Link>
             <Typography
               sx={{ display: "flex", alignItems: "center" }}
               color="text.primary"
             >
               <GrainIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-              Contact Us
+             Notice Details 
             </Typography>
           </Breadcrumbs>
         </div>
-        <div className="flex flex-col items-center justify-center my-6 title">
-          <h2 className="text-center md:text-left text-[1rem] md:text-[1.5rem] lg:text-3xl uppercase xxs:text-2xl  text-black font-bold">
-            Contact Us
-          </h2>
-          <div className="w-full h-1 bg-gray-500 my-2"></div>
-        </div>
-        <div className="my-4">
-          <Contact />
-        </div>
+
+
+        
       </section>
     </RootLayout>
   );
 };
 
-export default ContactPage;
+export default NoticeDetails;

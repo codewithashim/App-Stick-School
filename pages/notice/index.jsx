@@ -4,6 +4,7 @@ import Typography from "@mui/material/Typography";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import HomeIcon from "@mui/icons-material/Home";
 import GrainIcon from "@mui/icons-material/Grain";
+import Notice from "@/src/Components/Notice/Notice";
 
 const NoticePage = () => {
   return (
@@ -33,7 +34,11 @@ const NoticePage = () => {
           <h2 className="text-center md:text-left text-[1rem] md:text-[1.5rem] lg:text-3xl uppercase xxs:text-2xl  text-black font-bold">
             Notice
           </h2>
-          <div className="w-full h-1 bg-gray-500"></div>
+          <div className="w-full h-1 my-2 bg-gray-500"></div>
+        </div>
+
+        <div className="my-4">
+        <Notice/> 
         </div>
       </section>
     </RootLayout>

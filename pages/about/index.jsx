@@ -34,7 +34,7 @@ const AboutPage = () => {
             <h2 className="text-center md:text-left text-[1rem] md:text-[1.5rem] lg:text-3xl uppercase xxs:text-2xl  text-black font-bold">
              About Us
             </h2>
-            <div className="w-full h-1 bg-gray-500"></div>
+            <div className="w-full h-1 my-2 bg-gray-500"></div>
           </div>
 
       <div className="my-4">
