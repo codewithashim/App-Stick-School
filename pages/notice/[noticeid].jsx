@@ -6,6 +6,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import GrainIcon from "@mui/icons-material/Grain";
 import { useRouter } from "next/router";
 import { NoticeData } from "@/src/Utils/MockData/NoticeMockData";
+import NoticeDetailComponent from "@/src/Components/Notice/NoticeDetails";
 
 const NoticeDetails = () => {
     const router = useRouter();
@@ -53,8 +54,9 @@ const NoticeDetails = () => {
           </Breadcrumbs>
         </div>
 
-
-        
+        <div className="my-4">
+          <NoticeDetailComponent/>
+        </div>
       </section>
     </RootLayout>
   );

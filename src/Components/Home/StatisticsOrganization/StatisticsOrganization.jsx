@@ -12,8 +12,8 @@ const StatisticsOrganization = () => {
         <div className="flex flex-col items-center justify-center gap-4 md:flex-row organigection-statice-content">
           {OrganigectionStatistic.map((item) => {
             return (
-              <div className="p-6 m-4 text-center border rounded-s-full organigection-statice-content-item pointer" key={item.id}>
-                <h2 className="font-bold text-[1rem]">{item.count}</h2>
+              <div className="organigection-statice-content-item pointer" key={item.id}>
+                <h2 className="font-bold mb-1 text-[1.6rem]">{item.count}</h2>
                 <h4>{item.title}</h4>
               </div>
             );

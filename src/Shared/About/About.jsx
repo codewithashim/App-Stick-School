@@ -4,7 +4,6 @@ const About = () => {
   return (
     <section className="about-container">
       <div className="container">
-        <h2 className="title-content ">About Us</h2>
         <p className=" text-center text-[1.5rem]">
           Welcome to Jalalabad Cantonment English School and College{" "}
         </p>

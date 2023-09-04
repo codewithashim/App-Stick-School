@@ -6,13 +6,12 @@ import HomeIcon from "@mui/icons-material/Home";
 import GrainIcon from "@mui/icons-material/Grain";
 import { useRouter } from "next/router";
 import { NoticeData } from "@/src/Utils/MockData/NoticeMockData";
+import ResultDetailsComponent from "@/src/Components/Result/ResultDetails";
 
 const ResultDetails = () => {
     const router = useRouter();
     const {resultid } = router.query;
     const resultId = resultid;  
-    
-
 
   return (
     <RootLayout>
@@ -48,6 +47,9 @@ const ResultDetails = () => {
           </Breadcrumbs>
         </div>
 
+        <div className="my-4">
+          <ResultDetailsComponent/>
+        </div>
 
         
       </section>

@@ -4,6 +4,7 @@ import Typography from "@mui/material/Typography";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import HomeIcon from "@mui/icons-material/Home";
 import GrainIcon from "@mui/icons-material/Grain";
+import About from "@/src/Shared/About/About";
 
 const AcademicInfoPage = () => {
   return (
@@ -29,6 +30,11 @@ const AcademicInfoPage = () => {
           </Typography>
         </Breadcrumbs>
       </div>
+
+      <div> 
+        <About/>
+      </div>
+
       </section>
     </RootLayout>
   );

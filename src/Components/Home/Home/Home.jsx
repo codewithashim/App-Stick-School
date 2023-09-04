@@ -13,7 +13,10 @@ const Home = () => {
       {/* ==== NoticePortal */}
       <HomeNoticePortal />
       {/* ==== About Us */}
+      <div className="about-section">
+      <h2 className="title-content ">About Us</h2>
       <About />
+      </div>
       {/* ======== Faculty */}
 
       <FacultyMember />

@@ -14,7 +14,7 @@ const MainNav = () => {
     },
     {
       title: "Academic",
-      path: "/academic",
+      path: "/academic-info",
     },
     {
       title: "Teachers",
@@ -44,9 +44,9 @@ const MainNav = () => {
   
   return (
     <nav className=" bg-[#0d4a4fab] text-white md:flex items-center">
-      <button className="px-2 py-1 md:px-9 md:py-2">
-        <BiHome className="text-xl" />
-      </button>
+      <Link className="px-2 py-1 md:px-9 md:py-2"  href="/" >
+        <BiHome className="text-xl"/>
+      </Link>
       <button
         onClick={() => setOpen(!open)}
         className="ml-auto md:hidden block float-right bg-[#00000062] px-3 py-1"
