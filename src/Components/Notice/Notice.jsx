@@ -1,30 +1,46 @@
 import { NoticeData } from "@/src/Utils/MockData/NoticeMockData";
 import Link from "next/link";
 import React from "react";
+import Image from "next/image";
 import { FaBuromobelexperte } from "react-icons/fa";
-
+import { NoticeIcon } from "@/src/Assets";
 
 const Notice = () => {
   return (
     <section>
-        <div className="border notice-container">
-            <h1 className="text-[2rem] flex gap-4 items-center">
-            <FaBuromobelexperte/> Notice 
-            </h1>
-      
-              <div className="m-4 notice-items"> 
-                 {
-                  NoticeData.map((notice)=>{
-                   return(
-                     <div className="p-4 my-4 border rounded ">
-                        <Link href={`/notice/${notice?.id}`} className="text-[1.2rem] font-semibold mb-2 text-blue-500">{notice?.title}</Link>
-                        <p className="mt-3 text-gray-200">{notice?.noticeDate}</p>
-                     </div>         
-                   )           
-                  })  
-                 } 
+      <div className="border ">
+        <h1 className="text-[2rem] flex gap-4 items-center notice-container">
+          <FaBuromobelexperte /> Notice
+        </h1>
+
+        <div className="grid gap-4 md:grid-cols-2">
+          {NoticeData.map((notice) => {
+            return (
+              <div className="flex items-center gap-6 p-4 my-4 border rounded">
+                <div className="notice-icons">
+                  <Image src={NoticeIcon} alt={notice?.title} />
+                </div>
+                <div>
+                  <Link
+                    href={`/notice/${notice?.id}`}
+                    className="text-[1.2rem] font-semibold mb-2 text-black"
+                  >
+                    {notice?.title}
+                  </Link>
+                  <p className="my-3 text-gray-600">{notice?.noticeDate}</p>
+                  <Link
+                    href={`/notice/${notice?.id}`}
+                    className="text-blue-500 text-[1.2rem]"
+                  >
+                    {" "}
+                    Read More
+                  </Link>
+                </div>
               </div>
+            );
+          })}
         </div>
+      </div>
     </section>
   );
 };

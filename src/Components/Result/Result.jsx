@@ -1,5 +1,5 @@
 
-import { Notice } from "@/src/Assets";
+import { NoticeIcon } from "@/src/Assets";
 import { ResultData } from "@/src/Utils/MockData/ResultMockData";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,8 +8,6 @@ import { FaBuromobelexperte } from "react-icons/fa";
 
 
 const ResultComponent = () => {
-
-
     return (
         <section>
         <div className="border">
@@ -21,10 +19,10 @@ const ResultComponent = () => {
                  {
                     ResultData.map((result)=>{
                    return(
-                     <div className="flex items-center gap-4 p-4 my-4 border rounded">
+                     <div className="flex items-center gap-6 p-4 my-4 border rounded">
                       <div className="notice-icons">
                         <Image
-                          src={Notice}
+                          src={NoticeIcon}
                           alt={result?.title}
                         />
                       </div>

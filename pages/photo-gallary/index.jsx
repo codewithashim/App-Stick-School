@@ -4,6 +4,7 @@ import Typography from "@mui/material/Typography";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import HomeIcon from "@mui/icons-material/Home";
 import GrainIcon from "@mui/icons-material/Grain";
+import PhotoGelary from "@/src/Components/PhotoGelary/PhotoGelary";
 
 const PhotoGallaryPage = () => {
   return (
@@ -29,6 +30,11 @@ const PhotoGallaryPage = () => {
           </Typography>
         </Breadcrumbs>
       </div>
+
+      <div className="my-10">
+        <PhotoGelary/>
+      </div>
+
       </section>
     </RootLayout>
   );

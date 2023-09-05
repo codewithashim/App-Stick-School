@@ -3,6 +3,7 @@ import { IoMdCall } from "react-icons/io";
 import { HiMail } from "react-icons/hi";
 import { BiLogoFacebook, BiLogoLinkedin, BiLogoTwitter } from "react-icons/bi";
 import { Logo } from "@/src/Assets";
+import Link from "next/link";
 
 const TopNav = () => {
   return (
@@ -52,11 +53,11 @@ const TopNav = () => {
              </div>
              
              {/* action button */}
-             {/* <div className="flex items-center justify-center gap-2 mt-2 md:justify-end">
-                  <button className="btn bg-[#124358] px-5 py-1 rounded-md">বাংলা</button>
+             <div className="flex items-center justify-center gap-2 mt-2 md:justify-end">
+                  {/* <button className="btn bg-[#124358] px-5 py-1 rounded-md">বাংলা</button> */}
              
-                  <button className="btn bg-[#124358] px-4 py-1 rounded-md">Apply Online</button>
-             </div> */}
+                  <Link href="/auth/login" className="btn bg-[#124358] px-4 py-1 rounded-md">Login</Link>
+             </div>
 
         </div>
       </div>
