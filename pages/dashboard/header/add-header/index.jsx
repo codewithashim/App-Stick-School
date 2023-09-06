@@ -6,6 +6,7 @@ import { Breadcrumbs, Typography } from "@mui/material";
 import Link from "next/link";
 import HomeIcon from "@mui/icons-material/Home";
 import GrainIcon from "@mui/icons-material/Grain";
+import AddHeaderComponent from "@/src/Components/Dashboard/Header/AddHeader/AddHeader";
 
 const AddHeader = () => {
   return (
@@ -22,17 +23,26 @@ const AddHeader = () => {
               <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
               Dashboard
             </Link>
+            <Link
+              underline="hover"
+              sx={{ display: "flex", alignItems: "center" }}
+              color="inherit"
+              href="/dashboard/header/maneg-header"
+            >
+              <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
+            Manage Header
+            </Link>
             <Typography
               sx={{ display: "flex", alignItems: "center" }}
               color="text.primary"
             >
               <GrainIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-               Admin 
+              Header
             </Typography>
           </Breadcrumbs>
         </div>
-        <section>
-
+        <section className="my-4">
+          <AddHeaderComponent />
         </section>
       </FullLayout>
     </ThemeProvider>

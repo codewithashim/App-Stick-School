@@ -1,0 +1,1 @@
+export const cloudinaryUrl = "https://api.cloudinary.com/v1_1/codewithashim/image/upload"

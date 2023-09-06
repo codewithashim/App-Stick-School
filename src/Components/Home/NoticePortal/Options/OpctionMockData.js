@@ -55,8 +55,8 @@ export const OpctionData = [
   },
   {
     id: 10,
-    title: "Rutin",
-    path: "/rutin",
+    title: "Routine",
+    path: "/routine",
     icon: "https://res.cloudinary.com/codewithashim/image/upload/v1693606159/ApstickSchool/Icons/gqog1dou2rfvryskjnc7.png",
   },
   {

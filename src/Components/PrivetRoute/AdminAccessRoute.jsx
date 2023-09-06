@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React, { useContext, useEffect } from "react";
-import { AuthContext } from "../../Context/UserContext";
 import useAdmin from "../../Hooks/useAdmin";
+import { AuthContext } from "@/src/Context/UserContext";
 
 const AdminAccessRoute = ({ children }) => {
   const { user } = useContext(AuthContext);
@@ -16,7 +16,7 @@ const AdminAccessRoute = ({ children }) => {
 
   if (isAdminLoading) {
     return (
-      <div className="w-full my-60 flex items-center text-white justify-center">
+      <div className="flex items-center justify-center w-full text-white my-60">
         Loading...
       </div>
     );

@@ -1,10 +1,31 @@
-import React from 'react';
+/* eslint-disable react/prop-types */
+import { createContext, useEffect, useState } from "react";
+export const AuthContext = createContext();
+import jwtDecode from "jwt-decode";
 
-const UserContext = () => {
+const UserContext = ({ children }) => {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    if (typeof localStorage !== "undefined") {
+      const accessToken = localStorage.getItem("accessToken");
+      if (accessToken) {
+        const decodedToken = jwtDecode(accessToken);
+        setUser(decodedToken);
+      } else {
+        setUser(null);
+      }
+    } else {
+      setUser(null);
+    }
+  }, []);
+
+  const userInfo = {
+    user,
+  };
+
   return (
-    <div>
-        hello
-    </div>
+    <AuthContext.Provider value={userInfo}>{children}</AuthContext.Provider>
   );
 };
 
