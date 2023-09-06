@@ -6,6 +6,7 @@ import { Breadcrumbs, Typography } from "@mui/material";
 import Link from "next/link";
 import HomeIcon from "@mui/icons-material/Home";
 import GrainIcon from "@mui/icons-material/Grain";
+import AddResultComponent from "@/src/Components/Dashboard/Result/AddResult/AddResult";
 
 const AddResult = () => {
   return (
@@ -17,22 +18,31 @@ const AddResult = () => {
               underline="hover"
               sx={{ display: "flex", alignItems: "center" }}
               color="inherit"
-              href="/"
+              href="/dashboard"
             >
               <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
               Dashboard
+            </Link>
+            <Link
+              underline="hover"
+              sx={{ display: "flex", alignItems: "center" }}
+              color="inherit"
+              href="/dashboard/result/maneg-result"
+            >
+              <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
+            Maneg Result
             </Link>
             <Typography
               sx={{ display: "flex", alignItems: "center" }}
               color="text.primary"
             >
               <GrainIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-               Admin 
+              Result
             </Typography>
           </Breadcrumbs>
         </div>
-        <section>
-
+        <section className="my-4">
+        <AddResultComponent/>
         </section>
       </FullLayout>
     </ThemeProvider>

@@ -6,6 +6,7 @@ import { Breadcrumbs, Typography } from "@mui/material";
 import Link from "next/link";
 import HomeIcon from "@mui/icons-material/Home";
 import GrainIcon from "@mui/icons-material/Grain";
+import AddAboutUsComponent from "@/src/Components/Dashboard/AboutUs/AddAboutUs/AddAboutUs";
 
 const AddAbout = () => {
   return (
@@ -22,17 +23,26 @@ const AddAbout = () => {
               <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
               Dashboard
             </Link>
+            <Link
+              underline="hover"
+              sx={{ display: "flex", alignItems: "center" }}
+              color="inherit"
+              href="/dashboard/about/maneg-about"
+            >
+              <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
+              Manage About
+            </Link>
             <Typography
               sx={{ display: "flex", alignItems: "center" }}
               color="text.primary"
             >
               <GrainIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-               Admin 
+              About
             </Typography>
           </Breadcrumbs>
         </div>
-        <section>
-
+        <section className="my-4">
+          <AddAboutUsComponent />
         </section>
       </FullLayout>
     </ThemeProvider>

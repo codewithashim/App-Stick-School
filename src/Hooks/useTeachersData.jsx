@@ -1,23 +1,22 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
-import { deleteHeaderUrl, getHeaderUrl } from "../Utils/Urls/HeaderUrl";
 import Swal from "sweetalert2";
+import { deleteTeacherUrl, getTeacherUrl } from "../Utils/Urls/TeacherUrl";
 
-const useHeadersData = () => {
+const useTeachersData = () => {
   const {
-    data: headersData,
-    isLoading: headerLoaded,
-    refetch: refetchHeader,
+    data: teacherData,
+    isLoading: teacherLoaded,
+    refetch: refetchTeacher,
   } = useQuery({
-    queryKey: ["headersData"],
+    queryKey: ["teacherData"],
     queryFn: async () => {
-      const res = await fetch(getHeaderUrl);
+      const res = await fetch(getTeacherUrl);
       const data = await res.json();
       return data.data;
     },
   });
 
-  const handelDelete = async (id) => {
+  const handelDeleteTeacher = async (id) => {
     const confirmed = await Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -29,7 +28,7 @@ const useHeadersData = () => {
     });
 
     if (confirmed.isConfirmed) {
-      const res = await fetch(deleteHeaderUrl(id), {
+      const res = await fetch(deleteTeacherUrl(id), {
         method: "DELETE",
       });
       const data = await res.json();
@@ -54,7 +53,7 @@ const useHeadersData = () => {
         Swal.fire({
           position: "center",
           timerProgressBar: true,
-          title: "Successfully Delete Header !",
+          title: "Successfully Delete Teacher !",
           iconColor: "#ED1C24",
           toast: true,
           icon: "success",
@@ -71,13 +70,12 @@ const useHeadersData = () => {
     }
   };
 
-
   return {
-    headersData,
-    headerLoaded,
-    refetchHeader,
-    handelDelete
+    handelDeleteTeacher,
+    teacherData,
+    teacherLoaded,
+    refetchTeacher,
   };
 };
 
-export default useHeadersData;
+export default useTeachersData;

@@ -13,17 +13,15 @@ import Image from "next/image";
 import Swal from "sweetalert2";
 import SendIcon from "@mui/icons-material/Send";
 import { useForm } from "react-hook-form";
-import {
-  FormControl,
-  TextField,
-} from "@mui/material";
-import { updateHeaderUrl } from "@/src/Utils/Urls/HeaderUrl";
+import { TextField } from "@mui/material";
+import { updateAboutUrl } from "@/src/Utils/Urls/AboutUrl";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const UpdateHeaderModal = ({ header }) => {
+const UpdateAboutModal = ({ about }) => {
+  const { image, title, subtitle, details, _id } = about;
   const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {
     setOpen(true);
@@ -34,13 +32,11 @@ const UpdateHeaderModal = ({ header }) => {
 
   const { register, handleSubmit } = useForm();
   const [imageFile, setImageFile] = useState(null);
-  const { logo, schoolName, schoolAddress, estdSince, email, phone, _id } =
-    header;
 
-    const upload_preset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
-    const cloud_name = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
-    const cloud_api = process.env.NEXT_PUBLIC_CLOUDINARY_API;
-    const cloud_folder = process.env.NEXT_PUBLIC_CLOUDINARY_IMAGE_FOLDER;
+  const upload_preset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
+  const cloud_name = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+  const cloud_api = process.env.NEXT_PUBLIC_CLOUDINARY_API;
+  const cloud_folder = process.env.NEXT_PUBLIC_CLOUDINARY_IMAGE_FOLDER;
 
   const handelUpdate = async (updatedata) => {
     ///////////////////////////////////////////////
@@ -50,7 +46,7 @@ const UpdateHeaderModal = ({ header }) => {
     imageUploadData.append("file", imageFile);
     imageUploadData.append(
       "public_id",
-      `${cloud_folder}/Header/${imageFile?.name}`
+      `${cloud_folder}/About/${imageFile?.name}`
     );
     imageUploadData.append("upload_preset", `${upload_preset}`);
     imageUploadData.append("cloud_name", `${cloud_name}`);
@@ -61,30 +57,25 @@ const UpdateHeaderModal = ({ header }) => {
     const imgdata = await imgRes.json();
     const imgurl = imgdata?.secure_url;
     console.log(imgurl, "Upload Image ++++");
+    
     ///////     End of Photo Upload     ////////
-
-    const { schoolName, schoolAddress, estdSince, email, phone } = updatedata;
-
-    const headerData = {
-      logo: imgurl,
-      schoolName: schoolName,
-      schoolAddress: schoolAddress,
-      estdSince: estdSince,
-      email: email,
-      phone: phone,
+    const aboutData = {
+      image: imgurl,
+      title: updatedata.title,
+      subtitle: updatedata.subtitle,
+      details: updatedata.details,
     };
 
-    const res = await fetch(updateHeaderUrl(_id), {
+    const res = await fetch(updateAboutUrl(_id), {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(headerData),
+      body: JSON.stringify(aboutData),
     });
     const data = await res.json();
 
     if (!data) {
-     
       Swal.fire({
         position: "center",
         timerProgressBar: true,
@@ -105,7 +96,7 @@ const UpdateHeaderModal = ({ header }) => {
       Swal.fire({
         position: "center",
         timerProgressBar: true,
-        title: "Successfully Update Header !",
+        title: "Successfully Update About !",
         iconColor: "#ED1C24",
         toast: true,
         icon: "success",
@@ -153,7 +144,7 @@ const UpdateHeaderModal = ({ header }) => {
               component="div"
               className="text-[#000]"
             >
-              Update Header Information
+              Update About Information
             </Typography>
             <Button
               autoFocus
@@ -170,64 +161,42 @@ const UpdateHeaderModal = ({ header }) => {
           <section>
             <div className="lg:w-[80%] md:w-[80%] w-[95%] col-span-5 md:px-[60px] md:py-[50px] xxs:px-[25px] xs:px-[30px] sm:px-[60px] mx-auto bg-[#F7F7F7] shadow-md rounded-lg grid md:grid-cols-2 gap-6  py-10 px-2">
               <TextField
-                id="outlined-phone-input"
-                label="Phone"
+                id="outlined-title-input"
+                label="Title"
                 type="text"
-                autoComplete="Phone"
+                defaultValue={title}
+                autoComplete="title"
                 variant="outlined"
                 className="w-full"
-                defaultValue={phone}
-                {...register("phone", { required: true })}
+                {...register("title", { required: true })}
               />
               <TextField
-                id="outlined-email-input"
-                label="Email"
-                type="email"
-                autoComplete="Email"
+                id="outlined-subtitle-input"
+                label="Subtitle"
+                type="text"
+                defaultValue={subtitle}
+                autoComplete="subtitle"
                 variant="outlined"
                 className="w-full"
-                defaultValue={email}
-                {...register("email", { required: true })}
+                {...register("subtitle", { required: true })}
               />
 
               <TextField
-                id="outlined-schoolname-input"
-                label="School Name"
-                type="text"
-                autoComplete="School Name"
-                variant="outlined"
+                id="outlined-details-static"
+                label="Description"
+                multiline
+                defaultValue={details}
+                rows={7}
                 className="w-full"
-                defaultValue={schoolName}
-                {...register("schoolName", { required: true })}
+                {...register("details", { required: true })}
               />
 
-              <TextField
-                id="outlined-estdsince-input"
-                label="Estd Since"
-                type="text"
-                autoComplete="estdSince"
-                variant="outlined"
-                className="w-full"
-                defaultValue={estdSince}
-                {...register("estdSince", { required: true })}
-              />
-
-              <TextField
-                id="outlined-schooladdress-input"
-                label="School Address"
-                type="text"
-                autoComplete="School Address"
-                variant="outlined"
-                className="w-full"
-                defaultValue={schoolAddress}
-                {...register("schoolAddress", { required: true })}
-              />
               <div>
                 <div class="w-full h-full">
                   <div class="rounded-lg shadow-xl bg-gray-50">
                     <div class="p-4">
                       <label class="inline-block mb-2 text-gray-500">
-                        Upload Product Image
+                        Upload About Image
                       </label>
                       <div class="flex items-center justify-center w-full">
                         <label class="flex flex-col w-full h-42 border-4 border-blue-200 border-dashed hover:bg-gray-100 hover:border-gray-300">
@@ -236,9 +205,9 @@ const UpdateHeaderModal = ({ header }) => {
                               src={
                                 imageFile
                                   ? URL.createObjectURL(imageFile)
-                                  : logo
+                                  :image
                               }
-                              alt="Logo"
+                              alt="About Image"
                               width={100}
                               height={100}
                             />
@@ -284,4 +253,4 @@ const UpdateHeaderModal = ({ header }) => {
   );
 };
 
-export default UpdateHeaderModal;
+export default UpdateAboutModal;

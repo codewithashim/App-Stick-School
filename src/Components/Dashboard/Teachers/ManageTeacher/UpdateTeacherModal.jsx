@@ -14,16 +14,15 @@ import Swal from "sweetalert2";
 import SendIcon from "@mui/icons-material/Send";
 import { useForm } from "react-hook-form";
 import {
-  FormControl,
   TextField,
 } from "@mui/material";
-import { updateHeaderUrl } from "@/src/Utils/Urls/HeaderUrl";
+import { updateTeacherUrl } from "@/src/Utils/Urls/TeacherUrl";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const UpdateHeaderModal = ({ header }) => {
+const UpdateTeacherModal = ({ teacher }) => {
   const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {
     setOpen(true);
@@ -34,13 +33,12 @@ const UpdateHeaderModal = ({ header }) => {
 
   const { register, handleSubmit } = useForm();
   const [imageFile, setImageFile] = useState(null);
-  const { logo, schoolName, schoolAddress, estdSince, email, phone, _id } =
-    header;
+  const { name, detail, joiningDate, position, image, _id } = teacher;
 
-    const upload_preset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
-    const cloud_name = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
-    const cloud_api = process.env.NEXT_PUBLIC_CLOUDINARY_API;
-    const cloud_folder = process.env.NEXT_PUBLIC_CLOUDINARY_IMAGE_FOLDER;
+  const upload_preset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
+  const cloud_name = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+  const cloud_api = process.env.NEXT_PUBLIC_CLOUDINARY_API;
+  const cloud_folder = process.env.NEXT_PUBLIC_CLOUDINARY_IMAGE_FOLDER;
 
   const handelUpdate = async (updatedata) => {
     ///////////////////////////////////////////////
@@ -50,7 +48,7 @@ const UpdateHeaderModal = ({ header }) => {
     imageUploadData.append("file", imageFile);
     imageUploadData.append(
       "public_id",
-      `${cloud_folder}/Header/${imageFile?.name}`
+      `${cloud_folder}/Teacher/${imageFile?.name}`
     );
     imageUploadData.append("upload_preset", `${upload_preset}`);
     imageUploadData.append("cloud_name", `${cloud_name}`);
@@ -63,28 +61,24 @@ const UpdateHeaderModal = ({ header }) => {
     console.log(imgurl, "Upload Image ++++");
     ///////     End of Photo Upload     ////////
 
-    const { schoolName, schoolAddress, estdSince, email, phone } = updatedata;
-
-    const headerData = {
-      logo: imgurl,
-      schoolName: schoolName,
-      schoolAddress: schoolAddress,
-      estdSince: estdSince,
-      email: email,
-      phone: phone,
+    const teacherData = {
+      name: updatedata.teacherName,
+      detail: updatedata.teacherDescription,
+      joiningDate: updatedata.joiningDate,
+      position: updatedata.teacherPosition,
+      image: updatedata.image,
     };
 
-    const res = await fetch(updateHeaderUrl(_id), {
+    const res = await fetch(updateTeacherUrl(_id), {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(headerData),
+      body: JSON.stringify(teacherData),
     });
     const data = await res.json();
 
     if (!data) {
-     
       Swal.fire({
         position: "center",
         timerProgressBar: true,
@@ -105,7 +99,7 @@ const UpdateHeaderModal = ({ header }) => {
       Swal.fire({
         position: "center",
         timerProgressBar: true,
-        title: "Successfully Update Header !",
+        title: "Successfully Update Teacher !",
         iconColor: "#ED1C24",
         toast: true,
         icon: "success",
@@ -153,7 +147,7 @@ const UpdateHeaderModal = ({ header }) => {
               component="div"
               className="text-[#000]"
             >
-              Update Header Information
+              Update Teacher Information
             </Typography>
             <Button
               autoFocus
@@ -170,58 +164,47 @@ const UpdateHeaderModal = ({ header }) => {
           <section>
             <div className="lg:w-[80%] md:w-[80%] w-[95%] col-span-5 md:px-[60px] md:py-[50px] xxs:px-[25px] xs:px-[30px] sm:px-[60px] mx-auto bg-[#F7F7F7] shadow-md rounded-lg grid md:grid-cols-2 gap-6  py-10 px-2">
               <TextField
-                id="outlined-phone-input"
-                label="Phone"
+                id="outlined-teachername-input"
+                label="Teacher Name"
                 type="text"
-                autoComplete="Phone"
+                autoComplete="teacherName"
+                defaultValue={name}
                 variant="outlined"
                 className="w-full"
-                defaultValue={phone}
-                {...register("phone", { required: true })}
+                {...register("teacherName", { required: true })}
               />
               <TextField
-                id="outlined-email-input"
-                label="Email"
-                type="email"
-                autoComplete="Email"
+                id="outlined-teacherposition-input"
+                label="Teacher Position"
+                type="text"
+                autoComplete="teacherPosition"
+                defaultValue={position}
                 variant="outlined"
                 className="w-full"
-                defaultValue={email}
-                {...register("email", { required: true })}
+                {...register("teacherPosition", { required: true })}
               />
 
               <TextField
-                id="outlined-schoolname-input"
-                label="School Name"
-                type="text"
-                autoComplete="School Name"
-                variant="outlined"
+                id="outlined-teacherdescription-static"
+                label="Teacher Description"
+                defaultValue={detail}
+                multiline
+                rows={7}
                 className="w-full"
-                defaultValue={schoolName}
-                {...register("schoolName", { required: true })}
+                {...register("teacherDescription", { required: true })}
               />
 
               <TextField
-                id="outlined-estdsince-input"
-                label="Estd Since"
+                id="outlined-teacherjoiningdate-input"
+                label="Joining Date"
                 type="text"
-                autoComplete="estdSince"
+                autoComplete="Joining Date"
+                defaultValue={joiningDate}
                 variant="outlined"
                 className="w-full"
-                defaultValue={estdSince}
-                {...register("estdSince", { required: true })}
+                {...register("joiningDate", { required: true })}
               />
 
-              <TextField
-                id="outlined-schooladdress-input"
-                label="School Address"
-                type="text"
-                autoComplete="School Address"
-                variant="outlined"
-                className="w-full"
-                defaultValue={schoolAddress}
-                {...register("schoolAddress", { required: true })}
-              />
               <div>
                 <div class="w-full h-full">
                   <div class="rounded-lg shadow-xl bg-gray-50">
@@ -236,9 +219,9 @@ const UpdateHeaderModal = ({ header }) => {
                               src={
                                 imageFile
                                   ? URL.createObjectURL(imageFile)
-                                  : logo
+                                  : image
                               }
-                              alt="Logo"
+                              alt="Image"
                               width={100}
                               height={100}
                             />
@@ -284,4 +267,4 @@ const UpdateHeaderModal = ({ header }) => {
   );
 };
 
-export default UpdateHeaderModal;
+export default UpdateTeacherModal;

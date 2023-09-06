@@ -6,6 +6,7 @@ import { Breadcrumbs, Typography } from "@mui/material";
 import Link from "next/link";
 import HomeIcon from "@mui/icons-material/Home";
 import GrainIcon from "@mui/icons-material/Grain";
+import ManageTeacherComponent from "@/src/Components/Dashboard/Teachers/ManageTeacher/ManageTeacher";
 
 const ManegTeacher = () => {
   return (
@@ -22,17 +23,26 @@ const ManegTeacher = () => {
               <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
               Dashboard
             </Link>
+            <Link
+              underline="hover"
+              sx={{ display: "flex", alignItems: "center" }}
+              color="inherit"
+              href="/dashboard/teacher/add-teacher"
+            >
+              <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
+            Teacher
+            </Link>
             <Typography
               sx={{ display: "flex", alignItems: "center" }}
               color="text.primary"
             >
               <GrainIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-               Admin 
+             Maneg Teacher 
             </Typography>
           </Breadcrumbs>
         </div>
         <section>
-
+          <ManageTeacherComponent/>
         </section>
       </FullLayout>
     </ThemeProvider>

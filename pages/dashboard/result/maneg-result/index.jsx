@@ -17,17 +17,26 @@ const ManegResult = () => {
               underline="hover"
               sx={{ display: "flex", alignItems: "center" }}
               color="inherit"
-              href="/"
+              href="/dashboard"
             >
               <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
               Dashboard
+            </Link>
+            <Link
+              underline="hover"
+              sx={{ display: "flex", alignItems: "center" }}
+              color="inherit"
+              href="/dashboard/result/add-result"
+            >
+              <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
+              Result
             </Link>
             <Typography
               sx={{ display: "flex", alignItems: "center" }}
               color="text.primary"
             >
               <GrainIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-               Admin 
+              Maneg Result
             </Typography>
           </Breadcrumbs>
         </div>
