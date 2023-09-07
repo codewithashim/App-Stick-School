@@ -5,11 +5,6 @@ const Menuitems = [
     href: "/dashboard",
   },
   {
-    title: "Admin",
-    icon: "grid",
-    href: "/dashboard/admin/add-admin",
-  },
-  {
     title: "Teacher",
     icon: "grid",
     href: "/dashboard/teacher/add-teacher",
@@ -44,11 +39,6 @@ const Menuitems = [
     title: "Home Slider",
     icon: "layout",
     href: "/dashboard/homeslider/add-homeslider",
-  },
-  {
-    title: "Logo",
-    icon: "image",
-    href: "/dashboard/logo/add-logo",
   },
   {
     title: "Photo Gallery",

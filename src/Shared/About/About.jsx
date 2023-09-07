@@ -1,24 +1,25 @@
+import useAbout from "@/src/Hooks/useAbout";
 import React from "react";
 
 const About = () => {
+  const {aboutData} = useAbout()
+
   return (
     <section className="about-container">
       <div className="container">
-        <p className=" text-center text-[1.5rem]">
-          Welcome to Jalalabad Cantonment English School and College{" "}
-        </p>
+        {aboutData?.map((data) => {
+          return (
+            <div key={data?._id}>
+              <p className=" text-center text-[1.5rem]">{data?.title}</p>
 
-        <div className="about-content">
-          <h1 className="text-[#0075d6] text-[1.8rem] my-4 text-center">
-            Jalalabad Cantonment English School & College (JCESC) is a
-            co-educational English Medium School in the lap of nature of
-            Jalalabad Cantonment, Sylhet. We are committed to provide excellent
-            teaching and a dynamic program of extra-curricular opportunities in
-            a happy, vibrant atmosphere where every student is encouraged to
-            achieve full potential in the widest possible sense. We are
-            fortunate to have a
-          </h1>
-        </div>
+              <div className="about-content">
+                <h1 className="text-[#0075d6] text-[1.8rem] my-4 text-center">
+                  {data?.details}
+                </h1>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </section>
   );

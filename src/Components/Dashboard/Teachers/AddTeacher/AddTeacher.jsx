@@ -35,6 +35,7 @@ const AddTeacher = () => {
     const imgurl = imgdata?.secure_url;
     console.log(imgurl, "Upload Image ++++");
     ///////     End of Photo Upload     ////////
+    
     const teacherData = {
       name: data.teacherName,
       detail: data.teacherDescription,

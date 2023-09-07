@@ -10,81 +10,28 @@ const AddResultComponent = () => {
   const { register, handleSubmit } = useForm();
   const [resultFile, setResultFile] = useState(null);
 
-  const upload_preset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
-  const cloud_name = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
-  const cloud_api = process.env.NEXT_PUBLIC_CLOUDINARY_API;
-  const cloud_folder = process.env.NEXT_PUBLIC_CLOUDINARY_IMAGE_FOLDER;
+  console.log(resultFile);
 
   const onSubmit = async (data) => {
-    ///////////////////////////////////////////////
-    //               Photo Upload                  //
-    ///////////////////////////////////////////////*/
-    const imageUploadData = new FormData();
-    imageUploadData.append("file", resultFile);
-
-    // Remove duplicate ".pdf" extension from the file name
-    const fileNameWithoutDuplicatePdf = resultFile.name.replace(
-      /\.pdf\.pdf$/,
-      ".pdf"
-    );
-
-    imageUploadData.append(
-      "public_id",
-      `${cloud_folder}/Result/${fileNameWithoutDuplicatePdf}`
-    );
-    imageUploadData.append("upload_preset", `${upload_preset}`);
-    imageUploadData.append("cloud_name", `${cloud_name}`);
-    const fileRes = await fetch(`${cloud_api}`, {
-      method: "POST",
-      body: imageUploadData,
-    });
-    const filedata = await fileRes.json();
-    const fileurl = filedata?.secure_url;
-    console.log(fileurl, "Upload Image ++++");
-
-    ///////     End of Photo Upload     ///////////
-    const resultData = {
-      title: data?.title,
-      details: data?.details,
-      pbulishDate: data?.pbulishDate,
-      file: fileurl,
-    };
-
-    const res = await fetch(createResultUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(resultData),
-    });
-    const dataRes = await res.json();
-    console.log(dataRes);
-    if (!dataRes) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Something went wrong!",
+    try {
+      const formData = new FormData();
+  
+      formData.append("title", data.title);
+      formData.append("pbulishDate", data.pbulishDate);
+      formData.append("details", data.details);
+      formData.append("file", resultFile);
+  
+      const result = await fetch(createResultUrl, {
+        method: "POST",
+        enctype: "multipart/form-data",
+        body: formData, // Use the corrected variable name
       });
-    } else {
-      Swal.fire({
-        position: "center",
-        timerProgressBar: true,
-        title: "Successfully Result Added!",
-        iconColor: "#ED1C24",
-        toast: true,
-        icon: "success",
-        showClass: {
-          popup: "animate__animated animate__fadeInRight",
-        },
-        hideClass: {
-          popup: "animate__animated animate__fadeOutRight",
-        },
-        showConfirmButton: false,
-        timer: 3500,
-      });
+  
+      console.log(result);
+    } catch (error) {
+      console.log(error);
     }
   };
-
   return (
     <section>
       <div>
@@ -151,7 +98,6 @@ const AddResultComponent = () => {
                   <input
                     type="file"
                     className="px-4 pb-4"
-                    accept="/*"
                     onChange={(e) => setResultFile(e.target.files[0])}
                   />
                 </label>

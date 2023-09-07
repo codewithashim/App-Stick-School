@@ -14,7 +14,7 @@ export const OpctionData = [
   {
     id: 3,
     title: "Teachers Portal",
-    path: "/teachers-portal",
+    path: "/teachers",
     icon: "https://res.cloudinary.com/codewithashim/image/upload/v1693606159/ApstickSchool/Icons/ozl6fqlqqnyuf0g1afye.png",
   },
   {
@@ -31,8 +31,8 @@ export const OpctionData = [
   },
   {
     id: 6,
-    title: "News",
-    path: "/news",
+    title: "Event",
+    path: "/notice",
     icon: "https://res.cloudinary.com/codewithashim/image/upload/v1693606158/ApstickSchool/Icons/e2hoiftgnzplhars529z.png",
   },
   {
@@ -58,12 +58,6 @@ export const OpctionData = [
     title: "Routine",
     path: "/routine",
     icon: "https://res.cloudinary.com/codewithashim/image/upload/v1693606159/ApstickSchool/Icons/gqog1dou2rfvryskjnc7.png",
-  },
-  {
-    id: 11,
-    title: "Admission",
-    path: "/admission",
-    icon: "https://res.cloudinary.com/codewithashim/image/upload/v1693606533/ApstickSchool/Icons/f6kcuxgnvicxaabl5wdm.png",
   },
   {
     id: 12,

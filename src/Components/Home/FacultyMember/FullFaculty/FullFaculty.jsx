@@ -1,11 +1,15 @@
-import { FacultyData } from "@/src/Utils/MockData/FacultyMockData";
 import React from "react";
+import useTeachersData from "@/src/Hooks/useTeachersData";
+import Link from "next/link";
+;
 
 const FullFaculty = () => {
+const {teacherData} = useTeachersData()
+
   return (
-    <section className="home-faculty-section">
-      <div className="grid items-center w-full gap-4 p-4 bg-white rounded shadow md:grid-cols-4">
-        {FacultyData.slice(0, 8).map((faculty) => {
+    <section className="bg-white rounded shadow home-faculty-section ">
+      <div className="grid items-center w-full gap-4 p-4 md:grid-cols-4">
+        {teacherData?.slice(0, 8).map((faculty) => {
           return (
             <div className="flex flex-col justify-center w-full p-4 text-center bg-gray-100 shadow">
               <img
@@ -14,14 +18,14 @@ const FullFaculty = () => {
                 src={faculty.image}
               />
               <p className="text-xl font-semibold leadi">{faculty.name}</p>
-              <p className="dark:text-gray-400">{faculty.designation}</p>
+              <p className="dark:text-gray-400">{faculty.position}</p>
             </div>
           );
         })}
-        <div className="morebutton">
-          
-        </div>
       </div>
+      <div className="my-2 morebutton flex justify-center items-center">
+          <Link href="/teachers" className="text-center text-blue-500"> More..</Link>
+        </div>
     </section>
   );
 };
