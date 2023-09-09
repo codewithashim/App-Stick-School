@@ -59,6 +59,8 @@ body {
 
 ///////         End of Common Styles   ////////
 
+
+
 ///////////////////////////////////////////////
 //           Home Here Section Slider        //
 /////////////////////////////////////////////*/
@@ -125,6 +127,13 @@ body {
   background: $primary-color;
 }
 
+.nav-manu-list{
+  li{
+    font-size:in 1vw;
+  }
+}
+
+
 ///////     End of Header Section    ////////
 
 /*=============================================
@@ -146,6 +155,10 @@ body {
 
 .option-containers {
   column-gap: 4rem;
+}
+.option-card-titiel{
+  font-size: 1.2vw;
+  font-weight: bold;  
 }
 
 /*=====    End of home-notice-portal    ======*/

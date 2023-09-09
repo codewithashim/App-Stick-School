@@ -27,17 +27,12 @@ const ManegResult = () => {
               sx={{ display: "flex", alignItems: "center" }}
               color="inherit"
               href="/dashboard/result/add-result"
+                  className="commonBtn"
             >
               <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-              Result
+              Add Result
             </Link>
-            <Typography
-              sx={{ display: "flex", alignItems: "center" }}
-              color="text.primary"
-            >
-              <GrainIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-              Maneg Result
-            </Typography>
+          
           </Breadcrumbs>
         </div>
         <section>

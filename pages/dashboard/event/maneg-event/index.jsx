@@ -22,13 +22,16 @@ const ManegEvent = () => {
               <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
               Dashboard
             </Link>
-            <Typography
+            <Link
+              underline="hover"
               sx={{ display: "flex", alignItems: "center" }}
-              color="text.primary"
+              color="inherit"
+              className="commonBtn"
+              href="/"
             >
-              <GrainIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-               Admin 
-            </Typography>
+              <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
+            Add Event
+            </Link>
           </Breadcrumbs>
         </div>
         <section>

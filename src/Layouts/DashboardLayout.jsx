@@ -10,7 +10,7 @@ import Sidebar from "./sidebar/Sidebar";
 
 const MainWrapper = experimentalStyled("div")(() => ({
   display: "flex",
-  minHeight: "100vh",
+  // minHeight: "100vw",
   overflow: "hidden",
   width: "100%",
 }));
@@ -37,7 +37,7 @@ const DashboardLayout = ({ children }) => {
     <MainWrapper>
       <Header
         sx={{
-          paddingLeft: isSidebarOpen && lgUp ? "285px" : "",
+          paddingLeft: isSidebarOpen && lgUp ? "200px" : "",
           backgroundColor: "#fbfbfb",
         }}
         toggleMobileSidebar={() => setMobileSidebarOpen(true)}
@@ -48,14 +48,16 @@ const DashboardLayout = ({ children }) => {
         onSidebarClose={() => setMobileSidebarOpen(false)}
       />
       <PageWrapper>
+
         <Container
           maxWidth={false}
           sx={{
             paddingTop: "20px",
-            paddingLeft: isSidebarOpen && lgUp ? "280px!important" : "",
+            paddingLeft: isSidebarOpen && lgUp ? "290px!important" : "",
           }}
         >
-          <Box sx={{ minHeight: "calc(100vh - 170px)" }}>{children}</Box>
+          <Box sx={{ minHeight: "calc(100vh - 170px)" }}
+          > {children}</Box>
           
         </Container>
       </PageWrapper>

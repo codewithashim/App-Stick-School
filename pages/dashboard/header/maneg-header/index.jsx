@@ -28,17 +28,11 @@ const ManegHeader = () => {
               sx={{ display: "flex", alignItems: "center" }}
               color="inherit"
               href="/dashboard/header/add-header"
+              className="commonBtn"
             >
               <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-              Header
+            Add Header
             </Link>
-            <Typography
-              sx={{ display: "flex", alignItems: "center" }}
-              color="text.primary"
-            >
-              <GrainIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-              Manage Header
-            </Typography>
           </Breadcrumbs>
         </div>
         <section className="my-4">

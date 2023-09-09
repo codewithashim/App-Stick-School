@@ -12,7 +12,7 @@ const Index = () => {
   return (
     <ThemeProvider theme={theme}>
       <FullLayout>
-        <div role="presentation" className="py-4 px-2 bg-neutral-100">
+        <div role="presentation" className="px-2 py-4 bg-neutral-100">
           <Breadcrumbs aria-label="breadcrumb">
             <Link
               underline="hover"
@@ -29,6 +29,7 @@ const Index = () => {
               sx={{ display: "flex", alignItems: "center" }}
               color="inherit"
               href="/dashboard/photogalery/add-photogalery"
+              className="commonBtn"
             >
               <Typography
                 sx={{ display: "flex", alignItems: "center" }}
@@ -39,13 +40,6 @@ const Index = () => {
               </Typography>
             </Link>
 
-            <Typography
-              sx={{ display: "flex", alignItems: "center" }}
-              color="text.primary"
-            >
-              <GrainIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-              Manege Photo Galary
-            </Typography>
           </Breadcrumbs>
         </div>
         <section>

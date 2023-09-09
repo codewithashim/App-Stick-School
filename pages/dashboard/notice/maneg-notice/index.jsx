@@ -17,18 +17,21 @@ const ManegNotice = () => {
               underline="hover"
               sx={{ display: "flex", alignItems: "center" }}
               color="inherit"
-              href="/"
+              href="/dashboard"
             >
               <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
               Dashboard
             </Link>
-            <Typography
+            <Link
+              underline="hover"
               sx={{ display: "flex", alignItems: "center" }}
-              color="text.primary"
+              color="inherit"
+              href="/dashboard/notice/add-notice"
             >
-              <GrainIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-               Admin 
-            </Typography>
+              <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
+            Add Notice
+            </Link>
+           
           </Breadcrumbs>
         </div>
         <section>

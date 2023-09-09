@@ -7,43 +7,43 @@ const Menuitems = [
   {
     title: "Teacher",
     icon: "grid",
-    href: "/dashboard/teacher/add-teacher",
+    href: "/dashboard/teacher/maneg-teacher",
   },
   {
     title: "About",
     icon: "grid",
-    href: "/dashboard/about/add-about",
+    href: "/dashboard/about/maneg-about",
   },
   {
     title: "Header",
     icon: "grid",
-    href: "/dashboard/header/add-header",
+    href: "/dashboard/header/maneg-header",
   },
   
   {
     title: "Result",
     icon: "book-open",
-    href: "/dashboard/result/add-result",
+    href: "/dashboard/result/maneg-result",
   },
   {
     title: "Notice",
     icon: "grid",
-    href: "/dashboard/notice/add-notice",
+    href: "/dashboard/notice/maneg-notice",
   },
   {
     title: "Events",
     icon: "grid",
-    href: "/dashboard/event/add-event",
+    href: "/dashboard/event/maneg-event",
   }, 
   {
     title: "Home Slider",
     icon: "layout",
-    href: "/dashboard/homeslider/add-homeslider",
+    href: "/dashboard/homeslider/maneg-homeslider",
   },
   {
     title: "Photo Gallery",
     icon: "image",
-    href: "/dashboard/photogalery/add-photogalery",
+    href: "/dashboard/photogalery/maneg-photogalery",
   }
  
 ];

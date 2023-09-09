@@ -27,18 +27,12 @@ const ManegAbout = () => {
               sx={{ display: "flex", alignItems: "center" }}
               color="inherit"
               href="/dashboard/about/add-about"
+              className="commonBtn"
             >
               <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-              About
+             Add About
             </Link>
-            <Typography
-              sx={{ display: "flex", alignItems: "center" }}
-              color="text.primary"
-            >
-              <GrainIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-              Manage About 
-            </Typography>
-          </Breadcrumbs>
+            </Breadcrumbs>
         </div>
         <section className="my-4">
           <ManegAboutUsComponent/>

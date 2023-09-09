@@ -11,7 +11,7 @@ const Options = () => {
           <Link
             href={opction.path}
             key={index}
-            class="flex w-full md:w-[10vw] m-2 flex-col rounded-xl bg-[#0075d6] bg-clip-border text-white shadow-md"
+            class="flex option-card w-full md:w-[11vw] m-2 flex-col rounded-xl bg-[#ccd0d4] bg-clip-border text-black shadow-md"
           >
             <div>
               <div class="p-6 flex justify-center items-center flex-col gap-4">
@@ -24,7 +24,7 @@ const Options = () => {
                   />
                 </div>
 
-                <p class="mb-2 block leading-snug tracking-normal text-blue-gray-900 antialiased">
+                <p class="mb-2 block leading-snug tracking-normal text-blue-gray-900 antialiased option-card-titiel">
                   {opction.title}
                 </p>
               </div>
