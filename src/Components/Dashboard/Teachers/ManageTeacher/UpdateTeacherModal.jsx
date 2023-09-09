@@ -24,6 +24,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const UpdateTeacherModal = ({ teacher }) => {
   const [open, setOpen] = React.useState(false);
+  const [loading, setLoading] = useState(false);
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -41,6 +42,7 @@ const UpdateTeacherModal = ({ teacher }) => {
   const cloud_folder = process.env.NEXT_PUBLIC_CLOUDINARY_IMAGE_FOLDER;
 
   const handelUpdate = async (updatedata) => {
+    setLoading(true)
     ///////////////////////////////////////////////
     //               Photo Upload                //
     /////////////////////////////////////////////*/
@@ -48,7 +50,7 @@ const UpdateTeacherModal = ({ teacher }) => {
     imageUploadData.append("file", imageFile);
     imageUploadData.append(
       "public_id",
-      `${cloud_folder}/Teacher/${imageFile?.name}`
+      `${cloud_folder}/Academice/${imageFile?.name}`
     );
     imageUploadData.append("upload_preset", `${upload_preset}`);
     imageUploadData.append("cloud_name", `${cloud_name}`);
@@ -112,6 +114,7 @@ const UpdateTeacherModal = ({ teacher }) => {
         showConfirmButton: false,
         timer: 3500,
       });
+      setLoading(false)
       handleClose();
     }
   };
@@ -171,7 +174,7 @@ const UpdateTeacherModal = ({ teacher }) => {
                 defaultValue={name}
                 variant="outlined"
                 className="w-full"
-                {...register("teacherName", { required: true })}
+                {...register("teacherName")}
               />
               <TextField
                 id="outlined-teacherposition-input"
@@ -181,7 +184,7 @@ const UpdateTeacherModal = ({ teacher }) => {
                 defaultValue={position}
                 variant="outlined"
                 className="w-full"
-                {...register("teacherPosition", { required: true })}
+                {...register("teacherPosition")}
               />
 
               <TextField
@@ -191,7 +194,7 @@ const UpdateTeacherModal = ({ teacher }) => {
                 multiline
                 rows={7}
                 className="w-full"
-                {...register("teacherDescription", { required: true })}
+                {...register("teacherDescription")}
               />
 
               <TextField
@@ -202,7 +205,7 @@ const UpdateTeacherModal = ({ teacher }) => {
                 defaultValue={joiningDate}
                 variant="outlined"
                 className="w-full"
-                {...register("joiningDate", { required: true })}
+                {...register("joiningDate")}
               />
 
               <div>
@@ -256,7 +259,9 @@ const UpdateTeacherModal = ({ teacher }) => {
                   type="submit"
                   onClick={handleSubmit(handelUpdate)}
                 >
-                  Update Product
+                {
+                  loading ? "Loading..." : "Update Teacher"
+                }
                 </Button>
               </div>
             </div>

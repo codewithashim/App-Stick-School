@@ -1,9 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useState } from "react";
 import { deleteHeaderUrl, getHeaderUrl } from "../Utils/Urls/HeaderUrl";
 import Swal from "sweetalert2";
 
 const useHeadersData = () => {
+  const [loading, setLoading] = useState(false)
   const {
     data: headersData,
     isLoading: headerLoaded,
@@ -29,6 +30,7 @@ const useHeadersData = () => {
     });
 
     if (confirmed.isConfirmed) {
+      setLoading(true)
       const res = await fetch(deleteHeaderUrl(id), {
         method: "DELETE",
       });
@@ -67,6 +69,8 @@ const useHeadersData = () => {
           showConfirmButton: false,
           timer: 3500,
         });
+        refetchHeader()
+        setLoading(false)
       }
     }
   };
@@ -76,7 +80,8 @@ const useHeadersData = () => {
     headersData,
     headerLoaded,
     refetchHeader,
-    handelDelete
+    handelDelete,
+    loading
   };
 };
 

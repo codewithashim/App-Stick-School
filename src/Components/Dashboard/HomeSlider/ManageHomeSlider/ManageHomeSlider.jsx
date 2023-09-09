@@ -1,106 +1,43 @@
-// import { DataContextApi } from "@/src/Context/DataContext";
-// import useCommonApiData from "@/src/Hooks/useCommonApiData/useCommonApiData";
-// import { Card, CardActions, CardMedia, IconButton } from "@mui/material";
-// import React, { useContext } from "react";
-// import { FaRegTrashAlt } from "react-icons/fa";
-// import Swal from "sweetalert2";
+import useHomeSlider from "@/src/Hooks/useHomeSlider";
+import { Card, CardActions, CardMedia, IconButton } from "@mui/material";
+import React from "react";
+import { FaRegTrashAlt } from "react-icons/fa";
 
 const ManageHomeSlider = () => {
-  // const { sliderData, refetchHomeSlider, sliderLoaded } = useCommonApiData();
-  // const { baseUrl } = useContext(DataContextApi);
-
-  // const handelDelete = async (id) => {
-  //   const confirmed = await Swal.fire({
-  //     title: "Are you sure?",
-  //     text: "You won't be able to revert this!",
-  //     icon: "warning",
-  //     showCancelButton: true,
-  //     confirmButtonColor: "#3085d6",
-  //     cancelButtonColor: "#d33",
-  //     confirmButtonText: "Yes, delete it!",
-  //   });
-
-  //   if (confirmed.isConfirmed) {
-  //     const res = await fetch(`${baseUrl}/api/brandSlider/${id}`, {
-  //       method: "DELETE",
-  //     });
-  //     const data = await res.json();
-  //     if (!data) {
-  //       Swal.fire({
-  //         position: "center",
-  //         timerProgressBar: true,
-  //         title: data.message,
-  //         iconColor: "#ED1C24",
-  //         toast: true,
-  //         icon: "error",
-  //         showClass: {
-  //           popup: "animate__animated animate__fadeInRight",
-  //         },
-  //         hideClass: {
-  //           popup: "animate__animated animate__fadeOutRight",
-  //         },
-  //         showConfirmButton: false,
-  //         timer: 3500,
-  //       });
-  //     } else {
-  //       Swal.fire({
-  //         position: "center",
-  //         timerProgressBar: true,
-  //         title: "Successfully Delete Product !",
-  //         iconColor: "#ED1C24",
-  //         toast: true,
-  //         icon: "success",
-  //         showClass: {
-  //           popup: "animate__animated animate__fadeInRight",
-  //         },
-  //         hideClass: {
-  //           popup: "animate__animated animate__fadeOutRight",
-  //         },
-  //         showConfirmButton: false,
-  //         timer: 3500,
-  //       });
-  //       refetchHomeSlider();
-  //     }
-  //   }
-  // };
-
-  // if (sliderLoaded) {
-  //   return (
-  //     <h2 className="flex items-center content-center self-center justify-center">
-  //       Loading...
-  //     </h2>
-  //   );
-  // }
+const{homeSliderData, handelDeleteHomeSlider,loadingHomeSlider} = useHomeSlider() 
 
   return (
     <section>
       <h2 className="py-4 text-2xl font-bold ">Manage Slider</h2>
 
       <div className="grid items-center justify-center gap-4 md:grid-cols-3">
-        {/* {sliderData &&
-          sliderData.length &&
-          sliderData.map((slider) => {
-            const { _id, brandSliderImage } = slider;
+        {homeSliderData &&
+          homeSliderData?.length &&
+          homeSliderData?.map((slider) => {
+            const { _id, image,title } = slider;
             return (
               <Card sx={{ maxWidth: 400 }} key={_id}>
                 <CardMedia
                   component="img"
-                  image={brandSliderImage}
-                  alt={"Brand Image Form Red Rose Auto"}
+                  image={image}
+                  alt={title}
                   className="w-[100%] h-[200px] object-cover"
                 />
 
                 <CardActions disableSpacing>
                   <IconButton
                     aria-label="Delete"
-                    onClick={() => handelDelete(_id)}
+                    onClick={() => handelDeleteHomeSlider(_id)}
                   >
-                    <FaRegTrashAlt className="text-[2.3rem] mr-3 text-red-500" />
+                  {
+                    loadingHomeSlider ? "Loading..." : <FaRegTrashAlt className="text-[2.3rem] mr-3 text-red-500" />
+                  }
+                    
                   </IconButton>
                 </CardActions>
               </Card>
             );
-          })} */}
+          })}
       </div>
     </section>
   );

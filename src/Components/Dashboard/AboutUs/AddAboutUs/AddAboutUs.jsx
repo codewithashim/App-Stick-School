@@ -9,6 +9,7 @@ import { createAboutUrl } from "@/src/Utils/Urls/AboutUrl";
 const AddAboutComponent = () => {
   const { register, handleSubmit } = useForm();
   const [imageFile, setImageFile] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const upload_preset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
   const cloud_name = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
@@ -19,6 +20,7 @@ const AddAboutComponent = () => {
     ///////////////////////////////////////////////
     //               Photo Upload               //
     /////////////////////////////////////////////*/
+    setLoading(true)
     const imageUploadData = new FormData();
     imageUploadData.append("file", imageFile);
     imageUploadData.append(
@@ -85,6 +87,7 @@ const AddAboutComponent = () => {
         showConfirmButton: false,
         timer: 3500,
       });
+      setLoading(false)
     }
   };
 
@@ -173,7 +176,9 @@ const AddAboutComponent = () => {
             type="submit"
             onClick={handleSubmit(onSubmit)}
           >
-            Submit
+           {
+              loading ? "Loading..." : "Add About"
+           }
           </Button>
         </div>
       </div>

@@ -6,41 +6,52 @@ import { Breadcrumbs, Typography } from "@mui/material";
 import Link from "next/link";
 import HomeIcon from "@mui/icons-material/Home";
 import GrainIcon from "@mui/icons-material/Grain";
-import ManageHomeSlider from "@/src/Components/Dashboard/HomeSlider/ManageHomeSlider/ManageHomeSlider";
+import { FaPen } from "react-icons/fa";
+import AddCommittee from "@/src/Components/Dashboard/Committee/AddCommittee/AddCommittee";
 
-const Index = () => {
+const AddCommitteePage = () => {
   return (
     <ThemeProvider theme={theme}>
       <FullLayout>
-      <div role="presentation" className="px-2 py-4 bg-neutral-100">
+        <div role="presentation" className="px-2 py-4 bg-neutral-100">
           <Breadcrumbs aria-label="breadcrumb">
             <Link
               underline="hover"
               sx={{ display: "flex", alignItems: "center" }}
               color="inherit"
-              href="/"
+              href="/dashboard"
             >
               <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
               Dashboard
             </Link>
-
             <Link
               underline="hover"
               sx={{ display: "flex", alignItems: "center" }}
               color="inherit"
-              href="/dashboard/homeslider/add-homeslider"
-              className="commonBtn"
+              href="/dashboard/committee/maneg-committee"
             >
-                Add Home Slider
+              <Typography
+                color="text.primary"
+                className="flex items-center justify-center gap-2 rounded hover:bg-black-700"
+              >
+                <FaPen></FaPen> Manage Committee
+              </Typography>
             </Link>
+            <Typography
+              sx={{ display: "flex", alignItems: "center" }}
+              color="text.primary"
+            >
+              <GrainIcon sx={{ mr: 0.5 }} fontSize="inherit" />
+              Add Committee
+            </Typography>
           </Breadcrumbs>
         </div>
-        <section>
-          <ManageHomeSlider />
+        <section className="my-4">
+          <AddCommittee />
         </section>
       </FullLayout>
     </ThemeProvider>
   );
 };
 
-export default Index;
+export default AddCommitteePage;

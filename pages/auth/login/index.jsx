@@ -20,55 +20,67 @@ const LoginPage = () => {
   } = useForm();
   const [tokens, setTokens] = useState(null); 
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] =  useState(false);
   const router = useRouter();
   const redirect = router.query.redirect;
   const passwordVisible = () => {
     setShowPassword(!showPassword);
   };
 
+  
+
   useEffect(() => {
-    if (tokens?.accessToken) {
-      const accessTokenExp = jwtHelper.getTokenExpiration(tokens.accessToken);
+    try {
+      if (tokens?.accessToken) {
+        const accessTokenExp = jwtHelper.getTokenExpiration(tokens.accessToken);
+  
+        if (accessTokenExp <= Date.now() / 1000) {
+          const refreshToken = tokens.refreshToken;
 
-      if (accessTokenExp <= Date.now() / 1000) {
-        const refreshToken = tokens.refreshToken;
-
-        fetch(refreshTokenUrl, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            refreshToken,
-          }),
-        })
-          .then((response) => {
-            if (response.ok) {
-              return response.json();
-            } else {
-              throw new Error("Refresh token request failed");
-            }
-          })
-          .then((responseData) => {
-            setTokens({
-              accessToken: responseData.data.accessToken,
-              refreshToken: refreshToken,
-            });
-
-            localStorage.setItem("accessToken", responseData.data.accessToken);
-          })
-          .catch((error) => {
-            console.error("Refresh token failed", error);
-          });
+          try {
+            fetch(refreshTokenUrl, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                refreshToken,
+              }),
+            })
+              .then((response) => {
+                if (response.ok) {
+                  return response.json();
+                } else {
+                  throw new Error("Refresh token request failed");
+                }
+              })
+              .then((responseData) => {
+                setTokens({
+                  accessToken: responseData.data.accessToken,
+                  refreshToken: refreshToken,
+                });
+    
+                localStorage.setItem("accessToken", responseData.data.accessToken);
+              })
+              .catch((error) => {
+                console.error("Refresh token failed", error);
+              });
+          } catch (error) {
+              console.log(error)
+          }       
+        }
       }
+    } catch (error) {
+      console.log(error) 
     }
-  }, [tokens]);
+  }, []);
 
 
 
   const onSubmit = async (data) => {
     const { email, password } = data;
     try {
+      setLoading(true)
       const response = await fetch(loginUrl, {
         method: "POST",
         headers: {
@@ -102,6 +114,7 @@ const LoginPage = () => {
         });
         
         localStorage.setItem("accessToken", responseData.data.accessToken);
+        setLoading(false)
         router.push("/dashboard");
         if (redirect) {
           router.push(redirect);
@@ -209,7 +222,11 @@ const LoginPage = () => {
                         </Link>
                       </span>
                     </div>
-                    <button className="mb-5 commonBtn">Sign In</button>
+                    <button className="mb-5 commonBtn">
+                      {
+                        loading ? "Loading..." : "Sign In"
+                      }
+                    </button>
                   </div>
                 </form>
               </div>

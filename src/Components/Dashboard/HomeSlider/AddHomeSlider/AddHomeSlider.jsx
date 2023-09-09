@@ -1,93 +1,117 @@
-// import { DataContextApi } from "@/src/Context/DataContext";
 import { Button } from "@mui/material";
-// import React, { useContext, useState } from "react";
-// import { useForm } from "react-hook-form";
-// import Swal from "sweetalert2";
+import React, { useState } from "react";
+import { TextField } from "@mui/material";
+import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 import SendIcon from "@mui/icons-material/Send";
+import { createHomesliderUrl } from "@/src/Utils/Urls/HomeSliderUrl";
 
 const AddHomeSlider = () => {
-  // const { register, handleSubmit } = useForm();
-  // const [imageFile, setImageFile] = useState(null);
-  // const { baseUrl } = useContext(DataContextApi);
+  const { register, handleSubmit } = useForm();
+  const [imageFile, setImageFile] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  // const upload_preset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
-  // const cloud_name = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
-  // const cloud_api = process.env.NEXT_PUBLIC_CLOUDINARY_API;
-  // const cloud_folder = process.env.NEXT_PUBLIC_CLOUDINARY_IMAGE_FOLDER;
+  const upload_preset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
+  const cloud_name = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+  const cloud_api = process.env.NEXT_PUBLIC_CLOUDINARY_API;
+  const cloud_folder = process.env.NEXT_PUBLIC_CLOUDINARY_IMAGE_FOLDER;
+
+  const onSubmit = async (dataValue) => {
+    ///////////////////////////////////////////////
+    //               Photo Upload               //
+    /////////////////////////////////////////////*/
+    setLoading(true);
+    const imageUploadData = new FormData();
+    imageUploadData.append("file", imageFile);
+    imageUploadData.append(
+      "public_id",
+      `${cloud_folder}/PhotoGelary/${imageFile?.name}`
+    );
+    imageUploadData.append("upload_preset", `${upload_preset}`);
+    imageUploadData.append("cloud_name", `${cloud_name}`);
+    const imgRes = await fetch(`${cloud_api}`, {
+      method: "POST",
+      body: imageUploadData,
+    });
+    const imgData = await imgRes.json();
+    const imgPath = imgData?.secure_url;
+    
+    
+
+    ///////////////////////////////////////////////
+    //               Add Home Slider            //
+    /////////////////////////////////////////////*/
 
 
-  // const onSubmit = async () => {
-  //   ///////////////////////////////////////////////
-  //   //               Photo Upload               //
-  //   /////////////////////////////////////////////*/
+    const homeSliderData = {
+      image: imgPath,
+        title: dataValue?.title,
+        details: dataValue?.details,
+    }
 
-  //   const imageUploadData = new FormData();
-  //   imageUploadData.append("file", imageFile);
-  //   imageUploadData.append(
-  //     "public_id",
-  //     `${cloud_folder}/HomeSlider/${imageFile?.name}`
-  //   );
-  //   imageUploadData.append("upload_preset", `${upload_preset}`);
-  //   imageUploadData.append("cloud_name", `${cloud_name}`);
-  //   const imgRes = await fetch(
-  //     `${cloud_api}`,
-  //     {
-  //       method: "POST",
-  //       body: imageUploadData,
-  //     }
-  //   );
-  //   const imgData = await imgRes.json();
-  //   const imgPath = imgData.secure_url;
-
-  //   ///////////////////////////////////////////////
-  //   //               Add Home Slider            //
-  //   /////////////////////////////////////////////*/
-
-  //   const res = await fetch(`${baseUrl}/api/brandSlider`, {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({ brandSliderImage: imgPath }),
-  //   });
-  //   const dataRes = await res.json();
-  //   console.log(dataRes);
-  //   if (dataRes.sucess === true) {
-  //     Swal.fire({
-  //       position: "center",
-  //       timerProgressBar: true,
-  //       title: "Successfully Home Slider Added!",
-  //       iconColor: "#ED1C24",
-  //       toast: true,
-  //       icon: "success",
-  //       showClass: {
-  //         popup: "animate__animated animate__fadeInRight",
-  //       },
-  //       hideClass: {
-  //         popup: "animate__animated animate__fadeOutRight",
-  //       },
-  //       showConfirmButton: false,
-  //       timer: 3500,
-  //     });
-  //     imageFile && setImageFile(null);
-
-  //   } else {
-  //     Swal.fire({
-  //       icon: "error",
-  //       title: "Oops...",
-  //       text: "Something went wrong!",
-  //     });
-  //   }
-  // };
+    const res = await fetch(createHomesliderUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({homeSliderData}),
+    });
+    const dataRes = await res.json();
+    console.log(dataRes);
+    if (dataRes.sucess === true) {
+      Swal.fire({
+        position: "center",
+        timerProgressBar: true,
+        title: "Successfully Home Slider Added!",
+        iconColor: "#ED1C24",
+        toast: true,
+        icon: "success",
+        showClass: {
+          popup: "animate__animated animate__fadeInRight",
+        },
+        hideClass: {
+          popup: "animate__animated animate__fadeOutRight",
+        },
+        showConfirmButton: false,
+        timer: 3500,
+      });
+      imageFile && setImageFile(null);
+      setLoading(false);
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong!",
+      });
+    }
+  };
 
   return (
-    <section>
+    <section className="lg:w-[100%] md:w-[100%] w-[100%] col-span-5 px-[60px] py-[50px] xxs:px-[25px] xs:px-[30px] sm:px-[60px]  mx-auto bg-[#F7F7F7] shadow-md rounded-lg flex justify-center items-center flex-col gap-4 my-4">
+      <TextField
+        id="outlined-title-input"
+        label="Title"
+        type="text"
+        autoComplete="title"
+        variant="outlined"
+        className="w-full"
+        {...register("title")}
+      />
+      <TextField
+        id="outlined-details-static"
+        label="Description"
+        multiline
+        rows={7}
+        className="w-full"
+        {...register("details")}
+      />
+
       <div>
         <div class="w-full h-full my-4">
           <div class="rounded-lg shadow-xl bg-gray-50">
             <div class="p-4">
               <label class="inline-block mb-2 text-gray-500">
-                Upload Product Image
+                Upload Home Slider
               </label>
               <div class="flex items-center justify-center w-full">
                 <label class="flex flex-col w-full h-32 border-4 border-blue-200 border-dashed hover:bg-gray-100 hover:border-gray-300">
@@ -120,7 +144,7 @@ const AddHomeSlider = () => {
                     name="imeage"
                     // {...register("imeage", { required: true })}
                     accept="image/*"
-                    // onChange={(e) => setImageFile(e.target.files[0])}
+                    onChange={(e) => setImageFile(e.target.files[0])}
                   />
                 </label>
               </div>
@@ -135,9 +159,9 @@ const AddHomeSlider = () => {
           className="commonBtn"
           endIcon={<SendIcon />}
           type="submit"
-          // onClick={handleSubmit(onSubmit)}
+          onClick={handleSubmit(onSubmit)}
         >
-          Submit
+          {loading ? "Loading..." : "Submit"}
         </Button>
       </div>
     </section>

@@ -2,23 +2,25 @@ import React from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../../../../src/theme/theme";
 import FullLayout from "../../../../src/Layouts/DashboardLayout";
-import { Breadcrumbs, Typography } from "@mui/material";
+import { Breadcrumbs } from "@mui/material";
 import Link from "next/link";
 import HomeIcon from "@mui/icons-material/Home";
-import GrainIcon from "@mui/icons-material/Grain";
-import ManageHomeSlider from "@/src/Components/Dashboard/HomeSlider/ManageHomeSlider/ManageHomeSlider";
+import ManegCommittee from "@/src/Components/Dashboard/Committee/ManegCommittee/ManegCommittee";
 
-const Index = () => {
+const ManegCommitteePage = () => {
   return (
     <ThemeProvider theme={theme}>
       <FullLayout>
-      <div role="presentation" className="px-2 py-4 bg-neutral-100">
+        <div
+          role="presentation"
+          className="flex items-center px-2 py-4 bg-neutral-100"
+        >
           <Breadcrumbs aria-label="breadcrumb">
             <Link
               underline="hover"
               sx={{ display: "flex", alignItems: "center" }}
               color="inherit"
-              href="/"
+              href="/dashboard"
             >
               <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
               Dashboard
@@ -28,19 +30,19 @@ const Index = () => {
               underline="hover"
               sx={{ display: "flex", alignItems: "center" }}
               color="inherit"
-              href="/dashboard/homeslider/add-homeslider"
+              href="/dashboard/committee/add-committee"
               className="commonBtn"
             >
-                Add Home Slider
+              Add Committee
             </Link>
           </Breadcrumbs>
         </div>
-        <section>
-          <ManageHomeSlider />
+        <section className="my-4">
+          <ManegCommittee />
         </section>
       </FullLayout>
     </ThemeProvider>
   );
 };
 
-export default Index;
+export default ManegCommitteePage;

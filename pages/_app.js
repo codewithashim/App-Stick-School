@@ -9,10 +9,14 @@ export default function App({ Component, pageProps }) {
   const [loader, setLoader] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => {
-      setLoader(false);
-    }, 1000);
-  }, [loader]);
+    try {
+      setTimeout(() => {
+        setLoader(false);
+      }, 1000);
+    } catch (error) {
+        console.log(error)
+    }
+  }, []);
 
   return (
     <>

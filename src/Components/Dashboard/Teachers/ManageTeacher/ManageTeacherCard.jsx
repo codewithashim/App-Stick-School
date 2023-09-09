@@ -9,11 +9,9 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import useTeachersData from "@/src/Hooks/useTeachersData";
 import UpdateTeacherModal from "./UpdateTeacherModal";
 
-
 const ManageTeacherCard = ({ teacher }) => {
-  const { name, detail, joiningDate, position, image ,_id } =
-  teacher;
-  const { handelDeleteTeacher } = useTeachersData();
+  const { name, detail, joiningDate, position, image, _id } = teacher;
+  const { handelDeleteTeacher, loading } = useTeachersData();
 
   return (
     <Card sx={{ maxWidth: 400 }}>
@@ -32,14 +30,20 @@ const ManageTeacherCard = ({ teacher }) => {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="Delete" onClick={() => handelDeleteTeacher(_id)}>
-          <FaRegTrashAlt className="text-[2.3rem] mr-3 text-red-500" />
+        <IconButton
+          aria-label="Delete"
+          onClick={() => handelDeleteTeacher(_id)}
+        >
+          {loading ? (
+            "Loading..."
+          ) : (
+            <FaRegTrashAlt className="text-[2.3rem] mr-3 text-red-500" />
+          )}
         </IconButton>
         <IconButton aria-label="Edite">
           <UpdateTeacherModal teacher={teacher} />
         </IconButton>
       </CardActions>
-
     </Card>
   );
 };

@@ -4,12 +4,12 @@ import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
 import Swal from "sweetalert2";
-import { createTeacherUrl } from "@/src/Utils/Urls/TeacherUrl";
+import { createCommitteeUrl } from "@/src/Utils/Urls/CommitteeUrl";
 
-const AddTeacher = () => {
+const AddCommittee = () => {
   const { register, handleSubmit } = useForm();
   const [imageFile, setImageFile] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false)
 
   const upload_preset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
   const cloud_name = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
@@ -35,23 +35,21 @@ const AddTeacher = () => {
     });
     const imgdata = await imgRes.json();
     const imgurl = imgdata?.secure_url;
-    console.log(imgurl, "Upload Image ++++");
     ///////     End of Photo Upload     ////////
-    
-    const teacherData = {
-      name: data.teacherName,
-      detail: data.teacherDescription,
-      joiningDate: data.joiningDate,
-      position: data.teacherPosition,
+
+    const committeeData = {
+      name: data?.committeeName,
+      detail: data?.committeeDescription,
+      position: data?.committeePosition,
       image: imgurl,
     };
 
-    const res = await fetch(createTeacherUrl, {
+    const res = await fetch(createCommitteeUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(teacherData),
+      body: JSON.stringify(committeeData),
     });
     const dataRes = await res.json();
     if (!dataRes) {
@@ -75,7 +73,7 @@ const AddTeacher = () => {
       Swal.fire({
         position: "center",
         timerProgressBar: true,
-        title: "Successfully Teacher Added!",
+        title: "Successfully committee Added!",
         iconColor: "#ED1C24",
         toast: true,
         icon: "success",
@@ -96,41 +94,31 @@ const AddTeacher = () => {
     <section>
       <div className="lg:w-[100%] md:w-[100%] w-[100%] col-span-5 px-[60px] py-[50px] xxs:px-[25px] xs:px-[30px] sm:px-[60px]  mx-auto bg-[#F7F7F7] shadow-md rounded-lg flex justify-center items-center flex-col gap-4">
         <TextField
-          id="outlined-teachername-input"
-          label="Teacher Name"
+          id="outlined-committeename-input"
+          label="committee Name"
           type="text"
-          autoComplete="teacherName"
+          autoComplete="committeeName"
           variant="outlined"
           className="w-full"
-          {...register("teacherName")}
+          {...register("committeeName")}
         />
         <TextField
-          id="outlined-teacherposition-input"
-          label="Teacher Position"
+          id="outlined-committeeposition-input"
+          label="committee Position"
           type="text"
-          autoComplete="teacherPosition"
+          autoComplete="committeePosition"
           variant="outlined"
           className="w-full"
-          {...register("teacherPosition")}
+          {...register("committeePosition")}
         />
 
         <TextField
-          id="outlined-teacherdescription-static"
-          label="Teacher Description"
+          id="outlined-committeedescription-static"
+          label="committee Description"
           multiline
           rows={7}
           className="w-full"
-          {...register("teacherDescription")}
-        />
-
-        <TextField
-          id="outlined-teacherjoiningdate-input"
-          label="Joining Date"
-          type="text"
-          autoComplete="Joining Date"
-          variant="outlined"
-          className="w-full"
-          {...register("joiningDate")}
+          {...register("committeeDescription")}
         />
 
         <div>
@@ -138,7 +126,7 @@ const AddTeacher = () => {
             <div class="rounded-lg shadow-xl bg-gray-50">
               <div class="p-4">
                 <label class="inline-block mb-2 text-gray-500">
-                  Upload Teacher Image
+                  Upload committee Image
                 </label>
                 <div class="flex items-center justify-center w-full">
                   <label class="flex flex-col w-full h-40 border-4 border-blue-200 border-dashed hover:bg-gray-100 hover:border-gray-300">
@@ -187,9 +175,9 @@ const AddTeacher = () => {
             type="submit"
             onClick={handleSubmit(onSubmit)}
           >
-          {
-            loading ? "Loading..." : "Submit"
-          }
+           {
+              loading ? "Loading...": "Submit"
+            }
           </Button>
         </div>
       </div>
@@ -197,4 +185,4 @@ const AddTeacher = () => {
   );
 };
 
-export default AddTeacher;
+export default AddCommittee;

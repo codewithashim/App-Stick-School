@@ -6,38 +6,45 @@ import CardActions from "@mui/material/CardActions";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { FaRegTrashAlt } from "react-icons/fa";
-import useAbout from "@/src/Hooks/useAbout";
-import UpdateAboutModal from "./UpdateAboutModal";
+import useStaffData from "@/src/Hooks/useStaff";
+import UpdateStaffModal from "./UpdateStaffModal";
 
-const ManageAboutCard = ({ about }) => {
-  const { image, title, subtitle, details, _id } = about;
-  const {  handelAboutDelete,loading } = useAbout();
+
+const ManegStaffCard = ({ Staff }) => {
+  const { name, position, image ,_id } =
+  Staff;
+  const { handelDeleteStaff,loading } = useStaffData();
 
   return (
     <Card sx={{ maxWidth: 400 }}>
       <CardMedia
         component="img"
         image={image}
-        alt={title}
+        alt={name}
         className="w-[100%] h-[200px] object-cover"
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-          {title}
+          {name}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          {position}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="Delete" onClick={() =>  handelAboutDelete(_id)}>
+        <IconButton aria-label="Delete" onClick={() => handelDeleteStaff(_id)}>
         {
-          loading ? "Loading..." : <FaRegTrashAlt className="text-[2.3rem] mr-3 text-red-500" />
+          loading ? "Loading..." :  <FaRegTrashAlt className="text-[2.3rem] mr-3 text-red-500" />
         }
+         
         </IconButton>
         <IconButton aria-label="Edite">
-          <UpdateAboutModal about={about} />
+          <UpdateStaffModal Staff={Staff} />
         </IconButton>
       </CardActions>
+
     </Card>
   );
 };
 
-export default ManageAboutCard;
+export default ManegStaffCard;

@@ -1,8 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import React, { useState } from "react";
 import { deleteTeacherUrl, getTeacherUrl } from "../Utils/Urls/TeacherUrl";
 
 const useTeachersData = () => {
+  const [loading, setLoading] = useState(false);
   const {
     data: teacherData,
     isLoading: teacherLoaded,
@@ -28,6 +30,7 @@ const useTeachersData = () => {
     });
 
     if (confirmed.isConfirmed) {
+      setLoading(true)
       const res = await fetch(deleteTeacherUrl(id), {
         method: "DELETE",
       });
@@ -66,6 +69,8 @@ const useTeachersData = () => {
           showConfirmButton: false,
           timer: 3500,
         });
+        setLoading(false)
+        refetchTeacher()
       }
     }
   };
@@ -75,6 +80,7 @@ const useTeachersData = () => {
     teacherData,
     teacherLoaded,
     refetchTeacher,
+    loading
   };
 };
 

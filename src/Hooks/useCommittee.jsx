@@ -1,24 +1,27 @@
+import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import {  useState } from "react";
+import {
+  deleteCommitteeUrl,
+  getCommitteeUrl,
+} from "../Utils/Urls/CommitteeUrl";
 import Swal from "sweetalert2";
-import { deleteAboutUrl, getAboutUrl } from "../Utils/Urls/AboutUrl";
 
-const useAbout = () => {
-  const [loading, setLoading] = useState(false)
+const useCommittee = () => {
+  const [loadingCommittte, setloadingCommittte] =  useState(false)
   const {
-    data: aboutData,
-    isLoading: aboutLoaded,
-    refetch: refetchAbout,
+    data: committeeData,
+    isLoading: committeeLoaded,
+    refetch: refetchCommittee,
   } = useQuery({
-    queryKey: ["aboutData"],
+    queryKey: ["committeeData"],
     queryFn: async () => {
-      const res = await fetch(getAboutUrl);
+      const res = await fetch(getCommitteeUrl);
       const data = await res.json();
       return data.data;
     },
   });
 
-  const handelAboutDelete = async (id) => {
+  const handelDeleteCommittee = async (id) => {
     const confirmed = await Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -30,8 +33,8 @@ const useAbout = () => {
     });
 
     if (confirmed.isConfirmed) {
-      setLoading(true)
-      const res = await fetch(deleteAboutUrl(id), {
+      setloadingCommittte(true)
+      const res = await fetch(deleteCommitteeUrl(id), {
         method: "DELETE",
       });
       const data = await res.json();
@@ -56,7 +59,7 @@ const useAbout = () => {
         Swal.fire({
           position: "center",
           timerProgressBar: true,
-          title: "Successfully Delete About !",
+          title: "Successfully Delete Committee !",
           iconColor: "#ED1C24",
           toast: true,
           icon: "success",
@@ -69,19 +72,19 @@ const useAbout = () => {
           showConfirmButton: false,
           timer: 3500,
         });
-        refetchAbout()
-        setLoading(false)
+        refetchCommittee()
+        setloadingCommittte(false)
       }
     }
   };
 
   return {
-    aboutData,
-    aboutLoaded,
-    refetchAbout,
-    handelAboutDelete,
-    loading
+    committeeData,
+    committeeLoaded,
+    refetchCommittee,
+    handelDeleteCommittee,
+    loadingCommittte
   };
 };
 
-export default useAbout;
+export default useCommittee;

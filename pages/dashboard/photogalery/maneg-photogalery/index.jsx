@@ -31,15 +31,8 @@ const Index = () => {
               href="/dashboard/photogalery/add-photogalery"
               className="commonBtn"
             >
-              <Typography
-                sx={{ display: "flex", alignItems: "center" }}
-                color="text.primary"
-              >
-                <GrainIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-                Add Photo Galary
-              </Typography>
+              Add Photogalery              
             </Link>
-
           </Breadcrumbs>
         </div>
         <section>

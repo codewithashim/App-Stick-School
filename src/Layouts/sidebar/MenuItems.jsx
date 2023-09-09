@@ -10,6 +10,16 @@ const Menuitems = [
     href: "/dashboard/teacher/maneg-teacher",
   },
   {
+    title: "Staff",
+    icon: "grid",
+    href: "/dashboard/staff/maneg-staff",
+  },
+  {
+    title: "Committee",
+    icon: "grid",
+    href: "/dashboard/committee/maneg-committee",
+  },
+  {
     title: "About",
     icon: "grid",
     href: "/dashboard/about/maneg-about",

@@ -1,24 +1,25 @@
+import React, { useState } from "react";
+import { deleteHomesliderUrl, getHomesliderUrl } from "../Utils/Urls/HomeSliderUrl";
 import { useQuery } from "@tanstack/react-query";
-import {  useState } from "react";
 import Swal from "sweetalert2";
-import { deleteAboutUrl, getAboutUrl } from "../Utils/Urls/AboutUrl";
 
-const useAbout = () => {
-  const [loading, setLoading] = useState(false)
+
+const useHomeSlider = () => {
+  const [loadingHomeSlider, setloadingHomeSlider] = useState(false);
   const {
-    data: aboutData,
-    isLoading: aboutLoaded,
-    refetch: refetchAbout,
+    data: homeSliderData,
+    isLoading: homeSliderLoaded,
+    refetch: refetchHomeSlider,
   } = useQuery({
-    queryKey: ["aboutData"],
+    queryKey: ["homeSliderData"],
     queryFn: async () => {
-      const res = await fetch(getAboutUrl);
+      const res = await fetch(getHomesliderUrl);
       const data = await res.json();
-      return data.data;
+      return data?.data;
     },
   });
 
-  const handelAboutDelete = async (id) => {
+  const handelDeleteHomeSlider = async (id) => {
     const confirmed = await Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -30,8 +31,8 @@ const useAbout = () => {
     });
 
     if (confirmed.isConfirmed) {
-      setLoading(true)
-      const res = await fetch(deleteAboutUrl(id), {
+        setloadingHomeSlider(true);
+      const res = await fetch(deleteHomesliderUrl(id), {
         method: "DELETE",
       });
       const data = await res.json();
@@ -56,7 +57,7 @@ const useAbout = () => {
         Swal.fire({
           position: "center",
           timerProgressBar: true,
-          title: "Successfully Delete About !",
+          title: "Successfully Delete homeSlider !",
           iconColor: "#ED1C24",
           toast: true,
           icon: "success",
@@ -69,19 +70,19 @@ const useAbout = () => {
           showConfirmButton: false,
           timer: 3500,
         });
-        refetchAbout()
-        setLoading(false)
+        refetchHomeSlider();
+        setloadingHomeSlider(false);
       }
     }
   };
 
   return {
-    aboutData,
-    aboutLoaded,
-    refetchAbout,
-    handelAboutDelete,
-    loading
+    handelDeleteHomeSlider,
+    loadingHomeSlider,
+    homeSliderData,
+    homeSliderLoaded,
+    refetchHomeSlider,
   };
 };
 
-export default useAbout;
+export default useHomeSlider;

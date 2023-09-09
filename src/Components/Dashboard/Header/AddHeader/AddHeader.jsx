@@ -9,6 +9,7 @@ import { createHeaderUrl } from "@/src/Utils/Urls/HeaderUrl";
 const AddHeaderComponent = () => {
   const { register, handleSubmit } = useForm();
   const [imageFile, setImageFile] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const upload_preset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
   const cloud_name = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
@@ -19,7 +20,7 @@ const AddHeaderComponent = () => {
     ///////////////////////////////////////////////
     //               Photo Upload               //
     /////////////////////////////////////////////*/
-
+    setLoading(true);
     const imageUploadData = new FormData();
     imageUploadData.append("file", imageFile);
     imageUploadData.append(
@@ -93,6 +94,7 @@ const AddHeaderComponent = () => {
         showConfirmButton: false,
         timer: 3500,
       });
+      setLoading(false);
     }
   };
 
@@ -202,7 +204,7 @@ const AddHeaderComponent = () => {
             type="submit"
             onClick={handleSubmit(onSubmit)}
           >
-            Submit
+            {loading ? "Loading..." : "Submit"}
           </Button>
         </div>
       </div>

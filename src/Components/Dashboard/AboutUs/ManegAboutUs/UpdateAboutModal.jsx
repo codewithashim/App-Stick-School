@@ -23,6 +23,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 const UpdateAboutModal = ({ about }) => {
   const { image, title, subtitle, details, _id } = about;
   const [open, setOpen] = React.useState(false);
+  const [loading, setLoading] = useState(false);
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -42,6 +43,7 @@ const UpdateAboutModal = ({ about }) => {
     ///////////////////////////////////////////////
     //               Photo Upload                //
     /////////////////////////////////////////////*/
+    setLoading(true);
     const imageUploadData = new FormData();
     imageUploadData.append("file", imageFile);
     imageUploadData.append(
@@ -109,6 +111,7 @@ const UpdateAboutModal = ({ about }) => {
         showConfirmButton: false,
         timer: 3500,
       });
+      setLoading(false)
       handleClose();
     }
   };
@@ -242,7 +245,9 @@ const UpdateAboutModal = ({ about }) => {
                   type="submit"
                   onClick={handleSubmit(handelUpdate)}
                 >
-                  Update Product
+                  {
+                    loading ? "Loading..." :"Update About"
+                  }
                 </Button>
               </div>
             </div>

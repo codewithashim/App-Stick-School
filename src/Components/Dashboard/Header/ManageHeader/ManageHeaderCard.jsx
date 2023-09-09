@@ -26,7 +26,7 @@ const ExpandMore = styled((props) => {
 const ManageHeaderCard = ({ header }) => {
   const { logo, schoolName, schoolAddress, estdSince, email, phone, _id } =
     header;
-  const { handelDelete } = useHeadersData();
+  const { handelDelete ,loading} = useHeadersData();
 
   return (
     <Card sx={{ maxWidth: 400 }}>
@@ -43,7 +43,10 @@ const ManageHeaderCard = ({ header }) => {
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="Delete" onClick={() => handelDelete(_id)}>
-          <FaRegTrashAlt className="text-[2.3rem] mr-3 text-red-500" />
+        {
+          loading ? "Loading..." : <FaRegTrashAlt className="text-[2.3rem] mr-3 text-red-500" />
+        }
+          
         </IconButton>
         <IconButton aria-label="Edite">
           <UpdateHeaderModal header={header} />

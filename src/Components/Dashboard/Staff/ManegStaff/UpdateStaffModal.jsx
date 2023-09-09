@@ -13,17 +13,14 @@ import Image from "next/image";
 import Swal from "sweetalert2";
 import SendIcon from "@mui/icons-material/Send";
 import { useForm } from "react-hook-form";
-import {
-  FormControl,
-  TextField,
-} from "@mui/material";
-import { updateHeaderUrl } from "@/src/Utils/Urls/HeaderUrl";
+import { TextField } from "@mui/material";
+import { updateStaffUrl } from "@/src/Utils/Urls/StaffUrl";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const UpdateHeaderModal = ({ header }) => {
+const UpdateStaffModal = ({ Staff }) => {
   const [open, setOpen] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
   const handleClickOpen = () => {
@@ -35,23 +32,23 @@ const UpdateHeaderModal = ({ header }) => {
 
   const { register, handleSubmit } = useForm();
   const [imageFile, setImageFile] = useState(null);
-  const { logo, schoolName, schoolAddress, estdSince, email, phone, _id } =
-    header;
+  const { name, detail, joiningDate, position, image, _id } = Staff;
 
-    const upload_preset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
-    const cloud_name = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
-    const cloud_api = process.env.NEXT_PUBLIC_CLOUDINARY_API;
-    const cloud_folder = process.env.NEXT_PUBLIC_CLOUDINARY_IMAGE_FOLDER;
+  const upload_preset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
+  const cloud_name = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+  const cloud_api = process.env.NEXT_PUBLIC_CLOUDINARY_API;
+  const cloud_folder = process.env.NEXT_PUBLIC_CLOUDINARY_IMAGE_FOLDER;
 
   const handelUpdate = async (updatedata) => {
     ///////////////////////////////////////////////
     //               Photo Upload                //
     /////////////////////////////////////////////*/
+    setLoading(true)
     const imageUploadData = new FormData();
     imageUploadData.append("file", imageFile);
     imageUploadData.append(
       "public_id",
-      `${cloud_folder}/Header/${imageFile?.name}`
+      `${cloud_folder}/Academice/${imageFile?.name}`
     );
     imageUploadData.append("upload_preset", `${upload_preset}`);
     imageUploadData.append("cloud_name", `${cloud_name}`);
@@ -64,28 +61,24 @@ const UpdateHeaderModal = ({ header }) => {
     console.log(imgurl, "Upload Image ++++");
     ///////     End of Photo Upload     ////////
 
-    const { schoolName, schoolAddress, estdSince, email, phone } = updatedata;
-
-    const headerData = {
-      logo: imgurl,
-      schoolName: schoolName,
-      schoolAddress: schoolAddress,
-      estdSince: estdSince,
-      email: email,
-      phone: phone,
+    const staffData = {
+      name: updatedata.staffName,
+      detail: updatedata.staffDescription,
+      joiningDate: updatedata.joiningDate,
+      position: updatedata.staffPosition,
+      image: updatedata.image,
     };
-    setLoading(true)
-    const res = await fetch(updateHeaderUrl(_id), {
+
+    const res = await fetch(updateStaffUrl(_id), {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(headerData),
+      body: JSON.stringify(staffData),
     });
     const data = await res.json();
 
     if (!data) {
-     
       Swal.fire({
         position: "center",
         timerProgressBar: true,
@@ -106,7 +99,7 @@ const UpdateHeaderModal = ({ header }) => {
       Swal.fire({
         position: "center",
         timerProgressBar: true,
-        title: "Successfully Update Header !",
+        title: "Successfully Update Staff !",
         iconColor: "#ED1C24",
         toast: true,
         icon: "success",
@@ -155,7 +148,7 @@ const UpdateHeaderModal = ({ header }) => {
               component="div"
               className="text-[#000]"
             >
-              Update Header Information
+              Update Staff Information
             </Typography>
             <Button
               autoFocus
@@ -172,64 +165,53 @@ const UpdateHeaderModal = ({ header }) => {
           <section>
             <div className="lg:w-[80%] md:w-[80%] w-[95%] col-span-5 md:px-[60px] md:py-[50px] xxs:px-[25px] xs:px-[30px] sm:px-[60px] mx-auto bg-[#F7F7F7] shadow-md rounded-lg grid md:grid-cols-2 gap-6  py-10 px-2">
               <TextField
-                id="outlined-phone-input"
-                label="Phone"
+                id="outlined-staffname-input"
+                label="Staff Name"
                 type="text"
-                autoComplete="Phone"
+                autoComplete="staffName"
+                defaultValue={name}
                 variant="outlined"
                 className="w-full"
-                defaultValue={phone}
-                {...register("phone", { required: true })}
+                {...register("staffName")}
               />
               <TextField
-                id="outlined-email-input"
-                label="Email"
-                type="email"
-                autoComplete="Email"
+                id="outlined-staffposition-input"
+                label="staff Position"
+                type="text"
+                autoComplete="staffPosition"
+                defaultValue={position}
                 variant="outlined"
                 className="w-full"
-                defaultValue={email}
-                {...register("email", { required: true })}
+                {...register("staffPosition")}
               />
 
               <TextField
-                id="outlined-schoolname-input"
-                label="School Name"
-                type="text"
-                autoComplete="School Name"
-                variant="outlined"
+                id="outlined-staffdescription-static"
+                label="staff Description"
+                defaultValue={detail}
+                multiline
+                rows={7}
                 className="w-full"
-                defaultValue={schoolName}
-                {...register("schoolName", { required: true })}
+                {...register("staffDescription")}
               />
 
               <TextField
-                id="outlined-estdsince-input"
-                label="Estd Since"
+                id="outlined-staffjoiningdate-input"
+                label="Joining Date"
                 type="text"
-                autoComplete="estdSince"
+                autoComplete="Joining Date"
+                defaultValue={joiningDate}
                 variant="outlined"
                 className="w-full"
-                defaultValue={estdSince}
-                {...register("estdSince", { required: true })}
+                {...register("joiningDate")}
               />
 
-              <TextField
-                id="outlined-schooladdress-input"
-                label="School Address"
-                type="text"
-                autoComplete="School Address"
-                variant="outlined"
-                className="w-full"
-                defaultValue={schoolAddress}
-                {...register("schoolAddress", { required: true })}
-              />
               <div>
                 <div class="w-full h-full">
                   <div class="rounded-lg shadow-xl bg-gray-50">
                     <div class="p-4">
                       <label class="inline-block mb-2 text-gray-500">
-                        Upload Product Image
+                        Upload Staff Image
                       </label>
                       <div class="flex items-center justify-center w-full">
                         <label class="flex flex-col w-full h-42 border-4 border-blue-200 border-dashed hover:bg-gray-100 hover:border-gray-300">
@@ -238,9 +220,9 @@ const UpdateHeaderModal = ({ header }) => {
                               src={
                                 imageFile
                                   ? URL.createObjectURL(imageFile)
-                                  : logo
+                                  : image
                               }
-                              alt="Logo"
+                              alt="Image"
                               width={100}
                               height={100}
                             />
@@ -275,9 +257,9 @@ const UpdateHeaderModal = ({ header }) => {
                   type="submit"
                   onClick={handleSubmit(handelUpdate)}
                 >
-                  {
-                    loading ? "Loading..." : "Update Header"
-                  }
+                 {
+                  loading ? "Loading..." : "Update Staff"
+                 }
                 </Button>
               </div>
             </div>
@@ -288,4 +270,4 @@ const UpdateHeaderModal = ({ header }) => {
   );
 };
 
-export default UpdateHeaderModal;
+export default UpdateStaffModal;

@@ -9,10 +9,14 @@ export default function Index() {
   const router = useRouter();
 
   useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken");
-    if (!accessToken) {
-      logout();
-      router.push("/");
+    try {
+      const accessToken = localStorage.getItem("accessToken");
+      if (!accessToken) {
+        logout();
+        router.push("/");
+      }
+    } catch (error) {
+        console.log(error)
     }
   }, []);
 

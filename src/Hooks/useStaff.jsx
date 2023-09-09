@@ -1,24 +1,24 @@
+import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import {  useState } from "react";
+import { deleteStaffUrl, getStaffUrl } from "../Utils/Urls/StaffUrl";
 import Swal from "sweetalert2";
-import { deleteAboutUrl, getAboutUrl } from "../Utils/Urls/AboutUrl";
 
-const useAbout = () => {
-  const [loading, setLoading] = useState(false)
+const useStaff = () => {
+  const [loading, setLoading]=useState(false) 
   const {
-    data: aboutData,
-    isLoading: aboutLoaded,
-    refetch: refetchAbout,
+    data: staffData,
+    isLoading: staffLoaded,
+    refetch: refetchStaff,
   } = useQuery({
-    queryKey: ["aboutData"],
+    queryKey: ["staffData"],
     queryFn: async () => {
-      const res = await fetch(getAboutUrl);
+      const res = await fetch(getStaffUrl);
       const data = await res.json();
       return data.data;
     },
   });
 
-  const handelAboutDelete = async (id) => {
+  const handelDeleteStaff = async (id) => {
     const confirmed = await Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -31,7 +31,7 @@ const useAbout = () => {
 
     if (confirmed.isConfirmed) {
       setLoading(true)
-      const res = await fetch(deleteAboutUrl(id), {
+      const res = await fetch(deleteStaffUrl(id), {
         method: "DELETE",
       });
       const data = await res.json();
@@ -56,7 +56,7 @@ const useAbout = () => {
         Swal.fire({
           position: "center",
           timerProgressBar: true,
-          title: "Successfully Delete About !",
+          title: "Successfully Delete Staff !",
           iconColor: "#ED1C24",
           toast: true,
           icon: "success",
@@ -69,19 +69,19 @@ const useAbout = () => {
           showConfirmButton: false,
           timer: 3500,
         });
-        refetchAbout()
+        refetchStaff()
         setLoading(false)
       }
     }
   };
 
   return {
-    aboutData,
-    aboutLoaded,
-    refetchAbout,
-    handelAboutDelete,
+    staffData,
+    staffLoaded,
+    refetchStaff,
+    handelDeleteStaff,
     loading
   };
 };
 
-export default useAbout;
+export default useStaff;

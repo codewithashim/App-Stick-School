@@ -7,7 +7,7 @@ const RootLayout = ({ children }) => {
   return (
     <main>
       <header className="header-container">
-        <div className="container">
+        <div className="container pt-4">
           <TopNav />
           <MainNav />
         </div>
