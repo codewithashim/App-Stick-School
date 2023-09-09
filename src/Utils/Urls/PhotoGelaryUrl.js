@@ -1,9 +1,9 @@
 import { basedUrl } from "../Network/Network";
 
-export const createPhotogealyUrl = basedUrl + "photogealy/create";
+export const createPhotogelaryUrl = basedUrl + "photogelary/create";
 
-export const getPhotogealyUrl = basedUrl + "photogealy/";
+export const getPhotogelaryUrl = basedUrl + "photogelary/";
 
-export const deletePhotogealyUrl = (id) => basedUrl + `photogealy/${id}`;
+export const deletePhotogelaryUrl = (id) => basedUrl + `photogelary/${id}`;
 
-export const updatePhotogealyUrl = (id) => basedUrl + `photogealy/${id}`;
+export const updatePhotogelaryUrl = (id) => basedUrl + `photogelary/${id}`;

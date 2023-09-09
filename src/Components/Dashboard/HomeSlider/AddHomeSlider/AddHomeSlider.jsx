@@ -6,11 +6,12 @@ import Swal from "sweetalert2";
 import SendIcon from "@mui/icons-material/Send";
 import { createHomesliderUrl } from "@/src/Utils/Urls/HomeSliderUrl";
 
+
 const AddHomeSlider = () => {
   const { register, handleSubmit } = useForm();
   const [imageFile, setImageFile] = useState(null);
   const [loading, setLoading] = useState(false);
-
+  
   const upload_preset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
   const cloud_name = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
   const cloud_api = process.env.NEXT_PUBLIC_CLOUDINARY_API;
@@ -33,32 +34,31 @@ const AddHomeSlider = () => {
       method: "POST",
       body: imageUploadData,
     });
-    const imgData = await imgRes.json();
-    const imgPath = imgData?.secure_url;
-    
-    
+    const imgdata = await imgRes.json();
+    const imgurl = imgdata?.secure_url;
+    console.log(imgurl, "Upload Image ++++");
+
 
     ///////////////////////////////////////////////
     //               Add Home Slider            //
     /////////////////////////////////////////////*/
 
-
-    const homeSliderData = {
-      image: imgPath,
-        title: dataValue?.title,
-        details: dataValue?.details,
-    }
+    const homeSliderData= {
+      title: dataValue?.title,
+      details: dataValue?.detail,
+      image: imgurl,
+    };
 
     const res = await fetch(createHomesliderUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({homeSliderData}),
+      body: JSON.stringify(homeSliderData),
     });
     const dataRes = await res.json();
     console.log(dataRes);
-    if (dataRes.sucess === true) {
+    if (dataRes?.success === true) {
       Swal.fire({
         position: "center",
         timerProgressBar: true,
@@ -103,7 +103,7 @@ const AddHomeSlider = () => {
         multiline
         rows={7}
         className="w-full"
-        {...register("details")}
+        {...register("detail")}
       />
 
       <div>

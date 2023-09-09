@@ -1,107 +1,49 @@
-// import { Card, CardActions, CardMedia, IconButton } from "@mui/material";
-// import React, { useContext } from "react";
-// import { FaRegTrashAlt } from "react-icons/fa";
-// import Swal from "sweetalert2";
+import usePhotoGelary from "@/src/Hooks/usePhotoGelary";
+import { Card, CardActions, CardMedia, IconButton } from "@mui/material";
+import React from "react";
+import { FaRegTrashAlt } from "react-icons/fa";
 
-const ManegePhotoGelary = () => {
-  // const { photoGelaryData, photoGelaryLoaded, refetchPhotoGelary } =
-  //   useCommonApiData();
-  // const baseUrl  = ''
+const ManagePhotoGelary = () => {
+  const {PhotoGelaryData, handelDeletePhotoGelary, loadingHomeSlider} = usePhotoGelary();
 
-  // const handelDelete = async (id) => {
-  //   const confirmed = await Swal.fire({
-  //     title: "Are you sure?",
-  //     text: "You won't be able to revert this!",
-  //     icon: "warning",
-  //     showCancelButton: true,
-  //     confirmButtonColor: "#3085d6",
-  //     cancelButtonColor: "#d33",
-  //     confirmButtonText: "Yes, delete it!",
-  //   });
-
-  //   if (confirmed.isConfirmed) {
-  //     const res = await fetch(`${baseUrl}/api/photo-gelary/${id}`, {
-  //       method: "DELETE",
-  //     });
-  //     const data = await res.json();
-  //     if (!data) {
-  //       Swal.fire({
-  //         position: "center",
-  //         timerProgressBar: true,
-  //         title: data.message,
-  //         iconColor: "#ED1C24",
-  //         toast: true,
-  //         icon: "error",
-  //         showClass: {
-  //           popup: "animate__animated animate__fadeInRight",
-  //         },
-  //         hideClass: {
-  //           popup: "animate__animated animate__fadeOutRight",
-  //         },
-  //         showConfirmButton: false,
-  //         timer: 3500,
-  //       });
-  //     } else {
-  //       Swal.fire({
-  //         position: "center",
-  //         timerProgressBar: true,
-  //         title: "Successfully Delete Product !",
-  //         iconColor: "#ED1C24",
-  //         toast: true,
-  //         icon: "success",
-  //         showClass: {
-  //           popup: "animate__animated animate__fadeInRight",
-  //         },
-  //         hideClass: {
-  //           popup: "animate__animated animate__fadeOutRight",
-  //         },
-  //         showConfirmButton: false,
-  //         timer: 3500,
-  //       });
-  //       refetchPhotoGelary();
-  //     }
-  //   }
-  // };
-
-  // if (photoGelaryLoaded) {
-  //   return (
-  //     <h2 className="flex items-center content-center self-center justify-center">
-  //       Loading...
-  //     </h2>
-  //   );
-  // }
   return (
     <section>
       <h2 className="py-4 text-2xl font-bold ">Manage Photo Gelary</h2>
 
-      {/* <div className="grid items-center justify-center gap-4 md:grid-cols-3">
-        {photoGelaryData &&
-          photoGelaryData.length &&
-          photoGelaryData.map((slider) => {
-            const { _id, photoGelaryImage } = slider;
+      <div className="grid items-center justify-center gap-4 md:grid-cols-3">
+        {PhotoGelaryData &&
+          PhotoGelaryData?.length &&
+          PhotoGelaryData?.map((slider) => {
+            const { _id, image,title,album  } = slider;
             return (
               <Card sx={{ maxWidth: 400 }} key={_id}>
                 <CardMedia
                   component="img"
-                  image={photoGelaryImage}
-                  alt={"Brand Image Form Red Rose Auto"}
+                  image={image}
+                  alt={title}
                   className="w-[100%] h-[200px] object-cover"
                 />
+                <div>
+                 <h1> {album}</h1>
+                </div>
 
                 <CardActions disableSpacing>
                   <IconButton
                     aria-label="Delete"
-                    onClick={() => handelDelete(_id)}
+                    onClick={() => handelDeletePhotoGelary(_id)}
                   >
-                    <FaRegTrashAlt className="text-[2.3rem] mr-3 text-red-500" />
+                  {
+                    loadingHomeSlider ? "Loading..." : <FaRegTrashAlt className="text-[2.3rem] mr-3 text-red-500" />
+                  }
+                    
                   </IconButton>
                 </CardActions>
               </Card>
             );
           })}
-      </div> */}
+      </div>
     </section>
   );
 };
 
-export default ManegePhotoGelary;
+export default ManagePhotoGelary;

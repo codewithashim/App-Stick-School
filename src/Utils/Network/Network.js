@@ -1,4 +1,4 @@
-export const localbasedUrl = "http://localhost:8000/api/v1/";
+// export const basedUrl = "http://localhost:8000/api/v1/";
 
 export const basedUrl = "https://appstick-server.vercel.app/api/v1/";
 
