@@ -1,39 +1,50 @@
 import { Button } from "@mui/material";
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import Swal from "sweetalert2";
 import { TextField } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import { createResultUrl } from "@/src/Utils/Urls/ResultUrl";
+import axios from "axios";
 
 const AddResultComponent = () => {
-  const { register, handleSubmit } = useForm();
-  const [resultFile, setResultFile] = useState(null);
-
-  console.log(resultFile);
+  const { register, handleSubmit, control } = useForm();
+  // const [resultFile, setResultFile] = useState(null);
 
   const onSubmit = async (data) => {
+    const { pbulishDate, title, details, pdfFile } = data;
+  
+    // Create a FormData object to send the form data as multipart/form-data
+    const formData = new FormData();
+    formData.append("pbulishDate", pbulishDate);
+    formData.append("title", title);
+    formData.append("details", details);
+    formData.append("file", pdfFile);
+  
     try {
-      const formData = new FormData();
+      const response = await axios.post(
+        "http://localhost:8000/api/v1/result/create",
+        formData, // Send the FormData object
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
   
-      formData.append("title", data.title);
-      formData.append("pbulishDate", data.pbulishDate);
-      formData.append("details", data.details);
-      formData.append("file", resultFile);
-  
-      const result = await fetch(createResultUrl, {
-        method: "POST",
-        enctype: "multipart/form-data",
-        body: formData, // Use the corrected variable name
-      });
-  
-      console.log(result);
+      console.log(response?.data?.data);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
+  
+
   return (
     <section>
+      <form
+
+        onSubmit={handleSubmit(onSubmit)}
+      >
       <div>
         <div className="flex flex-col gap-4">
           <TextField
@@ -89,16 +100,24 @@ const AddResultComponent = () => {
                     </svg>
                     <p class="pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600">
                       Attach a file{" "}
-                      <span className="text-red-500">
-                        {" "}
-                        (Max Uploading Size 1mb)*
-                      </span>
                     </p>
                   </div>
-                  <input
-                    type="file"
-                    className="px-4 pb-4"
-                    onChange={(e) => setResultFile(e.target.files[0])}
+                  <Controller
+                    control={control}
+                    name="pdfFile"
+                    render={({ field: { value, onChange, ...field } }) => {
+                      return (
+                        <input
+                          {...field}
+                          value={value?.fileName}
+                          onChange={(event) => {
+                            onChange(event.target.files[0]);
+                          }}
+                          type="file"
+                          id="pdfFile"
+                        />
+                      );
+                    }}
                   />
                 </label>
               </div>
@@ -113,11 +132,16 @@ const AddResultComponent = () => {
           className="commonBtn"
           endIcon={<SendIcon />}
           type="submit"
-          onClick={handleSubmit(onSubmit)}
+        
         >
           Submit
         </Button>
       </div>
+      </form>
+
+
+
+    
     </section>
   );
 };
