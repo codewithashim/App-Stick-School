@@ -4,6 +4,8 @@ export const createStaffUrl = basedUrl + "staff/create";
 
 export const getStaffUrl = basedUrl + "staff/";
 
-export const deleteStaffUrl = (id) => basedUrl + `staff/${id}`;
+export const getSingelStaffUrl = (id) => basedUrl + `staff/get-singel/${id}`;
 
-export const updateStaffUrl = (id) => basedUrl + `staff/${id}`;
+export const deleteStaffUrl = (id) => basedUrl + `staff/delete/${id}`;
+
+export const updateStaffUrl = (id) => basedUrl + `staff/update/${id}`;

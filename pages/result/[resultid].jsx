@@ -7,11 +7,27 @@ import GrainIcon from "@mui/icons-material/Grain";
 import { useRouter } from "next/router";
 import { NoticeData } from "@/src/Utils/MockData/NoticeMockData";
 import ResultDetailsComponent from "@/src/Components/Result/ResultDetails";
+import { useQuery } from "@tanstack/react-query";
+import { getResultByIdUrl } from "@/src/Utils/Urls/ResultUrl";
 
 const ResultDetails = () => {
     const router = useRouter();
     const {resultid } = router.query;
     const resultId = resultid;  
+
+    const {
+      data: resultDetailData,
+      isLoading: resultDetailLoaded,
+      refetch: refetchResultDetail,
+    } = useQuery({
+      queryKey: ["resultDetailData"],
+      queryFn: async () => {
+        const res = await fetch(getResultByIdUrl(resultId));
+        const data = await res.json();
+        return data?.data;
+      },
+    });
+
 
   return (
     <RootLayout>
@@ -48,7 +64,7 @@ const ResultDetails = () => {
         </div>
 
         <div className="my-4">
-          <ResultDetailsComponent/>
+          <ResultDetailsComponent resultDetailData={resultDetailData}/>
         </div>
 
         

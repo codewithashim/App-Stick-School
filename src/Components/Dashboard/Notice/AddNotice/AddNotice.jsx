@@ -4,27 +4,24 @@ import { useForm, Controller } from "react-hook-form";
 import Swal from "sweetalert2";
 import { TextField } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
-import { createResultUrl } from "@/src/Utils/Urls/ResultUrl";
 import axios from "axios";
+import { createNoticeUrl } from "@/src/Utils/Urls/NoticeUrl";
 
-const AddResultComponent = () => {
+const AddNoticeComponent = () => {
   const { register, handleSubmit, control } = useForm();
   const [loading, setLoading] = useState(false);
 
   const onSubmit = async (data) => {
-    const {  title, details, pdfFile } = data;
-    const formData = new FormData();
-    
-    const currentDate = new Date();
+    const { title, details, pdfFile } = data;
 
+    const currentDate = new Date();
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth() + 1; 
     const day = currentDate.getDate();
-  
     const formattedDate = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
-  
 
-    formData.append("pbulishDate",  formattedDate);
+    const formData = new FormData();
+    formData.append("pbulishDate", formattedDate);
     formData.append("title", title);
     formData.append("details", details);
     formData.append("file", pdfFile);
@@ -32,7 +29,7 @@ const AddResultComponent = () => {
     try {
       setLoading(true);
       const response = await axios.post(
-        createResultUrl,
+        createNoticeUrl,
         formData,
         {
           headers: {
@@ -43,7 +40,7 @@ const AddResultComponent = () => {
       if (response.status === 201) {
         Swal.fire({
           icon: "success",
-          title: "Result Added Successfully",
+          title: "Added Successfully",
           showConfirmButton: false,
           timer: 1500,
         });
@@ -82,7 +79,7 @@ const AddResultComponent = () => {
             <div class="rounded-lg shadow-xl bg-gray-50">
               <div class="p-4">
                 <label class="inline-block mb-2 text-gray-500">
-                  Upload Result File
+                  Upload File
                 </label>
                 <div class="flex items-center justify-center w-full">
                   <label class="flex flex-col w-full h-32 border-4 border-blue-200 border-dashed hover:bg-gray-100 hover:border-gray-300">
@@ -146,4 +143,4 @@ const AddResultComponent = () => {
   );
 };
 
-export default AddResultComponent;
+export default AddNoticeComponent;

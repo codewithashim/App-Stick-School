@@ -4,6 +4,6 @@ export const createHeaderUrl = basedUrl + "header/create";
 
 export const getHeaderUrl = basedUrl + "header/";
 
-export const deleteHeaderUrl = (id) => basedUrl + `header/${id}`;
+export const deleteHeaderUrl = (id) => basedUrl + `header/delete/${id}`;
 
-export const updateHeaderUrl = (id) => basedUrl + `header/${id}`;
+export const updateHeaderUrl = (id) => basedUrl + `header/update/${id}`;

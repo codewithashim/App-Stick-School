@@ -6,6 +6,7 @@ import { Breadcrumbs, Typography } from "@mui/material";
 import Link from "next/link";
 import HomeIcon from "@mui/icons-material/Home";
 import GrainIcon from "@mui/icons-material/Grain";
+import AddEventComponent from "@/src/Components/Dashboard/Event/AddEvent/AddEvent";
 
 const AddEvent = () => {
   return (
@@ -27,12 +28,12 @@ const AddEvent = () => {
               color="text.primary"
             >
               <GrainIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-               Admin 
+                Add Event
             </Typography>
           </Breadcrumbs>
         </div>
         <section>
-
+          <AddEventComponent />
         </section>
       </FullLayout>
     </ThemeProvider>

@@ -1,24 +1,27 @@
-import { useState } from "react";
-import { deleteResultUrl, getResultUrl } from "../Utils/Urls/ResultUrl";
+import React, { useState } from "react";
+import {
+  deleteStatisticUrl,
+  getStatisticUrl,
+} from "../Utils/Urls/StatisticUrl";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 
-const useResult = () => {
-  const [loadingResult, setloadingResult] = useState(false);
+const useStatistic = () => {
+  const [loadingStatistic, setloadingStatistic] = useState(false);
   const {
-    data: resultData,
-    isLoading: resultLoaded,
-    refetch: refetchResult,
+    data: statisticData,
+    isLoading: statisticLoaded,
+    refetch: refetchStatistic,
   } = useQuery({
-    queryKey: ["resultData"],
+    queryKey: ["statisticData"],
     queryFn: async () => {
-      const res = await fetch(getResultUrl);
+      const res = await fetch(getStatisticUrl);
       const data = await res.json();
       return data?.data;
     },
   });
 
-  const handelDeleteResult = async (id) => {
+  const handelDeleteStatistic = async (id) => {
     const confirmed = await Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -30,8 +33,8 @@ const useResult = () => {
     });
 
     if (confirmed.isConfirmed) {
-      setloadingResult(true);
-      const res = await fetch(deleteResultUrl(id), {
+      setloadingStatistic(true);
+      const res = await fetch(deleteStatisticUrl(id), {
         method: "DELETE",
       });
       const data = await res.json();
@@ -56,7 +59,7 @@ const useResult = () => {
         Swal.fire({
           position: "center",
           timerProgressBar: true,
-          title: "Successfully Delete Result !",
+          title: "Successfully Delete Statistic !",
           iconColor: "#ED1C24",
           toast: true,
           icon: "success",
@@ -69,20 +72,19 @@ const useResult = () => {
           showConfirmButton: false,
           timer: 3500,
         });
-        refetchResult();
-        setloadingResult(false);
+        refetchStatistic();
+        setloadingStatistic(false);
       }
     }
   };
 
   return {
-    loadingResult,
-    handelDeleteResult,
-    resultData,
-    resultLoaded,
-    refetchResult
-
+    statisticData,
+    statisticLoaded,
+    refetchStatistic,
+    loadingStatistic,
+    handelDeleteStatistic
   };
 };
 
-export default useResult;
+export default useStatistic;

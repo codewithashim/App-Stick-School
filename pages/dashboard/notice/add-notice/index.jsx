@@ -6,6 +6,7 @@ import { Breadcrumbs, Typography } from "@mui/material";
 import Link from "next/link";
 import HomeIcon from "@mui/icons-material/Home";
 import GrainIcon from "@mui/icons-material/Grain";
+import AddNoticeComponent from "@/src/Components/Dashboard/Notice/AddNotice/AddNotice";
 
 const AddNotice = () => {
   return (
@@ -32,7 +33,7 @@ const AddNotice = () => {
           </Breadcrumbs>
         </div>
         <section>
-
+        <AddNoticeComponent />
         </section>
       </FullLayout>
     </ThemeProvider>

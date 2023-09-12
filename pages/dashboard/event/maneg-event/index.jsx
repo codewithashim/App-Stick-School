@@ -5,7 +5,7 @@ import FullLayout from "../../../../src/Layouts/DashboardLayout";
 import { Breadcrumbs, Typography } from "@mui/material";
 import Link from "next/link";
 import HomeIcon from "@mui/icons-material/Home";
-import GrainIcon from "@mui/icons-material/Grain";
+import ManegEventComponent from "@/src/Components/Dashboard/Event/ManegEvent/ManegEvent";
 
 const ManegEvent = () => {
   return (
@@ -27,7 +27,7 @@ const ManegEvent = () => {
               sx={{ display: "flex", alignItems: "center" }}
               color="inherit"
               className="commonBtn"
-              href="/"
+              href="/dashboard/event/add-event"
             >
               <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
             Add Event
@@ -35,7 +35,7 @@ const ManegEvent = () => {
           </Breadcrumbs>
         </div>
         <section>
-
+          <ManegEventComponent/>
         </section>
       </FullLayout>
     </ThemeProvider>

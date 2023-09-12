@@ -29,7 +29,11 @@ const Menuitems = [
     icon: "grid",
     href: "/dashboard/header/maneg-header",
   },
-  
+  {
+    title: "Statistic",
+    icon: "grid",
+    href: "/dashboard/statistic/maneg-statistic",
+  },
   {
     title: "Result",
     icon: "book-open",

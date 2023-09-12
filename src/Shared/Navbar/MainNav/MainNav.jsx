@@ -17,8 +17,20 @@ const MainNav = () => {
       path: "/academic-info",
     },
     {
+      title: "Student",
+      path: "/student",
+    },
+    {
       title: "Teachers",
       path: "/teachers",
+    },
+    {
+      title: "Staff",
+      path: "/staff",
+    },
+    {
+      title: "Committee",
+      path: "/committee",
     },
     {
       title: "Result",
@@ -32,22 +44,11 @@ const MainNav = () => {
       title: "Photo Gallery",
       path: "/photo-gallary",
     },
-    {
-      title: "About",
-      path: "/about",
-    },
-    {
-      title: "Contact",
-      path: "/contact",
-    },
   ];
   
   return (
     <nav className=" bg-[#0d4a4fab] text-white md:flex items-center ">
       <div className="flex items-center justify-center">
-      <Link className="px-2 py-1 md:px-4 md:py-2"  href="/" >
-        <BiHome className="text-xl"/>
-      </Link>
       <button
         onClick={() => setOpen(!open)}
         className="ml-auto md:hidden bg-[#00000062] px-3 py-1 "
@@ -56,10 +57,8 @@ const MainNav = () => {
       </button>
       </div>
 
-
-
       <ul className={`${open ? "block" : "hidden"}  md:flex items-center gap-4 nav-manu-list`}>
-        {link.map((itm, i) => (
+        {link?.map((itm, i) => (
           <Link key={i} href={itm.path}>
             <li
               className={`px-4 py-2 text-center ${

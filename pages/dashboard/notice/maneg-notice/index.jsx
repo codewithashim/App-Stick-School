@@ -2,10 +2,10 @@ import React from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../../../../src/theme/theme";
 import FullLayout from "../../../../src/Layouts/DashboardLayout";
-import { Breadcrumbs, Typography } from "@mui/material";
+import { Breadcrumbs } from "@mui/material";
 import Link from "next/link";
 import HomeIcon from "@mui/icons-material/Home";
-import GrainIcon from "@mui/icons-material/Grain";
+import ManegNoticeComponent from "@/src/Components/Dashboard/Notice/ManegNotice/ManegNotice";
 
 const ManegNotice = () => {
   return (
@@ -27,6 +27,7 @@ const ManegNotice = () => {
               sx={{ display: "flex", alignItems: "center" }}
               color="inherit"
               href="/dashboard/notice/add-notice"
+              className="commonBtn"
             >
               <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
             Add Notice
@@ -35,7 +36,7 @@ const ManegNotice = () => {
           </Breadcrumbs>
         </div>
         <section>
-
+          <ManegNoticeComponent/>
         </section>
       </FullLayout>
     </ThemeProvider>

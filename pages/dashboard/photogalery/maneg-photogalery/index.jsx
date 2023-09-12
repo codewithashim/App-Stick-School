@@ -6,7 +6,6 @@ import ManegePhotoGelary from "@/src/Components/Dashboard/PhotoGelary/ManegePhot
 import { Breadcrumbs, Typography } from "@mui/material";
 import Link from "next/link";
 import HomeIcon from "@mui/icons-material/Home";
-import GrainIcon from "@mui/icons-material/Grain";
 
 const Index = () => {
   return (

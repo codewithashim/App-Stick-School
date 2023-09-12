@@ -5,17 +5,19 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import SendIcon from "@mui/icons-material/Send";
 import { createPhotogelaryUrl } from "@/src/Utils/Urls/PhotoGelaryUrl";
+import usePhotoGelary from "@/src/Hooks/usePhotoGelary";
 
 const AddPhotoGelary = () => {
   const { register, handleSubmit } = useForm();
   const [imageFile, setImageFile] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  const { albumData } = usePhotoGelary();
+
   const upload_preset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
   const cloud_name = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
   const cloud_api = process.env.NEXT_PUBLIC_CLOUDINARY_API;
   const cloud_folder = process.env.NEXT_PUBLIC_CLOUDINARY_IMAGE_FOLDER;
-
 
   const onSubmit = async (dataValue) => {
     ///////////////////////////////////////////////
@@ -36,26 +38,20 @@ const AddPhotoGelary = () => {
     });
     const imgdata = await imgRes.json();
     const imgurl = imgdata?.secure_url;
-    console.log(imgurl, "Upload Image ++++");
-    ///////////////////////////////////////////////
-    //             Photo Gelary                  //
-    /////////////////////////////////////////////*/
-    const photoGelaryData = {
-      image: imgurl,
-      title: dataValue?.title,
-      album: dataValue?.album,
-    };
+
+
+    console.log(dataValue?.album, "dataValue ++++");
 
     const res = await fetch(createPhotogelaryUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ 
+      body: JSON.stringify({
         title: dataValue?.title,
         album: dataValue?.album,
         image: imgurl,
-       }),
+      }),
     });
     const dataRes = await res.json();
     console.log(dataRes);
@@ -98,15 +94,17 @@ const AddPhotoGelary = () => {
         className="w-full"
         {...register("title")}
       />
-      <TextField
-        id="outlined-album-input"
-        label="Album"
-        type="text"
-        autoComplete="album"
-        variant="outlined"
-        className="w-full"
+      <select
+        className="w-full h-10 px-3 mb-3 bg-transparent border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
         {...register("album")}
-      />
+      >
+        <option value="1">Select Album</option>
+       
+          {albumData?.map((item) => (
+            <option value={item?.title}>{item?.title}</option>
+          ))}
+
+      </select>
 
       <div>
         <div class="w-full h-full my-4">

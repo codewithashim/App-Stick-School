@@ -1,24 +1,24 @@
-import { useState } from "react";
-import { deleteResultUrl, getResultUrl } from "../Utils/Urls/ResultUrl";
-import { useQuery } from "@tanstack/react-query";
-import Swal from "sweetalert2";
+import React, { useState } from 'react';
+import { deleteEventUrl, getEventUrl } from '../Utils/Urls/EventsUrl';
+import { useQuery } from '@tanstack/react-query';
+import Swal from 'sweetalert2';
 
-const useResult = () => {
-  const [loadingResult, setloadingResult] = useState(false);
+const useEvent = () => {
+    const [loadingEvent, setloadingEvent] = useState(false);
   const {
-    data: resultData,
-    isLoading: resultLoaded,
-    refetch: refetchResult,
+    data: eventData,
+    isLoading: eventLoaded,
+    refetch: refetchEvent,
   } = useQuery({
-    queryKey: ["resultData"],
+    queryKey: ["eventData"],
     queryFn: async () => {
-      const res = await fetch(getResultUrl);
+      const res = await fetch(getEventUrl);
       const data = await res.json();
       return data?.data;
     },
   });
 
-  const handelDeleteResult = async (id) => {
+  const handelDeleteEvent = async (id) => {
     const confirmed = await Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -30,8 +30,8 @@ const useResult = () => {
     });
 
     if (confirmed.isConfirmed) {
-      setloadingResult(true);
-      const res = await fetch(deleteResultUrl(id), {
+      setloadingEvent(true);
+      const res = await fetch(deleteEventUrl(id), {
         method: "DELETE",
       });
       const data = await res.json();
@@ -56,7 +56,7 @@ const useResult = () => {
         Swal.fire({
           position: "center",
           timerProgressBar: true,
-          title: "Successfully Delete Result !",
+          title: "Successfully Delete Event !",
           iconColor: "#ED1C24",
           toast: true,
           icon: "success",
@@ -69,20 +69,18 @@ const useResult = () => {
           showConfirmButton: false,
           timer: 3500,
         });
-        refetchResult();
-        setloadingResult(false);
+        refetchEvent();
+        setloadingEvent(false);
       }
     }
-  };
-
-  return {
-    loadingResult,
-    handelDeleteResult,
-    resultData,
-    resultLoaded,
-    refetchResult
-
-  };
+  }; 
+    return {
+        handelDeleteEvent,
+        loadingEvent,
+        eventLoaded,
+        eventData,
+        refetchEvent
+    };
 };
 
-export default useResult;
+export default useEvent;

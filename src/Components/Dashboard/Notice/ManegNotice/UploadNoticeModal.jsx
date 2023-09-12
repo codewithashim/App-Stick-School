@@ -13,13 +13,13 @@ import Swal from "sweetalert2";
 import SendIcon from "@mui/icons-material/Send";
 import { Controller, useForm } from "react-hook-form";
 import { TextField } from "@mui/material";
-import { updateResultUrl } from "@/src/Utils/Urls/ResultUrl";
+import { updateNoticeUrl } from "@/src/Utils/Urls/NoticeUrl";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const UploadResultModal = ({ result }) => {
+const UploadnoticeModal = ({ notice }) => {
   const [open, setOpen] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
   const handleClickOpen = () => {
@@ -30,26 +30,18 @@ const UploadResultModal = ({ result }) => {
   };
   const { register, handleSubmit,control } = useForm();
 
-  const { title, details, pbulishDate, _id } = result;
+  const { title, details, pbulishDate, _id } = notice;
 
   const handelUpdate = async (updatedata) => {
-    const {  title, details, pdfFile } = updatedata;
+    const { pbulishDate, title, details, pdfFile } = updatedata;
     const formData = new FormData();
-    
-    const currentDate = new Date();
-    const year = currentDate.getFullYear();
-    const month = currentDate.getMonth() + 1; 
-    const day = currentDate.getDate();
-  
-    const formattedDate = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
-  
-    formData.append("pbulishDate", formattedDate);
+    formData.append("pbulishDate", pbulishDate);
     formData.append("title", title);
     formData.append("details", details);
     formData.append("file", pdfFile);
 
     setLoading(true);
-    const res = await fetch(updateResultUrl(_id), {
+    const res = await fetch(updateNoticeUrl(_id), {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -128,7 +120,7 @@ const UploadResultModal = ({ result }) => {
               component="div"
               className="text-[#000]"
             >
-              Update Result Information
+              Update Notice Information
             </Typography>
             <Button
               autoFocus
@@ -172,7 +164,7 @@ const UploadResultModal = ({ result }) => {
                     <div class="rounded-lg shadow-xl bg-gray-50">
                       <div class="p-4">
                         <label class="inline-block mb-2 text-gray-500">
-                          Upload Result File
+                          Upload notice File
                         </label>
                         <div class="flex items-center justify-center w-full">
                           <label class="flex flex-col w-full h-32 border-4 border-blue-200 border-dashed hover:bg-gray-100 hover:border-gray-300">
@@ -228,7 +220,7 @@ const UploadResultModal = ({ result }) => {
                     endIcon={<SendIcon />}
                     type="submit"
                   >
-                    {loading ? "Loading..." : "Add Result"}
+                    {loading ? "Loading..." : "Add notice"}
                   </Button>
                 </div>
               </form>
@@ -240,4 +232,4 @@ const UploadResultModal = ({ result }) => {
   );
 };
 
-export default UploadResultModal;
+export default UploadnoticeModal;
