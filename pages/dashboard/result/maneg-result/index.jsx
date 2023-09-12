@@ -2,10 +2,10 @@ import React from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../../../../src/theme/theme";
 import FullLayout from "../../../../src/Layouts/DashboardLayout";
-import { Breadcrumbs, Typography } from "@mui/material";
+import { Breadcrumbs } from "@mui/material";
 import Link from "next/link";
 import HomeIcon from "@mui/icons-material/Home";
-import GrainIcon from "@mui/icons-material/Grain";
+import ManegResultComponent from "@/src/Components/Dashboard/Result/ManegResult/ManegResult";
 
 const ManegResult = () => {
   return (
@@ -36,7 +36,7 @@ const ManegResult = () => {
           </Breadcrumbs>
         </div>
         <section>
-
+          <ManegResultComponent />
         </section>
       </FullLayout>
     </ThemeProvider>
