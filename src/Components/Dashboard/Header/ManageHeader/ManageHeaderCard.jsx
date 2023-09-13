@@ -1,21 +1,21 @@
 import * as React from "react";
-import { styled } from "@mui/material/styles";
+// import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import { FaRegTrashAlt } from "react-icons/fa";
-import Link from "next/link";
-import useHeadersData from "@/src/Hooks/useHeadersData";
+// import { FaRegTrashAlt } from "react-icons/fa";
+// import Link from "next/link";
+// import useHeadersData from "@/src/Hooks/useHeadersData";
 import UpdateHeaderModal from "./UpdateHeaderModal";
 
 
 const ManageHeaderCard = ({ header }) => {
-  const { logo, schoolName, schoolAddress, estdSince, email, phone, _id } =
+  const { logo, schoolName } =
     header;
-  const { handelDelete ,loading} = useHeadersData();
+  // const { handelDelete ,loading} = useHeadersData();
 
   return (
     <Card sx={{ maxWidth: 400 }}>
@@ -31,12 +31,12 @@ const ManageHeaderCard = ({ header }) => {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="Delete" onClick={() => handelDelete(_id)}>
+        {/* <IconButton aria-label="Delete" onClick={() => handelDelete(_id)}>
         {
           loading ? "Loading..." : <FaRegTrashAlt className="text-[2.3rem] mr-3 text-red-500" />
         }
           
-        </IconButton>
+        </IconButton> */}
         <IconButton aria-label="Edite">
           <UpdateHeaderModal header={header} />
         </IconButton>

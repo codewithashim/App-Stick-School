@@ -4,8 +4,12 @@ import React from "react";
 import Image from "next/image";
 import { FaBuromobelexperte } from "react-icons/fa";
 import { NoticeIcon } from "@/src/Assets";
+import useNotice from "@/src/Hooks/useNotice";
 
 const Notice = () => {
+  const {noticeData} = useNotice();
+
+
   return (
     <section>
       <div className="border ">
@@ -14,7 +18,7 @@ const Notice = () => {
         </h1>
 
         <div className="grid gap-4 md:grid-cols-2">
-          {NoticeData.map((notice) => {
+          {noticeData && noticeData?.map((notice) => {
             return (
               <div className="flex items-center gap-6 p-4 my-4 border rounded">
                 <div className="notice-icons">
@@ -22,14 +26,14 @@ const Notice = () => {
                 </div>
                 <div>
                   <Link
-                    href={`/notice/${notice?.id}`}
+                    href={`/notice/${notice?._id}`}
                     className="text-[1.2rem] font-semibold mb-2 text-black"
                   >
                     {notice?.title}
                   </Link>
-                  <p className="my-3 text-gray-600">{notice?.noticeDate}</p>
+                  <p className="my-3 text-gray-600">{notice?.pbulishDate}</p>
                   <Link
-                    href={`/notice/${notice?.id}`}
+                    href={`/notice/${notice?._id}`}
                     className="text-blue-500 text-[1.2rem]"
                   >
                     {" "}

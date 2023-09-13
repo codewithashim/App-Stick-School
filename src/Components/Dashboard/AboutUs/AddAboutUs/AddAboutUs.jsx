@@ -101,7 +101,7 @@ const AddAboutComponent = () => {
           autoComplete="title"
           variant="outlined"
           className="w-full"
-          {...register("title", { required: true })}
+          {...register("title")}
         />
         <TextField
           id="outlined-subtitle-input"
@@ -110,7 +110,7 @@ const AddAboutComponent = () => {
           autoComplete="subtitle"
           variant="outlined"
           className="w-full"
-          {...register("subtitle", { required: true })}
+          {...register("subtitle")}
         />
 
         <TextField
@@ -119,7 +119,7 @@ const AddAboutComponent = () => {
           multiline
           rows={7}
           className="w-full"
-          {...register("details", { required: true })}
+          {...register("details")}
         />
 
         <div>

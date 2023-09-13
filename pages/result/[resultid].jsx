@@ -5,29 +5,27 @@ import Breadcrumbs from "@mui/material/Breadcrumbs";
 import HomeIcon from "@mui/icons-material/Home";
 import GrainIcon from "@mui/icons-material/Grain";
 import { useRouter } from "next/router";
-import { NoticeData } from "@/src/Utils/MockData/NoticeMockData";
 import ResultDetailsComponent from "@/src/Components/Result/ResultDetails";
-import { useQuery } from "@tanstack/react-query";
-import { getResultByIdUrl } from "@/src/Utils/Urls/ResultUrl";
+import useResult from "@/src/Hooks/useResult";
 
 const ResultDetails = () => {
-    const router = useRouter();
-    const {resultid } = router.query;
-    const resultId = resultid;  
+  const router = useRouter();
+  const { resultid } = router.query;
+  const resultId = resultid;
+  const { resultData } = useResult();
 
-    const {
-      data: resultDetailData,
-      isLoading: resultDetailLoaded,
-      refetch: refetchResultDetail,
-    } = useQuery({
-      queryKey: ["resultDetailData"],
-      queryFn: async () => {
-        const res = await fetch(getResultByIdUrl(resultId));
-        const data = await res.json();
-        return data?.data;
-      },
-    });
+  const filteredResult = resultData?.filter((result) => result?._id === resultId);
 
+  if (filteredResult?.length === 0) {
+    return (
+      <div>
+        <p>Result not found</p>
+        <Link href="/result">Back to Results</Link>
+      </div>
+    );
+  }
+
+  const result = filteredResult[0];
 
   return (
     <RootLayout>
@@ -42,7 +40,7 @@ const ResultDetails = () => {
             >
               <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
               Home
-            </Link>    
+            </Link>
 
             <Link
               underline="hover"
@@ -58,16 +56,20 @@ const ResultDetails = () => {
               color="text.primary"
             >
               <GrainIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-             Result Details 
+              Result Details
             </Typography>
           </Breadcrumbs>
         </div>
 
         <div className="my-4">
-          <ResultDetailsComponent resultDetailData={resultDetailData}/>
+          {result ? (
+            <div className="my-4">
+              <ResultDetailsComponent resultDetailData={result} />
+            </div>
+          ) : (
+            <div>Loading...</div>
+          )}
         </div>
-
-        
       </section>
     </RootLayout>
   );

@@ -1,12 +1,17 @@
-import React from "react";
+// import { basedUrl } from "@/src/Utils/Network/Network";
 
 const ResultDetailsComponent = ({resultDetailData}) => {
   console.log(resultDetailData)
- 
+
 
   return (
-    <section className="w-[100%] h-[70vw]">
-      <iframe src={`${basedUrl}${resultDetailData?.file}`} width={"100%"} height={"100%"}></iframe>
+    <section className="w-[100%] h-[60vw]">
+      {/* <iframe src={`http://localhost:8000/api/v1/${resultDetailData?.file}`} width={"80%"} height={"60%"}></iframe> */}
+
+      <h1 className="text-[2rem] text-red-500 text-center">
+        Under Construction ... {"{Update Soon...}"}
+      </h1>
+
     </section>
   );
 };

@@ -5,10 +5,12 @@ import FullLayout from "../../../../src/Layouts/DashboardLayout";
 import { Breadcrumbs, Typography } from "@mui/material";
 import Link from "next/link";
 import HomeIcon from "@mui/icons-material/Home";
-import GrainIcon from "@mui/icons-material/Grain";
 import ManageHeaderComponent from "@/src/Components/Dashboard/Header/ManageHeader/ManageHeader";
+import useHeadersData from "@/src/Hooks/useHeadersData";
 
 const ManegHeader = () => {
+  const {headersData} = useHeadersData()
+  
   return (
     <ThemeProvider theme={theme}>
       <FullLayout>
@@ -23,7 +25,17 @@ const ManegHeader = () => {
               <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
               Dashboard
             </Link>
-            <Link
+            {
+              headersData && headersData?.length > 0 ? (
+                <Typography
+                  sx={{ display: "flex", alignItems: "center" }}
+                  color="text.primary"
+                >
+                  <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
+                  Manage Header
+                </Typography>
+              ) : (
+                <Link
               underline="hover"
               sx={{ display: "flex", alignItems: "center" }}
               color="inherit"
@@ -33,6 +45,9 @@ const ManegHeader = () => {
               <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
             Add Header
             </Link>
+              )
+            }
+           
           </Breadcrumbs>
         </div>
         <section className="my-4">

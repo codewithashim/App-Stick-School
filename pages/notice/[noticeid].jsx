@@ -5,19 +5,29 @@ import Breadcrumbs from "@mui/material/Breadcrumbs";
 import HomeIcon from "@mui/icons-material/Home";
 import GrainIcon from "@mui/icons-material/Grain";
 import { useRouter } from "next/router";
-import { NoticeData } from "@/src/Utils/MockData/NoticeMockData";
 import NoticeDetailComponent from "@/src/Components/Notice/NoticeDetails";
+import useNotice from "@/src/Hooks/useNotice";
 
 const NoticeDetails = () => {
-    const router = useRouter();
-    const { noticeid } = router.query;
-    const noticeId = noticeid;  
-    
-    const singelData = NoticeData?.filter(notice=>notice.id === noticeId)
+  const router = useRouter();
+  const { noticeid } = router.query;
+  const noticeId = noticeid;
 
-    console.log(NoticeData)
-    
-    console.log(singelData, "noticeDetails ")
+  const {noticeData} = useNotice();
+
+  const singelData = noticeData?.filter((notice) => notice?._id === noticeId);
+
+  if (singelData?.length === 0) {
+    return (
+      <div>
+        <p>Result not found</p>
+        <Link href="/result">Back to Results</Link>
+      </div>
+    );
+  }
+  
+  const result = singelData[0];
+
 
 
   return (
@@ -33,7 +43,7 @@ const NoticeDetails = () => {
             >
               <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
               Home
-            </Link>    
+            </Link>
 
             <Link
               underline="hover"
@@ -49,13 +59,13 @@ const NoticeDetails = () => {
               color="text.primary"
             >
               <GrainIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-             Notice Details 
+              Notice Details
             </Typography>
           </Breadcrumbs>
         </div>
 
         <div className="my-4">
-          <NoticeDetailComponent/>
+          <NoticeDetailComponent singelData={result} />
         </div>
       </section>
     </RootLayout>
