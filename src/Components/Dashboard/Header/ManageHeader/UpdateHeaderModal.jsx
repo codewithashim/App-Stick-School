@@ -225,15 +225,15 @@ const UpdateHeaderModal = ({ header }) => {
                 {...register("schoolAddress", { required: true })}
               />
               <div>
-                <div class="w-full h-full">
-                  <div class="rounded-lg shadow-xl bg-gray-50">
-                    <div class="p-4">
-                      <label class="inline-block mb-2 text-gray-500">
+                <div className="w-full h-full">
+                  <div className="rounded-lg shadow-xl bg-gray-50">
+                    <div className="p-4">
+                      <label className="inline-block mb-2 text-gray-500">
                         Upload Product Image
                       </label>
-                      <div class="flex items-center justify-center w-full">
-                        <label class="flex flex-col w-full h-42 border-4 border-blue-200 border-dashed hover:bg-gray-100 hover:border-gray-300">
-                          <div class="flex flex-col items-center justify-center ">
+                      <div className="flex items-center justify-center w-full">
+                        <label className="flex flex-col w-full border-4 border-blue-200 border-dashed h-42 hover:bg-gray-100 hover:border-gray-300">
+                          <div className="flex flex-col items-center justify-center ">
                             <Image
                               src={
                                 imageFile

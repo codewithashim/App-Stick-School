@@ -14,7 +14,9 @@ const ResultDetails = () => {
   const resultId = resultid;
   const { resultData } = useResult();
 
-  const filteredResult = resultData?.filter((result) => result?._id === resultId);
+  // const filteredResult =resultData?.find((result) => result?._id === resultId);
+
+  const filteredResult = resultData? resultData?.filter((notice) => notice?._id === resultId) : [];
 
   if (filteredResult?.length === 0) {
     return (

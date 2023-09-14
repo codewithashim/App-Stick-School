@@ -8,7 +8,7 @@ const RootLayout = ({ children }) => {
     <main>
       <header className="header-container">
         <div className="container pt-4">
-          <TopNav />
+          {/* <TopNav /> */}
           <MainNav />
         </div>
       </header>

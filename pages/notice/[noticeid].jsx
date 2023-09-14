@@ -15,7 +15,10 @@ const NoticeDetails = () => {
 
   const {noticeData} = useNotice();
 
-  const singelData = noticeData?.filter((notice) => notice?._id === noticeId);
+  // const singleData = noticeData?.find((notice) => notice?._id === noticeId);
+
+  const singelData = noticeData ? noticeData?.filter((notice) => notice?._id === noticeId) : [];
+
 
   if (singelData?.length === 0) {
     return (

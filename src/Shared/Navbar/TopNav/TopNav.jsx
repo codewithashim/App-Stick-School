@@ -58,12 +58,11 @@ const TopNav = () => {
   };
 
   return (
-    <nav className="p-1 ">
-      
-        {headersData &&
-          headersData.map((header) => {
-            return (
-              <div className="grid-cols-4 text-white md:grid">
+    <nav className="p-1">
+      {headersData &&
+        headersData.map((header) => {
+          return (
+            <div className="grid-cols-4 text-white md:grid">
               <div className="items-start col-span-3 gap-3 md:flex">
                 <Image
                   className="m-auto md:m-0"
@@ -87,47 +86,44 @@ const TopNav = () => {
                 </div>
               </div>
               <div className="">
-          <div className="items-center justify-center gap-6 md:flex blog md:justify-end">
-            <span className="flex items-center justify-center gap-2 text-center md:justify-start">
-              <IoMdCall /> {header?.phone}
-            </span>
-            <span className="flex items-center justify-center gap-2 md:justify-start">
-              <HiMail />  {header?.email}
-            </span>
-          </div>
+                <div className="items-center justify-center gap-6 md:flex blog md:justify-end">
+                  <span className="flex items-center justify-center gap-2 text-center md:justify-start">
+                    <IoMdCall /> {header?.phone}
+                  </span>
+                  <span className="flex items-center justify-center gap-2 md:justify-start">
+                    <HiMail /> {header?.email}
+                  </span>
+                </div>
 
-          {/* action button */}
-          <div className="flex items-center justify-center gap-2 mt-2 md:justify-end">
-            {/* <button className="btn bg-[#124358] px-5 py-1 rounded-md">বাংলা</button> */}
-            {user ? (
-              <>
-                <Button
-                  fullWidth
-                  className="flex items-center justify-center gap-4 commonBtn pointer"
-                  onClick={() => handleLogout()}
-                >
-                  <FaPowerOff />
-                  Logout
-                </Button>
-              </>
-            ) : (
-              <>
-                <Link
-                  href="/auth/login"
-                  className="btn bg-[#124358] px-4 py-1 rounded-md"
-                >
-                  Login
-                </Link>
-              </>
-            )}
-          </div>
-        </div>
+                {/* action button */}
+                <div className="flex items-center justify-center gap-2 mt-2 md:justify-end">
+                  {/* <button className="btn bg-[#124358] px-5 py-1 rounded-md">বাংলা</button> */}
+                  {user ? (
+                    <>
+                      <Button
+                        fullWidth
+                        className="flex items-center justify-center gap-4 commonBtn pointer"
+                        onClick={() => handleLogout()}
+                      >
+                        <FaPowerOff />
+                        Logout
+                      </Button>
+                    </>
+                  ) : (
+                    <>
+                      <Link
+                        href="/auth/login"
+                        className="btn bg-[#124358] px-4 py-1 rounded-md"
+                      >
+                        Login
+                      </Link>
+                    </>
+                  )}
+                </div>
               </div>
-            )
-          })}
-
-      
-      
+            </div>
+          );
+        })}
     </nav>
   );
 };
