@@ -20,6 +20,11 @@ const Menuitems = [
     href: "/dashboard/committee/maneg-committee",
   },
   {
+    title: "Message",
+    icon: "grid",
+    href: "/dashboard/message/maneg-message",
+  },
+  {
     title: "About",
     icon: "grid",
     href: "/dashboard/about/maneg-about",

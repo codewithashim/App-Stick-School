@@ -46,9 +46,8 @@ const HomeSlider = () => {
           return (
             <SwiperSlide key={index}>
               <Image src={item?.image} alt={item?.title} 
-                width={'1000'}
-                height={'400'}
-
+                width={'600'}
+                height={'200'}
               />
             </SwiperSlide>
           )

@@ -31,7 +31,7 @@ const ProfileDD = () => {
     });
     localStorage.removeItem("refreshToken");
     localStorage.removeItem("accessToken");
-    router.push("/");
+    window.location.href = "/";  
   };
 
   return (

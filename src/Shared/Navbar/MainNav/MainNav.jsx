@@ -97,8 +97,8 @@ const MainNav = () => {
                             className="m-0"
                             src={header?.logo}
                             alt="Description of the image"
-                            width={60}
-                            height={60}
+                            width={80}
+                            height={80}
                             style={{
                               borderRadius: "5px",
                             }}
@@ -133,14 +133,13 @@ const MainNav = () => {
                     {/* <button className="btn bg-[#124358] px-5 py-1 rounded-md">বাংলা</button> */}
                     {user ? (
                       <>
-                        <Button
+                        <Link
                           fullWidth
                           className="flex items-center justify-center gap-4 commonBtn pointer"
-                          onClick={() => handleLogout()}
+                          href="/dashboard"
                         >
-                          <FaPowerOff />
-                          Logout
-                        </Button>
+                         Dashboard
+                        </Link>
                       </>
                     ) : (
                       <>
