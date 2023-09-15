@@ -43,7 +43,7 @@ const Home = () => {
       <FacultyMember />
 
       {/* ==== Statistice */}
-      <div className="p-10 section-gap bg-slate-50">
+      <div className="p-4 section-gap ">
         <div className="mb-5">
         <h2 className="title-content ">Student Statistics</h2>
         <p className="text-center text-[1.5rem]">Class Wise Student</p>
