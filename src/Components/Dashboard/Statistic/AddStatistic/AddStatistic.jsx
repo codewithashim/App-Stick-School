@@ -15,6 +15,7 @@ const AddStatisticComponent = () => {
     const statisticData = {
       title: data.title,
       counte: data.counte,
+      status: data.status,
     };
 
     const res = await fetch(createStatisticUrl, {
@@ -84,6 +85,13 @@ const AddStatisticComponent = () => {
           className="w-full"
           {...register("counte")}
         />
+
+        <select className="w-full h-10 px-2 border-2 border-gray-200 rounded-md"
+          {...register("status")}
+        >
+          <option value="Organization">Organization</option>
+          <option value="Student">Student</option>
+        </select>
 
         <div>
           <Button

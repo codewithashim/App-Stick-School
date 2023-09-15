@@ -40,7 +40,8 @@ export default function Index() {
                   <div className="flex flex-col items-center justify-center gap-4">
                     <UserOutlined className="text-[2rem]" />
                     <p className="text-[1.5rem] ">{statistic?.title} </p>
-                    <p className="text-[1.5rem] my-4">{statistic?.counte} </p>
+                    <p className="text-[1.5rem]">Total : {statistic?.counte} </p>
+                    <p className="text-[1.5rem]">{statistic?.status} </p>
                   </div>
                 </Card>
               );

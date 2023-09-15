@@ -1,5 +1,4 @@
 import React from "react";
-import TopNav from "../Shared/Navbar/TopNav/TopNav";
 import MainNav from "../Shared/Navbar/MainNav/MainNav";
 import Footer from "../Shared/Footer/Footer";
 
@@ -7,8 +6,7 @@ const RootLayout = ({ children }) => {
   return (
     <main>
       <header className="header-container">
-        <div className="container pt-4">
-          {/* <TopNav /> */}
+        <div className="container">
           <MainNav />
         </div>
       </header>

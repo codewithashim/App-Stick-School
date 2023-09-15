@@ -10,18 +10,21 @@ import useStatistic from "@/src/Hooks/useStatistic";
 
 
 const ManegStatisticCard = ({ statistic }) => {
-  const { title, counte ,_id } =
+  const { title, counte ,_id, status } =
   statistic;
   const { handelDeleteStatistic, loadingStatistic } =useStatistic();
 
   return (
     <Card sx={{ maxWidth: 400 }}>
       <CardContent>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body1" color="text.secondary">
           {title}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body1" color="text.secondary">
           {counte}
+        </Typography>
+        <Typography variant="body1" color="text.secondary">
+          {status}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>

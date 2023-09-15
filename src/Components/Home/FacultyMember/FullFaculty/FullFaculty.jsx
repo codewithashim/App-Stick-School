@@ -7,9 +7,9 @@ const FullFaculty = () => {
 const {teacherData} = useTeachersData()
 
   return (
-    <section className="bg-white rounded shadow home-faculty-section ">
-      <div className="grid items-center w-full gap-4 p-4 md:grid-cols-4">
-        {teacherData?.slice(0, 8).map((faculty) => {
+    <section className="rounded shadow home-faculty-section">
+      <div className="grid items-center w-full gap-4 md:grid-cols-4">
+        {teacherData?.slice(0, 10).map((faculty) => {
           return (
             <div className="flex flex-col justify-center w-full p-4 text-center bg-gray-100 shadow">
               <img
@@ -23,7 +23,7 @@ const {teacherData} = useTeachersData()
           );
         })}
       </div>
-      <div className="my-2 morebutton flex justify-center items-center">
+      <div className="flex items-center justify-center my-2 morebutton">
           <Link href="/teachers" className="text-center text-blue-500"> More..</Link>
         </div>
     </section>

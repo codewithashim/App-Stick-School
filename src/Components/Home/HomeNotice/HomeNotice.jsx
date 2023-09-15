@@ -5,18 +5,13 @@ import { FaBuromobelexperte } from "react-icons/fa";
 import { NoticeIcon } from "@/src/Assets";
 import useNotice from "@/src/Hooks/useNotice";
 
-const Notice = () => {
-  const {noticeData} = useNotice();
+const HomeNotice = () => {
+  const { noticeData } = useNotice();
   return (
     <section>
-      <div className="border ">
-        <h1 className="text-[2rem] flex gap-4 items-center notice-container">
-          <FaBuromobelexperte /> Notice
-        </h1>
-
-        <div className="grid gap-4 m-4 md:grid-cols-2 justify-items-center">
+      <div className="grid gap-4 m-4 md:grid-cols-2 justify-items-center">
         {noticeData &&
-          noticeData?.map((notice) => {
+          noticeData?.slice(0, 6).map((notice) => {
             return (
               <div className="flex items-center w-full gap-6 p-4 m-4 rounded shadow bg-slate-50">
                 <div className="notice-icons">
@@ -42,9 +37,14 @@ const Notice = () => {
             );
           })}
       </div>
+      <div className="text-center">
+        <Link href="/notice" className="text-[1.5rem] commonBtn">
+          {" "}
+          See More{" "}
+        </Link>
       </div>
     </section>
   );
 };
 
-export default Notice;
+export default HomeNotice;

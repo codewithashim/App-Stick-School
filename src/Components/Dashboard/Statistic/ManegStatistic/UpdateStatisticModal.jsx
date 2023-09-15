@@ -30,7 +30,7 @@ const UpdateStaffModal = ({ statistic }) => {
   };
 
   const { register, handleSubmit } = useForm();
-  const { title, counte, _id } = statistic;
+  const { title, counte, _id ,status} = statistic;
 
   const handelUpdate = async (updatedata) => {
     setLoading(true)
@@ -38,6 +38,7 @@ const UpdateStaffModal = ({ statistic }) => {
     const statisticData = {
      title: updatedata.title,
       counte: updatedata.counte,
+      status: updatedata.status
     };
 
     const res = await fetch(updateStatisticUrl(_id), {
@@ -155,6 +156,13 @@ const UpdateStaffModal = ({ statistic }) => {
                 className="w-full"
                 {...register("counte")}
               />
+                      <select className="w-full h-10 px-2 border-2 border-gray-200 rounded-md"
+          {...register("status")}
+          defaultValue={status}
+        >
+          <option value="Organization">Organization</option>
+          <option value="Student">Student</option>
+        </select>
               <div>
                 <Button
                   variant="contained"

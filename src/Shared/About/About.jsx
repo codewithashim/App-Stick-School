@@ -10,12 +10,12 @@ const About = () => {
         {aboutData?.map((data) => {
           return (
             <div key={data?._id}>
-              <p className=" text-center text-[1.5rem]">{data?.title}</p>
+                <h1 className="text-[#0075d6] text-[1.8rem] my-4 text-center">
+                  {data?.title}
+                </h1>
 
               <div className="about-content">
-                <h1 className="text-[#0075d6] text-[1.8rem] my-4 text-center">
-                  {data?.details}
-                </h1>
+              <p className=" text-center text-[1.5rem]">{data?.details}</p>
               </div>
             </div>
           );

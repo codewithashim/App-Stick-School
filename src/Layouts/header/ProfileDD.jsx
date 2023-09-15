@@ -10,39 +10,28 @@ const ProfileDD = () => {
   const router = useRouter();
   const handleLogout = () => {
     logout()
-      .then(() => {
-        Swal.fire({
-          position: "top-end",
-          timerProgressBar: true,
-          title: "Successfully Logout Done !",
-          iconColor: "#ED1C24",
-          toast: true,
-          icon: "success",
-          showClass: {
-            popup: "animate__animated animate__fadeInRight",
-          },
-          hideClass: {
-            popup: "animate__animated animate__fadeOutRight",
-          },
-          customClass: {
-            confirmButton: "blue",
-          },
-          showConfirmButton: false,
-          timer: 3500,
-        });
-        localStorage.removeItem("user-uid");
-        router.push("/");
-      })
-      .catch((error) => {
-        const errorMessage = error.message;
-        console.log(errorMessage);
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Something warn!",
-          confirmButtonColor: "#0077b6",
-        });
-      });
+    Swal.fire({
+      position: "top-end",
+      timerProgressBar: true,
+      title: "Successfully Logout Done !",
+      iconColor: "#ED1C24",
+      toast: true,
+      icon: "success",
+      showClass: {
+        popup: "animate__animated animate__fadeInRight",
+      },
+      hideClass: {
+        popup: "animate__animated animate__fadeOutRight",
+      },
+      customClass: {
+        confirmButton: "blue",
+      },
+      showConfirmButton: false,
+      timer: 3500,
+    });
+    localStorage.removeItem("refreshToken");
+    localStorage.removeItem("accessToken");
+    router.push("/");
   };
 
   return (

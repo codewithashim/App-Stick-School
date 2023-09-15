@@ -78,12 +78,21 @@ const useStatistic = () => {
     }
   };
 
+  const studentStatistic = statisticData ? statisticData?.filter((student) => student?.status === "Student") : [];
+
+  const organizationStatistic = statisticData ? statisticData?.filter((organization) => organization?.status === "Organization") : [];
+
+  
+
   return {
     statisticData,
     statisticLoaded,
     refetchStatistic,
     loadingStatistic,
-    handelDeleteStatistic
+    handelDeleteStatistic,
+
+    studentStatistic,
+    organizationStatistic
   };
 };
 
