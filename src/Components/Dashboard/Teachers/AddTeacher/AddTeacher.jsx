@@ -43,6 +43,13 @@ const AddTeacher = () => {
       detail: data.teacherDescription,
       joiningDate: data.joiningDate,
       position: data.teacherPosition,
+      indexNo: data.indexNo,
+      email: data.email,
+      phone: data.phone,
+      subject:data.subject,
+      qualification: data.qualification,
+      presentAddress: data. presentAddress,
+      permanentAddress: data.permanentAddress,
       image: imgurl,
     };
 
@@ -132,6 +139,76 @@ const AddTeacher = () => {
           className="w-full"
           {...register("joiningDate")}
         />
+
+<TextField
+          id="outlined-subject-input"
+          label="Subject"
+          type="text"
+          autoComplete="Subject"
+          variant="outlined"
+          className="w-full"
+          {...register("subject")}
+        />
+
+<TextField
+          id="outlined-indexNo-input"
+          label="Index No"
+          type="text"
+          autoComplete="indexNo"
+          variant="outlined"
+          className="w-full"
+          {...register("indexNo")}
+        />
+
+<TextField
+          id="outlined-email-input"
+          label="Email"
+          type="text"
+          autoComplete="email"
+          variant="outlined"
+          className="w-full"
+          {...register("email")}
+        />
+
+<TextField
+          id="outlined-phone-input"
+          label="Phone"
+          type="text"
+          autoComplete="Phone"
+          variant="outlined"
+          className="w-full"
+          {...register("phone")}
+        />
+
+<TextField
+          id="outlined-qualification-input"
+          label="Qualification"
+          type="text"
+          autoComplete="Qualification"
+          variant="outlined"
+          className="w-full"
+          {...register("qualification")}
+        />
+
+<TextField
+          id="outlined-presentAddress-input"
+          label="Present Address"
+          type="text"
+          autoComplete="Present Address"
+          variant="outlined"
+          className="w-full"
+          {...register("presentAddress")}
+        />
+<TextField
+          id="outlined-permanentAddress-input"
+          label="Permanent Address"
+          type="text"
+          autoComplete="Permanent Address"
+          variant="outlined"
+          className="w-full"
+          {...register("permanentAddress")}
+        />
+
 
         <div>
           <div class="w-full h-full">

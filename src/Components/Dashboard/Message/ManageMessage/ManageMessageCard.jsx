@@ -41,7 +41,7 @@ const ManageMessageCard = ({ messageData }) => {
           )}
         </IconButton>
         <IconButton aria-label="Edite">
-          <UpdateMessageModal messageData={message} />
+          <UpdateMessageModal messageData={messageData} />
         </IconButton>
       </CardActions>
     </Card>

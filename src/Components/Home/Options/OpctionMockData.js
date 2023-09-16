@@ -4,6 +4,7 @@ export const OpctionData = [
     title: "Result",
     path: "/result",
     icon: "https://res.cloudinary.com/codewithashim/image/upload/v1693606158/ApstickSchool/Icons/ch4brttc4xvfbo7rbmg9.png",
+    
   },
   {
     id: 2,

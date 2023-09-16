@@ -1,7 +1,6 @@
 import useTeachersData from "@/src/Hooks/useTeachersData";
 import Image from "next/image";
-import Link from "next/link";
-import { Card } from "antd";
+
 
 const Message = () => {
   const { messageData } = useTeachersData();
@@ -12,16 +11,22 @@ const Message = () => {
         {messageData &&
           messageData?.map((message) => {
             return (
-              <div className="flex flex-row items-center justify-center w-full gap-4 md:flex-col">
-                <img
-                  className="self-center flex-shrink-0 w-24 h-24 mb-4 bg-center bg-cover rounded-full dark:bg-gray-500"
-                  src={message?.image}
-                  alt={message?.name}
-                />
-                <h1 class="text-blue-gray-900  text-[1.5rem]">
-                  {message?.name} - {message?.position}
-                </h1>
-                <p class="text-[1rem] text-center">{message?.message}</p>
+              <div className="max-w-md px-8 py-4 my-20 bg-white rounded-lg shadow-lg">
+                <div className="flex justify-center -mt-16 md:justify-end">
+                  <img
+                    className="object-cover w-20 h-20 border-2 border-indigo-500 rounded-full"
+                    src={message?.image}
+                    alt={message?.name}
+                  />
+                </div>
+                <div>
+                  <h2 className="text-3xl font-semibold text-gray-800">
+                    {message?.name} - {message?.position}
+                  </h2>
+                  <p className="mt-2 text-gray-600">
+                    {message?.message?.slice(0,250)}
+                  </p>
+                </div>
               </div>
             );
           })}

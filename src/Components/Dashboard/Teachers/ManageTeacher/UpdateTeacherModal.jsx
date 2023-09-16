@@ -34,7 +34,7 @@ const UpdateTeacherModal = ({ teacher }) => {
 
   const { register, handleSubmit } = useForm();
   const [imageFile, setImageFile] = useState(null);
-  const { name, detail, joiningDate, position, image, _id } = teacher;
+  const { name, detail, joiningDate, position, image, _id, permanentAddress, indexNo,presentAddress,  qualification, email, phone,subject  } = teacher;
 
   const upload_preset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
   const cloud_name = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
@@ -68,7 +68,14 @@ const UpdateTeacherModal = ({ teacher }) => {
       detail: updatedata.teacherDescription,
       joiningDate: updatedata.joiningDate,
       position: updatedata.teacherPosition,
-      image: updatedata.image,
+      indexNo: updatedata.indexNo,
+      email: updatedata.email,
+      phone: updatedata.phone,
+      subject:updatedata.subject,
+      qualification: updatedata.qualification,
+      presentAddress: updatedata. presentAddress,
+      permanentAddress: updatedata.permanentAddress,
+      image: imgurl,
     };
 
     const res = await fetch(updateTeacherUrl(_id), {
@@ -207,6 +214,85 @@ const UpdateTeacherModal = ({ teacher }) => {
                 className="w-full"
                 {...register("joiningDate")}
               />
+
+              
+<TextField
+          id="outlined-subject-input"
+          label="Subject"
+          type="text"
+          autoComplete="Subject"
+          variant="outlined"
+          defaultValue={subject}
+          className="w-full"
+          {...register("subject")}
+        />
+
+<TextField
+          id="outlined-indexNo-input"
+          label="Index No"
+          type="text"
+          autoComplete="indexNo"
+          variant="outlined"
+          defaultValue={indexNo}
+          className="w-full"
+          {...register("indexNo")}
+        />
+
+<TextField
+          id="outlined-email-input"
+          label="Email"
+          type="text"
+          autoComplete="email"
+          variant="outlined"
+          defaultValue={email}
+          className="w-full"
+          {...register("email")}
+        />
+
+<TextField
+          id="outlined-phone-input"
+          label="Phone"
+          type="text"
+          autoComplete="Phone"
+          variant="outlined"
+          defaultValue={phone}
+          className="w-full"
+          {...register("phone")}
+        />
+
+<TextField
+          id="outlined-qualification-input"
+          label="Qualification"
+          type="text"
+          autoComplete="Qualification"
+          variant="outlined"
+          defaultValue={qualification}
+          className="w-full"
+          {...register("qualification")}
+        />
+
+<TextField
+          id="outlined-presentAddress-input"
+          label="Present Address"
+          type="text"
+          autoComplete="Present Address"
+          variant="outlined"
+          defaultValue={presentAddress}
+          className="w-full"
+          {...register("presentAddress")}
+        />
+<TextField
+          id="outlined-permanentAddress-input"
+          label="Permanent Address"
+          type="text"
+          autoComplete="Permanent Address"
+          variant="outlined"
+          defaultValue={permanentAddress}
+          className="w-full"
+          {...register("permanentAddress")}
+        />
+
+
 
               <div>
                 <div class="w-full h-full">

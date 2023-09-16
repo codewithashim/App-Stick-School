@@ -201,27 +201,7 @@ const LoginPage = () => {
                       )}
                     </span>
                   </div>
-                  <div className="flex items-center mb-4 md:flex-row xxs:flex-col xxs:justify-center md:justify-between ">
-                    <div className="flex items-center ">
-                      <div className="mr-2">
-                        <input id="remember" type="checkbox" />
-                      </div>{" "}
-                      <label htmlFor="remember">Remember me</label>
-                    </div>
-                    <span className="text-[15px] text-[#676767] float-right">
-                      <Link href="/">Forgot password</Link>
-                    </span>
-                  </div>
                   <div className="flex items-center mb-4 md:justify-between md:flex-row xxs:flex-col xxs:justify-center">
-                    <div className="relative py-3 xs:flex-row xxs:flex-col xs:block xxs:flex xxs:text-center xs:text-left">
-                      <span className="text-[15px] text-[#676767]">
-                        You don't have account
-                        <Link href="/auth/register" className="font-bold">
-                          {" "}
-                          Signup Now
-                        </Link>
-                      </span>
-                    </div>
                     <button className="mb-5 commonBtn">
                       {
                         loading ? "Loading..." : "Sign In"

@@ -1,5 +1,6 @@
 import useTeachersData from "@/src/Hooks/useTeachersData";
 import React from "react";
+import Link from "next/link";
 
 const TeachersPortal = () => {
   const{teacherData} = useTeachersData() 
@@ -8,8 +9,12 @@ const TeachersPortal = () => {
     <section>
       <div className="grid gap-6 md:grid-cols-4 teacher-portal-container">
         {teacherData?.map((teacher) => {
+          const { _id } = teacher;
           return (
-            <div className="max-w-sm my-4 overflow-hidden bg-white rounded-lg shadow-lg">
+            <Link href={`/teachers/${_id}`}>
+            <div className="max-w-sm my-4 overflow-hidden bg-white rounded-lg shadow-lg"
+              key={teacher?._id}
+            >
               <img
                 className="object-cover object-center w-full h-56"
                 src={teacher.image}
@@ -29,6 +34,7 @@ const TeachersPortal = () => {
                 </p>
               </div>
             </div>
+            </Link>
           );
         })}
       </div>

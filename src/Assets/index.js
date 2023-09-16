@@ -6,8 +6,25 @@ import Slider_4 from "./Slider/Slider-4.png";
 import Logo from "./Logo/Logo.jpeg";
 import NoticeIcon from "./Images/notices.png";
 import AppsticitLogo from "./Logo/AppsticitLogo.png";
-import UsersignUp from "./Images/usersignUp.jpeg"
+import UsersignUp from "./Images/usersignUp.jpeg";
 
-// import NoticeFile from "./Files/একদশ_শ্রেণির_শিক্ষার্থীদের_বার্ষিক_পরীক্ষার_রুটিন_04092023.pdf"
+import classIcon from "./Icons-statitce/class.png";
+import studentIcon from "./Icons-statitce/student.png";
+import teacherIcon from "./Icons-statitce/teacher.png";
+import stuffIcon from "./Icons-statitce/staff.png";
 
-export { Slider_1, Slider_2, Slider_3, Slider_4, NotFound, Logo, NoticeIcon,AppsticitLogo,UsersignUp};
+export {
+  Slider_1,
+  Slider_2,
+  Slider_3,
+  Slider_4,
+  NotFound,
+  Logo,
+  NoticeIcon,
+  AppsticitLogo,
+  UsersignUp,
+  classIcon,
+  studentIcon,
+  teacherIcon,
+  stuffIcon,
+};

@@ -1,12 +1,12 @@
 import React from "react";
 import Hero from "../Hero/Hero";
 import About from "@/src/Shared/About/About";
-import FacultyMember from "../FacultyMember/FacultyMember/FacultyMember";
 import StatisticsOrganization from "../StatisticsOrganization/StatisticsOrganization";
 import HomeNotice from "../HomeNotice/HomeNotice";
 import Options from "../Options/Options";
 import StatisticsStudent from "../StatisticsStudent/StatisticsStudent";
 import Message from "../Message/Message";
+import FacultyMember from "../FacultyMember/FacultyMember";
 
 const Home = () => {
   return (
@@ -47,8 +47,9 @@ const Home = () => {
       </div>
 
       {/* ======== Faculty */}
-      <FacultyMember />
-
+      <div className="p-10 section-gap bg-slate-50">
+        <FacultyMember />
+      </div>
       {/* ==== Statistice */}
       <div className="p-4 section-gap ">
         <div className="mb-5">
