@@ -16,15 +16,18 @@ const ManagePhotoGelary = () => {
           albumData?.length &&
           albumData?.map((photoData) => {
             const { _id,title,totalPhotos, photos } = photoData;
+            const imageSrc =
+              photos[0]?.image ||
+              "https://res.cloudinary.com/codewithashim/image/upload/v1694899580/ApstickSchool/gzalyyikfoq9ydbufsln.png";
+              
             return (
               <Link href={`/dashboard/photogalery/maneg-photogalery/${_id}`}>
               <Card sx={{ maxWidth: 400 }} key={_id}>
-                <CardMedia
-                  component="img"
-                  image={photos[0]?.image ||  "https://res.cloudinary.com/codewithashim/image/upload/v1694899580/ApstickSchool/gzalyyikfoq9ydbufsln.png";}
-                  alt={title}
-                  className="w-[100%] h-[200px] object-cover"
-                />
+              <img
+                src={imageSrc}
+                alt={title}
+                className="w-[100%] h-[250px] object-cover"
+              />
                 <div>
                  <h1> Album Name: {title}</h1>
                  <h1 className="mt-2"> Total Photo: {totalPhotos}</h1>
