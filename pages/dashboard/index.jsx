@@ -8,6 +8,7 @@ import { Card } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import useStatistic from "@/src/Hooks/useStatistic";
 
+
 export default function Index() {
   const router = useRouter();
   const { statisticData } = useStatistic();

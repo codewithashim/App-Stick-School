@@ -6,23 +6,24 @@ import {
   deletePhotogelaryUrl,
   getAlbumUrl,
   getPhotogelaryUrl,
+  deletePhotoUrl
 } from "../Utils/Urls/PhotoGelaryUrl";
 
 const usePhotoGelary = () => {
   const [loadingPhotoGelary, setloadingPhotoGelary] = useState(false);
 
-  const {
-    data: PhotoGelaryData,
-    isLoading: PhotoGelaryLoaded,
-    refetch: refetchPhotoGelary,
-  } = useQuery({
-    queryKey: ["PhotoGelaryData"],
-    queryFn: async () => {
-      const res = await fetch(getPhotogelaryUrl);
-      const data = await res.json();
-      return data?.data;
-    },
-  });
+  // const {
+  //   data: PhotoGelaryData,
+  //   isLoading: PhotoGelaryLoaded,
+  //   refetch: refetchPhotoGelary,
+  // } = useQuery({
+  //   queryKey: ["PhotoGelaryData"],
+  //   queryFn: async () => {
+  //     const res = await fetch(getPhotogelaryUrl);
+  //     const data = await res.json();
+  //     return data?.data;
+  //   },
+  // });
 
   const handelDeletePhotoGelary = async (id) => {
     const confirmed = await Swal.fire({
@@ -75,7 +76,6 @@ const usePhotoGelary = () => {
           showConfirmButton: false,
           timer: 3500,
         });
-        refetchPhotoGelary();
         setloadingPhotoGelary(false);
       }
     }
@@ -147,18 +147,76 @@ const usePhotoGelary = () => {
           showConfirmButton: false,
           timer: 3500,
         });
-        refetchPhotoGelary();
         setloadingPhotoGelary(false);
       }
     }
   };
 
+  const handelPhotoDelete = async (id) => {
+    const confirmed = await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    });
+
+    if (confirmed.isConfirmed) {
+      setloadingPhotoGelary(true);
+      const res = await fetch(deletePhotoUrl(id), {
+        method: "DELETE",
+      });
+      const data = await res.json();
+      if (!data) {
+        Swal.fire({
+          position: "center",
+          timerProgressBar: true,
+          title: data.message,
+          iconColor: "#ED1C24",
+          toast: true,
+          icon: "error",
+          showClass: {
+            popup: "animate__animated animate__fadeInRight",
+          },
+          hideClass: {
+            popup: "animate__animated animate__fadeOutRight",
+          },
+          showConfirmButton: false,
+          timer: 3500,
+        });
+      } else {
+        Swal.fire({
+          position: "center",
+          timerProgressBar: true,
+          title: "Successfully Delete PhotoGelary !",
+          iconColor: "#ED1C24",
+          toast: true,
+          icon: "success",
+          showClass: {
+            popup: "animate__animated animate__fadeInRight",
+          },
+          hideClass: {
+            popup: "animate__animated animate__fadeOutRight",
+          },
+          showConfirmButton: false,
+          timer: 3500,
+        });
+        refetchAlbum()
+        setloadingPhotoGelary(false);
+      }
+    }
+  };
+
+  
   return {
-    PhotoGelaryData,
-    PhotoGelaryLoaded,
+    // PhotoGelaryData,
+    // PhotoGelaryLoaded,
     handelDeletePhotoGelary,
     loadingPhotoGelary,
-
+   
+    handelPhotoDelete,
     handelAlbumDelete,
     albumData,
     albumLoaded,

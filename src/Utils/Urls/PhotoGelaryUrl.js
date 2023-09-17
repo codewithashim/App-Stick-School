@@ -2,12 +2,11 @@ import { basedUrl } from "../Network/Network";
 
 export const createPhotogelaryUrl = basedUrl + "photogelary/create";
 
-export const getPhotogelaryUrl = basedUrl + "photogelary/";
+export const getPhotogelaryUrl = basedUrl + "photogelary/get-all";
 
 export const deletePhotogelaryUrl = (id) => basedUrl + `photogelary/delete/${id}`;
 
 export const updatePhotogelaryUrl = (id) => basedUrl + `photogelary/update/${id}`;
-
 
 
 export const deleteAlbumUrl = (id) => basedUrl + `photogelary/album/${id}`;
@@ -18,3 +17,5 @@ export const createAlbumUrl = basedUrl + "photogelary/album/create";
 
 export const getPhotogelaryByAlbumUrl = (album) =>
   basedUrl + `photogelary/album/${album}`;
+
+export const deletePhotoUrl = (id) => basedUrl + `photogelary/album/photo/${id}`;

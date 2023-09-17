@@ -12,6 +12,8 @@ import classIcon from "./Icons-statitce/class.png";
 import studentIcon from "./Icons-statitce/student.png";
 import teacherIcon from "./Icons-statitce/teacher.png";
 import stuffIcon from "./Icons-statitce/staff.png";
+import NotFouundImage from "./Images/NotFouundImage.png"
+
 
 export {
   Slider_1,
@@ -27,4 +29,5 @@ export {
   studentIcon,
   teacherIcon,
   stuffIcon,
+  NotFouundImage
 };

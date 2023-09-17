@@ -101,7 +101,7 @@ const AddPhotoGelary = () => {
         <option value="1">Select Album</option>
        
           {albumData?.map((item) => (
-            <option value={item?.title}>{item?.title}</option>
+            <option value={item?._id}>{item?.title}</option>
           ))}
 
       </select>

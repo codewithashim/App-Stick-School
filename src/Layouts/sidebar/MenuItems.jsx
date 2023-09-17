@@ -35,6 +35,16 @@ const Menuitems = [
     href: "/dashboard/header/maneg-header",
   },
   {
+    title: "Footer",
+    icon: "grid",
+    href: "/dashboard/footer/maneg-footer",
+  },
+  {
+    title: "Student Portal",
+    icon: "grid",
+    href: "/dashboard/studentportal/manage-studentportal",
+  },
+  {
     title: "Statistic",
     icon: "grid",
     href: "/dashboard/statistic/maneg-statistic",
@@ -50,7 +60,7 @@ const Menuitems = [
     href: "/dashboard/notice/maneg-notice",
   },
   {
-    title: "Events",
+    title: "Events / News",
     icon: "grid",
     href: "/dashboard/event/maneg-event",
   }, 
