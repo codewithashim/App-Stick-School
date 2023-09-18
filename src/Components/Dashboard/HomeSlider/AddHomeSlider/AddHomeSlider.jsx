@@ -26,7 +26,7 @@ const AddHomeSlider = () => {
     imageUploadData.append("file", imageFile);
     imageUploadData.append(
       "public_id",
-      `${cloud_folder}/PhotoGelary/${imageFile?.name}`
+      `${cloud_folder}/${imageFile?.name}`
     );
     imageUploadData.append("upload_preset", `${upload_preset}`);
     imageUploadData.append("cloud_name", `${cloud_name}`);
@@ -36,7 +36,6 @@ const AddHomeSlider = () => {
     });
     const imgdata = await imgRes.json();
     const imgurl = imgdata?.secure_url;
-    console.log(imgurl, "Upload Image ++++");
 
 
     ///////////////////////////////////////////////

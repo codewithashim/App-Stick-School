@@ -55,6 +55,16 @@ const Menuitems = [
     href: "/dashboard/result/maneg-result",
   },
   {
+    title: "Rutine",
+    icon: "book-open",
+    href: "/dashboard/rutine/maneg-rutine",
+  },
+  {
+    title: "Sylebus",
+    icon: "book-open",
+    href: "/dashboard/sylebus/maneg-sylebus",
+  },
+  {
     title: "Notice",
     icon: "grid",
     href: "/dashboard/notice/maneg-notice",

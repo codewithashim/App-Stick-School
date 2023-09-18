@@ -23,7 +23,7 @@ const StaffDetails = () => {
     return (
       <div>
         <p>Staff not found</p>
-        <Link href="/Staffs">Back to Staffs</Link>
+        <Link href="/staff">Back to Staffs</Link>
       </div>
     );
   }
@@ -49,7 +49,7 @@ const StaffDetails = () => {
               underline="hover"
               sx={{ display: "flex", alignItems: "center" }}
               color="inherit"
-              href="/Staff"
+              href="/staff"
             >
               <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
               Staff
@@ -83,38 +83,38 @@ const StaffDetails = () => {
                           <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                               <div className="overflow-hidden">
-                                <table className="min-w-full text-left text-sm font-light">
+                                <table className="min-w-full text-sm font-light text-left">
                                   <tbody>
                                     <tr className="border-b dark:border-neutral-500">
-                                      <td className="whitespace-nowrap px-6 py-4 font-medium">
+                                      <td className="px-6 py-4 font-medium whitespace-nowrap">
                                         Name :
                                       </td>
-                                      <td className="whitespace-nowrap px-6 py-4">
+                                      <td className="px-6 py-4 whitespace-nowrap">
                                         {staff?.name}
                                       </td>
                                     </tr>
                                     <tr className="border-b dark:border-neutral-500">
-                                      <td className="whitespace-nowrap px-6 py-4 font-medium">
+                                      <td className="px-6 py-4 font-medium whitespace-nowrap">
                                         Joining Date :
                                       </td>
-                                      <td className="whitespace-nowrap px-6 py-4">
+                                      <td className="px-6 py-4 whitespace-nowrap">
                                         {staff?.joiningDate}
                                       </td>
                                     </tr>
                                     <tr className="border-b dark:border-neutral-500">
-                                      <td className="whitespace-nowrap px-6 py-4 font-medium">
+                                      <td className="px-6 py-4 font-medium whitespace-nowrap">
                                         Position :
                                       </td>
-                                      <td className="whitespace-nowrap px-6 py-4">
+                                      <td className="px-6 py-4 whitespace-nowrap">
                                         {staff?.position}
                                       </td>
                                     </tr>
 
                                     <tr className="border-b dark:border-neutral-500">
-                                      <td className="whitespace-nowrap px-6 py-4 font-medium">
+                                      <td className="px-6 py-4 font-medium whitespace-nowrap">
                                         Detail :
                                       </td>
-                                      <td className="whitespace-nowrap px-6 py-4">
+                                      <td className="px-6 py-4 whitespace-nowrap">
                                         {staff?.detail}
                                       </td>
                                     </tr>

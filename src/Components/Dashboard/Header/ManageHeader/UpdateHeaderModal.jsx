@@ -51,7 +51,7 @@ const UpdateHeaderModal = ({ header }) => {
     imageUploadData.append("file", imageFile);
     imageUploadData.append(
       "public_id",
-      `${cloud_folder}/Header/${imageFile?.name}`
+      `${cloud_folder}/${imageFile?.name}`
     );
     imageUploadData.append("upload_preset", `${upload_preset}`);
     imageUploadData.append("cloud_name", `${cloud_name}`);
@@ -61,7 +61,6 @@ const UpdateHeaderModal = ({ header }) => {
     });
     const imgdata = await imgRes.json();
     const imgurl = imgdata?.secure_url;
-    console.log(imgurl, "Upload Image ++++");
     ///////     End of Photo Upload     ////////
 
     const { schoolName, schoolAddress, estdSince, email, phone } = updatedata;

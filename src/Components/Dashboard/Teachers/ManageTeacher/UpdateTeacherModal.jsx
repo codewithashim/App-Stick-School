@@ -50,7 +50,7 @@ const UpdateTeacherModal = ({ teacher }) => {
     imageUploadData.append("file", imageFile);
     imageUploadData.append(
       "public_id",
-      `${cloud_folder}/Academice/${imageFile?.name}`
+      `${cloud_folder}/${imageFile?.name}`
     );
     imageUploadData.append("upload_preset", `${upload_preset}`);
     imageUploadData.append("cloud_name", `${cloud_name}`);
@@ -60,7 +60,7 @@ const UpdateTeacherModal = ({ teacher }) => {
     });
     const imgdata = await imgRes.json();
     const imgurl = imgdata?.secure_url;
-    console.log(imgurl, "Upload Image ++++");
+
     ///////     End of Photo Upload     ////////
 
     const teacherData = {

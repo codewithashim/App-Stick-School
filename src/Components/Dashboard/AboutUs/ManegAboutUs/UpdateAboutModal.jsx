@@ -48,7 +48,7 @@ const UpdateAboutModal = ({ about }) => {
     imageUploadData.append("file", imageFile);
     imageUploadData.append(
       "public_id",
-      `${cloud_folder}/About/${imageFile?.name}`
+      `${cloud_folder}/${imageFile?.name}`
     );
     imageUploadData.append("upload_preset", `${upload_preset}`);
     imageUploadData.append("cloud_name", `${cloud_name}`);

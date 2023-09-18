@@ -25,7 +25,7 @@ const AddHeaderComponent = () => {
     imageUploadData.append("file", imageFile);
     imageUploadData.append(
       "public_id",
-      `${cloud_folder}/Header/${imageFile.name}`
+      `${cloud_folder}/${imageFile.name}`
     );
     imageUploadData.append("upload_preset", `${upload_preset}`);
     imageUploadData.append("cloud_name", `${cloud_name}`);
@@ -35,7 +35,6 @@ const AddHeaderComponent = () => {
     });
     const imgdata = await imgRes.json();
     const imgurl = imgdata?.secure_url;
-    console.log(imgurl, "Upload Image ++++");
 
     ///////     End of Photo Upload     ////////
 
@@ -58,7 +57,6 @@ const AddHeaderComponent = () => {
       body: JSON.stringify(headerData),
     });
     const dataRes = await res.json();
-    console.log(dataRes, ":++");
 
     if (!dataRes) {
       Swal.fire({

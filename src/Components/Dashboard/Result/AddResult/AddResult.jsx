@@ -5,14 +5,16 @@ import Swal from "sweetalert2";
 import { TextField } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import { createResultUrl } from "@/src/Utils/Urls/ResultUrl";
+import useStudentPortal from "@/src/Hooks/useStudentPortal";
 import axios from "axios";
 
 const AddResultComponent = () => {
   const { register, handleSubmit, control } = useForm();
+  const {studentPortalData} = useStudentPortal();
   const [loading, setLoading] = useState(false);
 
   const onSubmit = async (data) => {
-    const {  title, details, pdfFile } = data;
+    const {  title, details, pdfFile,classOfStudentPortal } = data;
     const formData = new FormData();
     
     const currentDate = new Date();
@@ -27,6 +29,7 @@ const AddResultComponent = () => {
     formData.append("pbulishDate",  formattedDate);
     formData.append("title", title);
     formData.append("details", details);
+    formData.append("class", classOfStudentPortal)
     formData.append("file", pdfFile);
 
     try {
@@ -68,6 +71,16 @@ const AddResultComponent = () => {
               className="w-full"
               {...register("title")}
             />
+    <select
+        className="w-full h-10 px-3 mb-3 bg-transparent border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+        {...register("classOfStudentPortal")}
+      >
+        <option value="1">Select Class</option>
+          {studentPortalData?.map((item) => (
+            <option value={item?._id}>{item?.title}</option>
+          ))}
+
+      </select>
             <TextField
               id="outlined-details-static"
               label="Description"
