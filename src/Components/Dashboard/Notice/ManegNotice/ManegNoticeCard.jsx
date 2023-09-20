@@ -26,7 +26,7 @@ const ManegNoticeCard = ({ notice }) => {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="Delete" onClick={() => handelDeleteNotice(_id)}>
+        <IconButton aria-label="Delete" onClick={()=>handelDeleteNotice(_id)}>
           {loadingNotice ? (
             "Loading..."
           ) : (

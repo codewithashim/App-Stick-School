@@ -14,12 +14,17 @@ import SendIcon from "@mui/icons-material/Send";
 import { Controller, useForm } from "react-hook-form";
 import { TextField } from "@mui/material";
 import { updateRutineUrl } from "@/src/Utils/Urls/RutineUrl";
+import axios from "axios";
+import { fileUploadUrlServer } from "@/src/Utils/Network/Network";
+import useStudentPortal from "@/src/Hooks/useStudentPortal";
+
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
 const UploadRutineModal = ({ Rutine }) => {
+  const {studentPortalData} = useStudentPortal();
   const [open, setOpen] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
   const handleClickOpen = () => {
@@ -33,32 +38,45 @@ const UploadRutineModal = ({ Rutine }) => {
   const { title, details, pbulishDate, _id } = Rutine;
 
   const handelUpdate = async (updatedata) => {
-    const {  title, details, pdfFile } = updatedata;
-    const formData = new FormData();
-    
+    setLoading(true);
+    const { pdfFile } = updatedata;
+    const fileFormData = new FormData();
+    fileFormData.append("file", pdfFile);
+    const fileUploadResponse = await axios.post(
+      fileUploadUrlServer,
+      fileFormData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+    const fileUrl = fileUploadResponse?.data?.fileUrl;
     const currentDate = new Date();
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth() + 1; 
     const day = currentDate.getDate();
   
     const formattedDate = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
-  
-    formData.append("pbulishDate", formattedDate);
-    formData.append("title", title);
-    formData.append("details", details);
-    formData.append("file", pdfFile);
 
-    setLoading(true);
+    const rutineData = {
+      title: updatedata.title,
+      details: updatedata.details,
+      pbulishDate: formattedDate,
+      class: updatedata.classOfStudentPortal,
+      file: fileUrl,
+    };
+
     const res = await fetch(updateRutineUrl(_id), {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(headerData),
+      body: JSON.stringify(rutineData),
     });
-    const data = await res.json();
+   
 
-    if (!data) {
+    if (!res) {
       Swal.fire({
         position: "center",
         timerProgressBar: true,
@@ -79,7 +97,7 @@ const UploadRutineModal = ({ Rutine }) => {
       Swal.fire({
         position: "center",
         timerProgressBar: true,
-        title: "Successfully Update !",
+        title: "Successfully Update Header !",
         iconColor: "#ED1C24",
         toast: true,
         icon: "success",
@@ -167,6 +185,16 @@ const UploadRutineModal = ({ Rutine }) => {
                       {...register("details")}
                     />
                   </div>
+                  <select
+                    className="w-full h-10 px-3 mb-3 bg-transparent border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+                    {...register("classOfStudentPortal")}
+                  >
+                    <option value="1">Select Class</option>
+                      {studentPortalData?.map((item) => (
+                        <option value={item?._id}>{item?.title}</option>
+                      ))}
+
+                  </select>
 
                   <div class="w-full h-full my-4">
                     <div class="rounded-lg shadow-xl bg-gray-50">

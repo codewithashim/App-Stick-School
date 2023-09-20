@@ -57,13 +57,13 @@ export const OpctionData = [
   {
     id: 10,
     title: "Routine",
-    path: "/routine",
+    path: "/rutine",
     icon: "https://res.cloudinary.com/codewithashim/image/upload/v1693606159/ApstickSchool/Icons/gqog1dou2rfvryskjnc7.png",
   },
   {
     id: 12,
     title: "Syllabus",
-    path: "/syllabus",
+    path: "/sylebus",
     icon: "https://res.cloudinary.com/codewithashim/image/upload/v1693606159/ApstickSchool/Icons/eon4lqdv1nhpz9t81orp.png",
   },
 ];

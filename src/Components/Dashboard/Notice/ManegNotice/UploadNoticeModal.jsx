@@ -14,6 +14,8 @@ import SendIcon from "@mui/icons-material/Send";
 import { Controller, useForm } from "react-hook-form";
 import { TextField } from "@mui/material";
 import { updateNoticeUrl } from "@/src/Utils/Urls/NoticeUrl";
+import axios from "axios";
+import { fileUploadUrlServer } from "@/src/Utils/Network/Network";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -32,25 +34,46 @@ const UploadnoticeModal = ({ notice }) => {
 
   const { title, details, pbulishDate, _id } = notice;
 
-  const handelUpdate = async (updatedata) => {
-    const { pbulishDate, title, details, pdfFile } = updatedata;
-    const formData = new FormData();
-    formData.append("pbulishDate", pbulishDate);
-    formData.append("title", title);
-    formData.append("details", details);
-    formData.append("file", pdfFile);
 
+  const handelUpdate = async (updatedata) => {
     setLoading(true);
+    const { pdfFile } = updatedata;
+    const fileFormData = new FormData();
+    fileFormData.append("file", pdfFile);
+    const fileUploadResponse = await axios.post(
+      fileUploadUrlServer,
+      fileFormData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+    const fileUrl = fileUploadResponse?.data?.fileUrl;
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth() + 1; 
+    const day = currentDate.getDate();
+  
+    const formattedDate = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+
+    const noticeData = {
+      title: updatedata.title,
+      details: updatedata.details,
+      pbulishDate: formattedDate,
+      file: fileUrl,
+    };
+
     const res = await fetch(updateNoticeUrl(_id), {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(headerData),
+      body: JSON.stringify(noticeData),
     });
-    const data = await res.json();
 
-    if (!data) {
+
+    if (!res) {
       Swal.fire({
         position: "center",
         timerProgressBar: true,
@@ -71,7 +94,7 @@ const UploadnoticeModal = ({ notice }) => {
       Swal.fire({
         position: "center",
         timerProgressBar: true,
-        title: "Successfully Update Header !",
+        title: "Successfully Update!",
         iconColor: "#ED1C24",
         toast: true,
         icon: "success",
@@ -88,6 +111,8 @@ const UploadnoticeModal = ({ notice }) => {
       handleClose();
     }
   };
+
+
 
   return (
     <section>

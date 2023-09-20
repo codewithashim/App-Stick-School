@@ -10,11 +10,11 @@ import useSylebus from "@/src/Hooks/useSylebus";
 
 const SylebusDetails = () => {
   const router = useRouter();
-  const { Sylebusid } = router.query;
-  const SylebusId = Sylebusid;
+  const {sylebusid } = router.query;
+  const SylebusId = sylebusid;
   const { SylebusData } = useSylebus();
 
-  const filteredSylebus = SylebusData? SylebusData?.filter((notice) => notice?._id === SylebusId) : [];
+  const filteredSylebus = SylebusData? SylebusData?.filter((sylebus) => sylebus?._id === SylebusId) : [];
 
   if (filteredSylebus?.length === 0) {
     return (

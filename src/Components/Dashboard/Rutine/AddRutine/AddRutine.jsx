@@ -5,8 +5,9 @@ import Swal from "sweetalert2";
 import { TextField } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import useStudentPortal from "@/src/Hooks/useStudentPortal";
-import axios from "axios";
 import { createRutineUrl } from "@/src/Utils/Urls/RutineUrl";
+import axios from "axios";
+import { fileUploadUrlServer } from "@/src/Utils/Network/Network";
 
 const AddRutineComponent = () => {
   const { register, handleSubmit, control } = useForm();
@@ -14,48 +15,80 @@ const AddRutineComponent = () => {
   const [loading, setLoading] = useState(false);
 
   const onSubmit = async (data) => {
-    const {  title, details, pdfFile,classOfStudentPortal } = data;
-    const formData = new FormData();
-    
-    const currentDate = new Date();
-
-    const year = currentDate.getFullYear();
-    const month = currentDate.getMonth() + 1; 
-    const day = currentDate.getDate();
-  
-    const formattedDate = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
-  
-
-    formData.append("pbulishDate",  formattedDate);
-    formData.append("title", title);
-    formData.append("details", details);
-    formData.append("class", classOfStudentPortal)
-    formData.append("file", pdfFile);
-
     try {
       setLoading(true);
-      const response = await axios.post(
-        createRutineUrl,
-        formData,
+      const { pdfFile } = data;
+      const fileFormData = new FormData();
+      fileFormData.append("file", pdfFile);
+      const fileUploadResponse = await axios.post(
+        fileUploadUrlServer,
+        fileFormData,
         {
           headers: {
             "Content-Type": "multipart/form-data",
           },
         }
       );
-      if (response.status === 201) {
+      const fileUrl = fileUploadResponse?.data?.fileUrl;
+      const currentDate = new Date();
+      const year = currentDate.getFullYear();
+      const month = currentDate.getMonth() + 1;
+      const day = currentDate.getDate();
+      const formattedDate = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+  
+      const rutineData = {
+        title: data.title,
+        details: data.details,
+        pbulishDate: formattedDate,
+        class: data.classOfStudentPortal,
+        file: fileUrl,
+      };
+      const response = await axios.post(
+        createRutineUrl,
+        rutineData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!response) {
         Swal.fire({
-          icon: "success",
-          title: "Added Successfully",
-          showConfirmButton: false,
-          timer: 1500,
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
         });
-        setLoading(false);
-      } 
+      } else {
+        Swal.fire({
+          position: "center",
+          timerProgressBar: true,
+          title: "Successfully Added!",
+          iconColor: "#ED1C24",
+          toast: true,
+          icon: "success",
+          showClass: {
+            popup: "animate__animated animate__fadeInRight",
+          },
+          hideClass: {
+            popup: "animate__animated animate__fadeOutRight",
+          },
+          showConfirmButton: false,
+          timer: 3500,
+        });
+      }
     } catch (error) {
-      console.error(error);
+      Swal.fire({
+        icon: "error",
+        title: error,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } finally {
+      setLoading(false);
     }
   };
+  
 
   return (
     <section>
@@ -71,16 +104,16 @@ const AddRutineComponent = () => {
               className="w-full"
               {...register("title")}
             />
-    <select
-        className="w-full h-10 px-3 mb-3 bg-transparent border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-        {...register("classOfStudentPortal")}
-      >
-        <option value="1">Select Class</option>
-          {studentPortalData?.map((item) => (
-            <option value={item?._id}>{item?.title}</option>
-          ))}
+          <select
+              className="w-full h-10 px-3 mb-3 bg-transparent border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+              {...register("classOfStudentPortal")}
+            >
+              <option value="1">Select Class</option>
+                {studentPortalData?.map((item) => (
+                  <option value={item?._id}>{item?.title}</option>
+                ))}
 
-      </select>
+            </select>
             <TextField
               id="outlined-details-static"
               label="Description"

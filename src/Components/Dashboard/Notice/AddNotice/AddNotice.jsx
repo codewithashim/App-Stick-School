@@ -4,53 +4,89 @@ import { useForm, Controller } from "react-hook-form";
 import Swal from "sweetalert2";
 import { TextField } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
-import axios from "axios";
 import { createNoticeUrl } from "@/src/Utils/Urls/NoticeUrl";
+import axios from "axios";
+import { fileUploadUrlServer } from "@/src/Utils/Network/Network";
+
 
 const AddNoticeComponent = () => {
   const { register, handleSubmit, control } = useForm();
   const [loading, setLoading] = useState(false);
 
   const onSubmit = async (data) => {
-    const { title, details, pdfFile } = data;
-
-    const currentDate = new Date();
-    const year = currentDate.getFullYear();
-    const month = currentDate.getMonth() + 1; 
-    const day = currentDate.getDate();
-    const formattedDate = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
-
-    const formData = new FormData();
-    formData.append("pbulishDate", formattedDate);
-    formData.append("title", title);
-    formData.append("details", details);
-    formData.append("file", pdfFile);
-
     try {
       setLoading(true);
-      const response = await axios.post(
-        createNoticeUrl,
-        formData,
+      const { pdfFile } = data;
+      const fileFormData = new FormData();
+      fileFormData.append("file", pdfFile);
+      const fileUploadResponse = await axios.post(
+        fileUploadUrlServer,
+        fileFormData,
         {
           headers: {
             "Content-Type": "multipart/form-data",
           },
         }
       );
-      if (response.status === 201) {
+      const fileUrl = fileUploadResponse?.data?.fileUrl;
+      const currentDate = new Date();
+      const year = currentDate.getFullYear();
+      const month = currentDate.getMonth() + 1;
+      const day = currentDate.getDate();
+      const formattedDate = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+  
+      const noticeData = {
+        title: data.title,
+        details: data.details,
+        pbulishDate: formattedDate,
+        file: fileUrl,
+      };
+      const response = await axios.post(
+        createNoticeUrl,
+        noticeData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+     
+      if (!response) {
         Swal.fire({
-          icon: "success",
-          title: "Added Successfully",
-          showConfirmButton: false,
-          timer: 1500,
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
         });
-        setLoading(false);
-      } 
+      } else {
+        Swal.fire({
+          position: "center",
+          timerProgressBar: true,
+          title: "Successfully Added!",
+          iconColor: "#ED1C24",
+          toast: true,
+          icon: "success",
+          showClass: {
+            popup: "animate__animated animate__fadeInRight",
+          },
+          hideClass: {
+            popup: "animate__animated animate__fadeOutRight",
+          },
+          showConfirmButton: false,
+          timer: 3500,
+        });
+      }
     } catch (error) {
-      console.error(error);
+      Swal.fire({
+        icon: "error",
+        title: error,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } finally {
+      setLoading(false);
     }
   };
-
+  
   return (
     <section>
       <form onSubmit={handleSubmit(onSubmit)}>

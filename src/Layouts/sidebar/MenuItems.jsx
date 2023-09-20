@@ -55,12 +55,12 @@ const Menuitems = [
     href: "/dashboard/result/maneg-result",
   },
   {
-    title: "Rutine",
+    title: "Routine",
     icon: "book-open",
     href: "/dashboard/rutine/maneg-rutine",
   },
   {
-    title: "Sylebus",
+    title: "Syllabus",
     icon: "book-open",
     href: "/dashboard/sylebus/maneg-sylebus",
   },

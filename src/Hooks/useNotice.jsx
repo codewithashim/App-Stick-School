@@ -80,6 +80,7 @@ const useNotice = () => {
         noticeData,
         noticeLoaded,
         refetchNotice,
+        handelDeleteNotice
     };
 };
 

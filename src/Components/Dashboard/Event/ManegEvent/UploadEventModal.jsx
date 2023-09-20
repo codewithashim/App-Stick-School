@@ -14,6 +14,8 @@ import SendIcon from "@mui/icons-material/Send";
 import { Controller, useForm } from "react-hook-form";
 import { TextField } from "@mui/material";
 import { updateEventUrl } from "@/src/Utils/Urls/EventsUrl";
+import axios from "axios";
+import { fileUploadUrlServer } from "@/src/Utils/Network/Network";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -32,30 +34,43 @@ const UploadEventModal = ({ event }) => {
   const { title, details, pbulishDate, _id } = event;
 
   const handelUpdate = async (updatedata) => {
-    const { pbulishDate, title, details, pdfFile } = updatedata;
+    setLoading(true);
+    const { pdfFile } = updatedata;
+    const fileFormData = new FormData();
+    fileFormData.append("file", pdfFile);
+    const fileUploadResponse = await axios.post(
+      fileUploadUrlServer,
+      fileFormData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+    const fileUrl = fileUploadResponse?.data?.fileUrl;
     const currentDate = new Date();
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth() + 1; 
     const day = currentDate.getDate();
+  
     const formattedDate = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
-    
-    const formData = new FormData();
-    formData.append("pbulishDate", formattedDate);
-    formData.append("title", title);
-    formData.append("details", details);
-    formData.append("file", pdfFile);
 
-    setLoading(true);
+    const eventData = {
+      title: updatedata.title,
+      details: updatedata.details,
+      pbulishDate: formattedDate,
+      file: fileUrl,
+    };
+
     const res = await fetch(updateEventUrl(_id), {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(headerData),
+      body: JSON.stringify(eventData),
     });
-    const data = await res.json();
 
-    if (!data) {
+    if (!res) {
       Swal.fire({
         position: "center",
         timerProgressBar: true,
@@ -76,7 +91,7 @@ const UploadEventModal = ({ event }) => {
       Swal.fire({
         position: "center",
         timerProgressBar: true,
-        title: "Successfully Update Header !",
+        title: "Successfully Update!",
         iconColor: "#ED1C24",
         toast: true,
         icon: "success",
@@ -93,6 +108,8 @@ const UploadEventModal = ({ event }) => {
       handleClose();
     }
   };
+
+
 
   return (
     <section>

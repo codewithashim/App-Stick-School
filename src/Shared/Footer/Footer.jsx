@@ -44,7 +44,7 @@ const Footer = () => {
                 width="100%"
                 height="100%"
                 id="gmap_canvas"
-                src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=Kempapura Main Rd, Hebbal Kempapura, Bengaluru, Karnataka 560024&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3630.9376355489135!2d91.69397239999999!3d24.4876176!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x37517294e26bbd51%3A0xa51e0e9f7f7e1491!2sAmtoil%20High%20School!5e0!3m2!1sen!2sbd!4v1695147471674!5m2!1sen!2sbd"
                 frameBorder="0"
                 scrolling="no"
                 marginHeight="0"
@@ -78,7 +78,7 @@ const Footer = () => {
 
         <div className="about-content">
           <h1 className=" text-[1rem] my-4 t">
-           {schoolDetail}
+           {schoolDetail.slice(0,350)}
           </h1>
         </div>
             </div> 
